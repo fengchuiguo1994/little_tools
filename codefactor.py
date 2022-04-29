@@ -188,6 +188,11 @@ def reverseStrand(mystr):
         raise ValueError("please check the input strand, must be +/-\n{0}\n".format(mystr))
 
 ### determine whether there is overlap between the two intervals ###
+def overlap(c1,s1,e1,c2,s2,e2):
+    if c1 == c2:
+        return e1 > s2 and s1 < e2
+    return False
+
 def detOverlap(s1,e1,s2,e2):
     """
     s1,e1,s2,e2: two intervals start and end pos
