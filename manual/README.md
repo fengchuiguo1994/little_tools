@@ -183,6 +183,8 @@ bitscore：得分
 
 # 亦可从下面选择任意自定义
 qseqid qlen sseqid sgi slen pident length mismatch gapopen qstart qend sstart send evalue bitscore staxid ssciname
+
+blastn -query OTTP4.unmap.fa -out OTTP4.unmap.output -db hg38 -outfmt "6 qseqid qgi qacc qaccver qlen sseqid sallseqid sgi sallgi sacc saccver sallacc slen qstart qend sstart send qseq sseq evalue bitscore score length pidehg38 nidehg38 mismatch positive gapopen gaps ppos frames qframe sframe btop staxid scomname sblastname sskingdom staxids scomnames sblastnames sskingdoms stitle salltitles sstrand qcovs qcovhsp qcovus ssciname sscinames" -evalue 1e-5 -max_target_seqs 2 -num_threads 12
 ```
 ### bwa
 aln:
@@ -191,6 +193,10 @@ XT:U => Unique alignment
 XT:R => Repeat
 XT:N => Not mapped
 XT:M => Mate-sw (成对比对的时候，当一端是被另一端救援而被确定比对位置的时候)
+```
+### STAR-Fusion 寻找融合RNA
+```
+STAR-Fusion --left_fq GM12878_R1.fq.gz --right_fq GM12878_R2.fq.gz --genome_lib_dir ~/Tools/STAR-Fusion/genome/GRCh38_v27_CTAT_lib_Feb092018/ctat_genome_lib_build_dir/ --CPU 20 --no_annotation_filter --examine_coding_effect --extract_fusion_reads --FusionInspector validate --denovo_reconstruct
 ```
 
 # 定量工具
@@ -234,6 +240,15 @@ ATTTGGTTTAGCTACGAGAGGTTGACATGTGCATCGCGAAGAACGAGGAGGCTGTTGCAATCCAGCCGAATTGCCCAGAG
 R1: GTGAGCTGCCTTGGAAAAGGTTTGACATCATGGTCTCACCCTCCAGGCATTCGCAATGCTGTTGAAGCACTCTGGGCAATTCGGCTGGATTGCAACAGCCTCCTCGTTCTTCGCGATGCACATGTCAACCTCTCGTAGCTAAACCAAATC
 R2: 
 ATTTGGTTTAGCTACGAGAGGTTGACATGTGCATCGCGAAGAACGAGGAGGCTGTTGCAATCCAGCCGAATTGCCCAGAGTGCTTCAACAGCATTGCGAATGCCTGGAGGGTGAGACCATGATGTCAAACCTTTTCCAAGGC
+```
+
+# k-mer
+### 得到kmer序列
+[dsk](http://minia.genouest.org/dsk/)
+```
+i=sample
+dsk  -file ${i}.1.fq,${i}.2.fq -kmer-size 20 -out $i.20.h5 -out-tmp $i
+dsk2ascii -file $i.20.h5 -out $i.20.txt
 ```
 
 # 变异
