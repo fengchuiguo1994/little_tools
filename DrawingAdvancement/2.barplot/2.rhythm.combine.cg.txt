@@ -1,0 +1,12 @@
+ZT-8-Ribo-off	chromosome-chromosome	15647899
+ZT-8-Ribo-off	rRNA-chromosome	7869547
+ZT-8-Ribo-off	rRNA-rRNA	12015686
+ZT-8	chromosome-chromosome	367187
+ZT-8	rRNA-chromosome	1020594
+ZT-8	rRNA-rRNA	9238933
+ZT-20-Ribo-off	chromosome-chromosome	18331162
+ZT-20-Ribo-off	rRNA-chromosome	7653131
+ZT-20-Ribo-off	rRNA-rRNA	8475347
+ZT-20	chromosome-chromosome	553063
+ZT-20	rRNA-chromosome	1737243
+ZT-20	rRNA-rRNA	12984608
