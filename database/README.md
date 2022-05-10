@@ -18,6 +18,11 @@
 [人miRNA的靶基因](http://www.targetscan.org/vert_80/)<br/>
 [实验室里所有的数据库，包括plantTFDB，PlantRegMap，CPC，AnnoLnc2](http://plantregmap.cbi.pku.edu.cn/)<br/>
 
+### miRNA
+[TargetScan](https://www.targetscan.org/vert_72/)是一款预测miRNA结合位点的软件，对于哺乳动物中miRNA结合位点预测的效果非常好。在预测miRNA靶基因之前，首先需要确定转录本的3’UTR区域，TargetScan数据库通过一种名为3P-seq的测序技术，确定转录本对应的3’UTR区（哺乳动物中的miRNA通过结合转录本序列的3’UTR区，从而发挥转录后调控作用），并且结合该技术的分析结果和NCBI中已有的3’UTR注释，提供一个综合的3’UTR区序列。[来源于知乎](https://zhuanlan.zhihu.com/p/325673305)<br/>
+[miRanda](http://cbio.mskcc.org/miRNA2003/miranda.html)，[文档](https://bioinformaticsworkbook.org/dataAnalysis/SmallRNA/Miranda_miRNA_Target_Prediction.html#gsc.tab=0)<br/>
+
+
 # RNA 二级结构
 [RNArchitecture](http://genesilico.pl/RNArchitecture/family/MIR807/secondarystructure)<br/>
 [ViennaRNA预测RNA的二级结构](https://www.tbi.univie.ac.at/RNA/)<br/>
