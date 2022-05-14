@@ -102,6 +102,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [funRiceGenes 水稻基因功能基因名注释](https://funricegenes.github.io/)<br/>
 [rap-db 水稻基因组](https://rapdb.dna.affrc.go.jp/index.html)<br/>
 [Oryzabase 水稻注释](https://shigen.nig.ac.jp/rice/oryzabase/)<br/>
+[RIGW ZS97和MH63的详细注释](http://rice.hzau.edu.cn/rice_rs3/)<br/>
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
