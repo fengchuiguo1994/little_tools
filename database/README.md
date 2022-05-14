@@ -95,6 +95,29 @@ ML  | Myotis lucifugus|蝙蝠|repbase中查阅
 CR  | Chlamydomonas reinhardtii | 莱茵衣藻 | repbase中查阅
 SP  | Strongylocentrotus | 海胆 | repbase中查阅
 
+# 植物数据库
+### GWAS数据库
+[gwas Atlas](https://ngdc.cncb.ac.cn/gwas/)
+### 水稻
+[funRiceGenes 水稻基因功能基因名注释](https://funricegenes.github.io/)<br/>
+[rap-db 水稻基因组](https://rapdb.dna.affrc.go.jp/index.html)<br/>
+[Oryzabase 水稻注释](https://shigen.nig.ac.jp/rice/oryzabase/)<br/>
+
+# 动物数据库
+[人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
+
+# GO工具
+[EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
+[AmiGO2](http://amigo.geneontology.org/amigo/term/GO:0005515)<br/>
+[ShinyGO](http://bioinformatics.sdstate.edu/go/)<br/>
+```
+
+```
+
+
+
+# 蛋白数据库
+[nextprot](https://www.nextprot.org/)
 # 人类变异的数据库
 ```
 ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
