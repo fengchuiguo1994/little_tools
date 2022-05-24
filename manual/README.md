@@ -121,6 +121,29 @@ chrom   start   end rid score   strand  start   end rgb_id  block_number    bloc
 ```
 其中block_start，第一个一定是0，第二个是第二段的起点-第一段的起点。以此类推，都是n个block的起点减去第一个block的起点。
 
+### [Gephi](https://gephi.org/)
+```
+1：新建项目
+文件 -> 新建项目 -> 保存（先把项目保存下来）
+2：建立交互（CSV格式）
+文件 -> 导入电子表格 -> 选中network文件（下一步-完成-选择无向图-添加到现在的工作区完成）
+文件 -> 导入电子表格 -> 选中node文件（下一步-完成-混合-添加到现在的工作区完成）
+3：创建布局
+布局 -> 选择一个布局 -> Fruchterman Reingold -> 运行（执行到图形不再怎么变化为止）
+4：设置属性
+外观 -> 节点 -> 统一的 -> 设置颜色（#f8b62b） -> 应用 -> 分割 -> 选择一种渲染方式 -> taxonmy -> 设置颜色（#da1c6f） -> 应用
+外观 -> 边 -> 统一的 -> 设置颜色（#b9b8b8） -> 应用
+5：特异设置
+图 -> 编辑（一个箭头加一个问号） -> 选择红色的点 -> 尺寸改为25 -> 
+6：预览输出
+预览 -> （显示标签，厚度0.2，重新调整权重，Min. rescaled weight 1，颜色 原始的，显示标签） -> 刷新
+SVG/PDF/PNG -> 
+
+panicle： 紫色
+leaf：深橙色（青色#00a0e9）
+seedling：绿色
+```
+
 # 比对类工具
 ### 关于比对类工具处理兼并碱基
 可以下载[水稻的细胞器基因组](https://rapdb.dna.affrc.go.jp/download/archive/Mt_Pt_genome.fasta)文件，里面包含了兼并碱基，也可以自定义。下载后，提取了一段reads做如下操作
