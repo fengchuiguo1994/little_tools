@@ -35,7 +35,7 @@ for index,ii in enumerate(bb):
 然后转化成实际位点：
 awk '{if(NR==1){print $0}else{print $1"\t"5+$2-2"\t"5+$3-2}}' U1.bed > U1.cg.bed
 ```
-![](figformanual\IGV.curve.png)
+![](figformanual/IGV.curve.png)
 ```
 track graphType=arc
 U1	33	39
@@ -175,13 +175,13 @@ mkdir -p starindex && STAR --runMode genomeGenerate --genomeDir starindex --geno
 STAR --genomeDir starindex/ --outFileNamePrefix startest --readFilesIn test.fq 
 ```
 bwa的结果如图:<br/>
-![](figformanual\bwa.png) <br/>
+![](figformanual/bwa.png) <br/>
 将fastq文件中的兼并碱基变成了N。同时，基因组索引文件中，这个位置被记录成了G
 hisat2的结果如图: <br/>
-![](figformanual\hisat2.png) <br/>
+![](figformanual/hisat2.png) <br/>
 将fastq文件中的兼并碱基变成了A。而在基因组索引文件中，该位置被记录成N了。
 STAR的结果如图: <br/>
-![](figformanual\STAR.png) <br/>
+![](figformanual/STAR.png) <br/>
 三个均无错配，说明可以识别兼并碱基
 ### blast
 HAL1序列来源于RepBaseRepeatMaskerEdition-20181026.tar.gz，与[hg38 repeat](http://www.repeatmasker.org/genomes/hg38/RepeatMasker-rm405-db20140131/hg38.fa.out.gz)作比较。结果发现blast的比对结果短于注释的结果（bwa比对上的结果远远短于）。
@@ -331,5 +331,5 @@ TCTCTTCGGAGACATCCGATAAAATTGGAACGATACAGAGAAGATTAGCATGGCCCCTGCGCAAGGATGACACGCACAAA
 AUCUUUGCGCUUGGGGCAAUGACGCAGCUUAUGAGGUUAUACCGAGGCGCGUCAAUUGCUGGUUGAAAACUAUUUCCAAACCCCCUCUUUGGCCCACCCGGGCCACUGAGAAUUUCUGGAAGGGCUCUCUCUCUUCGGAGAGAGUAAAGC&UCUCUUCGGAGACAUCCGAUAAAAUUGGAACGAUACAGAGAAGAUUAGCAUGGCCCCUGCGCAAGGAUGACACGCACAAAUCGAGAAAUGGUCCAAAUUUUU
 ((((((((((..(((((..((((((.(((.....(((...)))..)))))))))..((((((((........((((((......(((..((((((....))))))..)))......))))))...(((((.((((((((((((.......&))))))))))))..((((((...)))))).......))))).))))))))..))))).))))))))))...............((((((.......))))))  
 ```
-导入[R-chie](https://e-rna.org/r-chie/plot.cgi)得到 <br/>
-![](figformanual\U46.png)
+导入[R-chie](https://e-rna.org/r-chie/plot.cgi)得到:
+![](figformanual/U46.png)
