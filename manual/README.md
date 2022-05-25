@@ -143,6 +143,7 @@ panicle： 紫色
 leaf：深橙色（青色#00a0e9）
 seedling：绿色
 ```
+![](figformanual/gephi.1.png)
 
 # 比对类工具
 ### 关于比对类工具处理兼并碱基
