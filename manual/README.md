@@ -176,13 +176,13 @@ STAR --genomeDir starindex/ --outFileNamePrefix startest --readFilesIn test.fq
 ```
 bwa的结果如图:<br/>
 ![](figformanual/bwa.png) <br/>
-将fastq文件中的兼并碱基变成了N。同时，基因组索引文件中，这个位置被记录成了G
+将fastq文件中的兼并碱基变成了N。同时，基因组索引文件中，这个位置被记录成了G。 <br/>
 hisat2的结果如图: <br/>
 ![](figformanual/hisat2.png) <br/>
-将fastq文件中的兼并碱基变成了A。而在基因组索引文件中，该位置被记录成N了。
+将fastq文件中的兼并碱基变成了A。而在基因组索引文件中，该位置被记录成N了。 <br/>
 STAR的结果如图: <br/>
 ![](figformanual/STAR.png) <br/>
-三个均无错配，说明可以识别兼并碱基
+三个均无错配，说明可以识别兼并碱基 <br/>
 ### blast
 HAL1序列来源于RepBaseRepeatMaskerEdition-20181026.tar.gz，与[hg38 repeat](http://www.repeatmasker.org/genomes/hg38/RepeatMasker-rm405-db20140131/hg38.fa.out.gz)作比较。结果发现blast的比对结果短于注释的结果（bwa比对上的结果远远短于）。
 ```
