@@ -287,6 +287,9 @@ module load interproscan/5.48-83.0 && interproscan.sh --appl Pfam -t n -dp -i Pf
 可以移除参数--appl Pfam，对所有的数据库进行注释，默认是对蛋白序列，-t n修改为DNA/RNA核苷酸序列
 ```
 
+### microRNA分析
+[植物miRNA分析软件](https://www.jianshu.com/p/398049692584): [miR-PREFeR](miR-PREFeR)
+
 # Linux
 ### sort （Linux常用命令）
 看起来sort是忽略了字母大小写排序，目前还没仔细研究，日后再仔细研究。现在碰到sort请全部用LANG=C sort来代替。运行速度更快，跟其它软件sort之后的结果一致。
