@@ -336,3 +336,25 @@ AUCUUUGCGCUUGGGGCAAUGACGCAGCUUAUGAGGUUAUACCGAGGCGCGUCAAUUGCUGGUUGAAAACUAUUUCCAAA
 ```
 导入[R-chie](https://e-rna.org/r-chie/plot.cgi)得到:
 ![](figformanual/U46.png)
+
+# 杂谈
+### [samtools](http://samtools.sourceforge.net/)
+是一个自由操作sam/bam文件的工具集
+##### samtools sort
+samtools sort有两个比较重要的参数，-@ 和 -m。<br/>
+-m 是每条线程使用的内存大小，-@ 是设置线程数目。所以两者乘积约等于内存消耗。因为samtools sort排序算法用的多路归并算法，即先将原始数据拆分成一个个的小文件，然后再对每个小文件内部排序（可能是快速排序法，本人未细看），然后将所有有序的文件合并成一个完整的有序文件（可以查看归并算法-二路归并）。当我在测试超大型文件的时候，我发现因为单个临时小文件是768M（实际是bam格式存储的，文件大小是110M左右），这样会生成大量的临时文件，在归并的时候效率极低，大大拖慢了整体速度。此时应当适当的升高 -m 的大小，减少临时文件的数量。可以大大的提升效率。<br/>
+个人一般使用 -@ 10 -m 3840M<br/>
+另外在谈一下HiC-Pro中很容易被忽略的一个小问题，在 $HiC-Pro/HiCPro/scripts/bowtie_combine.sh 脚本中<br/>
+```
+## Set a default for legacy config files that do not have SORT_RAM set
+    if [[ "${SORT_RAM}" == "" ]]; then
+       SORT_RAM="768"
+    fi
+
+    ## Divide the SORT_RAM by the number of Cpus
+    SORT_RAM=$(echo ${SORT_RAM} | sed -e 's/M$//')
+    SORT_RAM=$(( ${SORT_RAM}/${N_CPU} ))
+
+    cmd="${SAMTOOLS_PATH}/samtools sort -@ ${N_CPU} -m ${SORT_RAM}M -n -T ${TMP_DIR}/$tmp_prefix -o ${BOWTIE2_FINAL_OUTPUT_DIR}/${prefix}.bwt2merged.sorted.bam ${BOWTIE2_FINAL_OUTPUT_DIR}/${prefix}.bwt2merged.bam"
+```
+一般我们也不会设置SORT_RAM，在config-hicpro.txt中默认的是1000M。换言之，如果我们设置的线程是10个。那么此时samtools sort的参数就是 -@ 10 -m 100M。在一些稍微大一点的数据中就容易产生上千个临时文件，在归并的时候就容易因为打开的文件句柄太多而程序终止（ulimit -n可以查看打开文件的上限）。所以 SORT_RAM 需要设置成线程数量*1000M。
