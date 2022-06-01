@@ -223,6 +223,8 @@ XT:M => Mate-sw (成对比对的时候，当一端是被另一端救援而被确
 STAR-Fusion --left_fq GM12878_R1.fq.gz --right_fq GM12878_R2.fq.gz --genome_lib_dir ~/Tools/STAR-Fusion/genome/GRCh38_v27_CTAT_lib_Feb092018/ctat_genome_lib_build_dir/ --CPU 20 --no_annotation_filter --examine_coding_effect --extract_fusion_reads --FusionInspector validate --denovo_reconstruct
 ```
 
+### 
+
 # 定量工具
 ### featureCounts
 [subread for featureCounts](https://github.com/DeskGen/subread).<br/>
@@ -278,6 +280,12 @@ dsk2ascii -file $i.20.h5 -out $i.20.txt
 # 变异
 ### 变异注释
 [网页学习链接Annovar，SnpEff，Oncotator](http://yangli.name/2016/05/15/20160515annotation/)
+### Annovar
+```
+自行建立数据库
+gtfToGenePred -genePredExt zunla.gtf zunla.txt
+perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla_refGene.txt --out zunla_refGeneMrna.fa
+```
 
 # 注释
 ### 转录组注释
@@ -357,4 +365,14 @@ samtools sort有两个比较重要的参数，-@ 和 -m。<br/>
 
     cmd="${SAMTOOLS_PATH}/samtools sort -@ ${N_CPU} -m ${SORT_RAM}M -n -T ${TMP_DIR}/$tmp_prefix -o ${BOWTIE2_FINAL_OUTPUT_DIR}/${prefix}.bwt2merged.sorted.bam ${BOWTIE2_FINAL_OUTPUT_DIR}/${prefix}.bwt2merged.bam"
 ```
-一般我们也不会设置SORT_RAM，在config-hicpro.txt中默认的是1000M。换言之，如果我们设置的线程是10个。那么此时samtools sort的参数就是 -@ 10 -m 100M。在一些稍微大一点的数据中就容易产生上千个临时文件，在归并的时候就容易因为打开的文件句柄太多而程序终止（ulimit -n可以查看打开文件的上限）。所以 SORT_RAM 需要设置成线程数量*1000M。
+一般我们也不会设置SORT_RAM，在config-hicpro.txt中默认的是1000M。换言之，如果我们设置的线程是10个。那么此时samtools sort的参数就是 -@ 10 -m 100M。在一些稍微大一点的数据中就容易产生上千个临时文件，在归并的时候就容易因为打开的文件句柄太多而程序终止（ulimit -n可以查看打开文件的上限）。所以 SORT_RAM 需要设置成线程数量*1000M。<br/>
+### HiC-Pro
+```
+MIN_FRAG_SIZE，例如MIN_FRAG_SIZE = 100
+MAX_FRAG_SIZE，例如MAX_FRAG_SIZE = 100000
+MIN_INSERT_SIZE，例如MIN_INSERT_SIZE = 100
+MAX_INSERT_SIZE，例如MAX_INSERT_SIZE = 600
+GET_PROCESS_SAM，例如GET_PROCESS_SAM = 1
+```
+### [RSEM](https://github.com/bli25/RSEM_tutorial)
+在处理过程中，也存在随机分配，稍微有点取舍的分配，但是真实情况是怎么样的依然未知。
