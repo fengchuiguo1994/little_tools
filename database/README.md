@@ -65,6 +65,9 @@ Unknown
 ### 人类基因组
 [GRC](https://www.ncbi.nlm.nih.gov/grc)<br/>
 
+### 植物基因组
+[PlantGDB 植物基因组整合](http://www.plantgdb.org/)
+
 # 常用在线小工具
 ### 比对
 [多序列比对](https://www.novopro.cn/tools/muscle.html)<br/>
@@ -109,7 +112,11 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [rap-db 水稻基因组](https://rapdb.dna.affrc.go.jp/index.html)<br/>
 [Oryzabase 水稻注释](https://shigen.nig.ac.jp/rice/oryzabase/)<br/>
 [RIGW ZS97和MH63的详细注释](http://rice.hzau.edu.cn/rice_rs3/)<br/>
+[Gene lncRNA circRNA数据库](http://ic4r.org/)<br/>
 ### 复合植物
+[大豆 拟南芥 水稻 玉米RNA-seq数据库](http://ipf.sustech.edu.cn/pub/athrdb/)<br/>
+[植物repeat 保守性 开放区 GO注释 转录因子等，个人只用过保守性的结果](http://plantregmap.gao-lab.org/download.php#alignment-conservation)<br/>
+[PlantTFDB 植物转录因子数据库，跟上面一起的](http://planttfdb.gao-lab.org/)
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
@@ -119,6 +126,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [AmiGO2](http://amigo.geneontology.org/amigo/term/GO:0005515)<br/>
 [ShinyGO](http://bioinformatics.sdstate.edu/go/)<br/>
 [metascape](https://metascape.org/gp/index.html#/main/step1)<br/>
+[GOplot 画图 R包](https://www.biomart.cn/9594/news/2949857.htm), [参考案例](https://www.jianshu.com/p/48ac98098760)<br/>
 ```
 
 ```
