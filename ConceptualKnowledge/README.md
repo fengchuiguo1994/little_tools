@@ -24,3 +24,7 @@ Telomerase RNA：DNA复制
 ![](figrecord/6.tertRNA.jpg)
 SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌
 ![](figrecord/7.srpRNA.jpg)
+
+### rDNA(核糖体DNA 45S)
+![](figrecord/45SrDNA.png)
+核糖体DNA（Ribosomal DNA，rDNA）是一种DNA序列，该序列用于rRNA编码。核糖体是蛋白质和rRNA分子的组合，翻译mRNA分子以产生蛋白质的组件。如该图所示，真核生物的rDNA包括一个单元段，一个操纵子，以及由NTS、ETS、18S、ITS1、5.8S、ITS2和28S束组成的串联重复序列。rDNA的还有另一个基因，由5S rRNA基因编码，位于大多数真核生物的基因组中。5S rDNA序列也存在于果蝇的串联重复序列
