@@ -7,6 +7,7 @@
 [半妖的夜叉姬第二季第23话](http://www.yinghuacd.com/show/5389.html) [备用链接](https://www.zhenbuka3.com/vodplay/87916-1-20/)<br/>
 [龙珠英雄第二季第2话](http://www.yinghuacd.com/v/4924-2.html)<br/>
 [游戏王第四季ZEXAL第1话](https://www.dm530p.net/view/12183.html)<br/>
+[真不卡影院](https://www.zhenbuka5.com/vodplay/7664-1-1/)<br/>
 
 # 游戏
 [MineCraft辅助工具](https://www.chunkbase.com/apps/)<br/>
