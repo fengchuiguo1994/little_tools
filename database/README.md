@@ -59,6 +59,12 @@ Unknown
 [human基因注释和功能注释 HGNC](https://www.genenames.org/)<br/>
 [植物数据库导航](https://mp.weixin.qq.com/s?__biz=MzA5OTI1MzM4Mw==&mid=2247485282&idx=1&sn=8c14fa485455a32bea5e2a269ceedcb8&chksm=90846a8aa7f3e39cf9a23dc4c8ea62ef696a1dce6f2d4648d316b7c3ed0c7aef55c788f17006&mpshare=1&scene=1&srcid=1217ogKVlbYaJWeV5ukQtEoH&sharer_sharetime=1608189858165&sharer_shareid=e80cfb57b06d9707ef6ec23eb958dc90&key=48ac2953e3e884862a8ced436c4c1dbb6998cdb350c32cd5451da0a0998d5a2ee85b1e296bf8b337fa422b1c689694c7177a7e02c63a8bb27e145b7f38a057f19b17c98eb50ce4ba5877c19358ea0b7efb9d7d86c679562faf47652a62bfcb90f81d20c1a0f34e7dea4a38da8557a715b3318c527677ccf0a6005d5b80886be2&ascene=1&uin=MjE5OTExMDU3Ng%3D%3D&devicetype=Windows+10+x64&version=6300002f&lang=zh_CN&exportkey=AUzUCLzZ8FPBQMQV%2Bz3T1Dw%3D&pass_ticket=epI%2Bxd1QO5YvutZSIErkHCb9QjcGayq3GbcmlXIAGa2ek8%2BUZn8qrIlkHP6fLfjW&wx_header=0)<br/>
 
+### 玉米基因组
+[B73](https://www.maizegdb.org/assembly#stockInfo)<br/>
+
+### 人类基因组
+[GRC](https://www.ncbi.nlm.nih.gov/grc)<br/>
+
 # 常用在线小工具
 ### 比对
 [多序列比对](https://www.novopro.cn/tools/muscle.html)<br/>
@@ -103,6 +109,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [rap-db 水稻基因组](https://rapdb.dna.affrc.go.jp/index.html)<br/>
 [Oryzabase 水稻注释](https://shigen.nig.ac.jp/rice/oryzabase/)<br/>
 [RIGW ZS97和MH63的详细注释](http://rice.hzau.edu.cn/rice_rs3/)<br/>
+### 复合植物
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
@@ -111,6 +118,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
 [AmiGO2](http://amigo.geneontology.org/amigo/term/GO:0005515)<br/>
 [ShinyGO](http://bioinformatics.sdstate.edu/go/)<br/>
+[metascape](https://metascape.org/gp/index.html#/main/step1)<br/>
 ```
 
 ```
