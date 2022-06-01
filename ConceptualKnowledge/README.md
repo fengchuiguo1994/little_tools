@@ -7,6 +7,7 @@
 [在大多数生物体中，非编码基因 (ncRNA)被转录为经过进一步加工的前体。在核糖体 RNA (rRNA) 的情况下，它们通常被转录为包含一个或多个 rRNA 的 pre-rRNA。pre-rRNA在特定位点被大约 150 种不同的小核仁限制性 RNA切割和修饰（2'-O-甲基化和假尿苷形成），称为 snoRNA。SnoRNAs 与蛋白质结合，形成 snoRNPs。当 snoRNA 部分与目标 RNA 碱基配对并因此将修饰定位在精确位点时，蛋白质部分执行催化反应。在真核生物中，特别是称为 RNase 的 snoRNP，MRP 将 45S 前体 rRNA 切割成 28S、5.8S 和 18S rRNA。rRNA 和 RNA 加工因子形成称为核仁。例如，在转移 RNA (tRNA) 的情况下，5' 序列被RNase P去除，而 3' 末端被tRNase Z酶去除和非模板化的 3' CCA 尾由核苷酸转移酶添加。在微小 RNA (miRNA)的情况下，miRNA 首先转录为初级转录本或带有帽和 poly-A 尾的 pri-miRNA，然后被加工成短的 70 个核苷酸的茎环结构，称为 pre-miRNA。细胞核由Drosha和Pasha酶组成。输出后，通过与核酸内切酶的相互作用，在细胞质中加工成成熟的 miRNADicer也启动了RNA 诱导的沉默复合物 (RISC)的形成，该复合物由Argonaute蛋白组成。甚至 snRNA 和 snoRNA 本身在成为功能性 RNP 复合体的一部分之前也会经历一系列修饰。这是在核质或称为Cajal 小体的专门隔室中完成的。它们的碱基被一组小卡哈尔体特异性 RNA (scaRNA)甲基化或假尿苷化，其结构与 snoRNA 相似。](https://en.wikipedia.org/wiki/Gene_expression)
 
 ### RNA分类
+[可在wikipedia上查看到详细](https://en.wikipedia.org/wiki/Category:RNA)<br/>
 ![](figrecord/1.RNA.class.jpg)<br/>
 小于50 nt：microRNA，siRNA，piRNA；<br/>
 50 nt到500 nt：rRNA，tRNA，snRNA，snoRNA，SLRNA，SRPRNA 等等；<br/>
@@ -28,3 +29,11 @@ SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌
 ### rDNA(核糖体DNA 45S)
 ![](figrecord/45SrDNA.png)
 核糖体DNA（Ribosomal DNA，rDNA）是一种DNA序列，该序列用于rRNA编码。核糖体是蛋白质和rRNA分子的组合，翻译mRNA分子以产生蛋白质的组件。如该图所示，真核生物的rDNA包括一个单元段，一个操纵子，以及由NTS、ETS、18S、ITS1、5.8S、ITS2和28S束组成的串联重复序列。rDNA的还有另一个基因，由5S rRNA基因编码，位于大多数真核生物的基因组中。5S rDNA序列也存在于果蝇的串联重复序列
+
+# 基因组
+[基因组中有什么](https://gatk.broadinstitute.org/hc/en-us/articles/360041155232-Reference-Genome-Components)<br/>
+[基因组组装](https://www.jianshu.com/p/f1ba7c96160f)<br/>
+
+# 一些专门的名词
+mirSVR：热力学稳定性大小（要求小于等于-0.1）分值越低，表明miRNA-mRNA二者结合稳定性越强，相应miRNA下调基因的可能性越大<br/>
+PhastCons：为基因非翻译区在各物种中进化保守性的强弱（大于等于0），保守性越大约好。<br/>
