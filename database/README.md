@@ -120,6 +120,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
+[人的blacklist位置注释](https://www.encodeproject.org/data-standards/reference-sequences/)<br/>
 
 # GO工具
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
