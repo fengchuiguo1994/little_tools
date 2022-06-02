@@ -116,11 +116,15 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 ### 复合植物
 [大豆 拟南芥 水稻 玉米RNA-seq数据库](http://ipf.sustech.edu.cn/pub/athrdb/)<br/>
 [植物repeat 保守性 开放区 GO注释 转录因子等，个人只用过保守性的结果](http://plantregmap.gao-lab.org/download.php#alignment-conservation)<br/>
-[PlantTFDB 植物转录因子数据库，跟上面一起的](http://planttfdb.gao-lab.org/)
+[PlantTFDB 植物转录因子数据库，跟上面一起的](http://planttfdb.gao-lab.org/)<br/>
+[植物复合数据库](https://mp.weixin.qq.com/s?__biz=MzA5OTI1MzM4Mw==&mid=2247485282&idx=1&sn=8c14fa485455a32bea5e2a269ceedcb8&chksm=90846a8aa7f3e39cf9a23dc4c8ea62ef696a1dce6f2d4648d316b7c3ed0c7aef55c788f17006&mpshare=1&scene=23&srcid=12175Mndpizc8SCj0DaIwUWR&sharer_sharetime=1608189227953&sharer_shareid=fb0a8cc66caa940860c8750158cdb4b4#rd)<br/>
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
 [人的blacklist位置注释](https://www.encodeproject.org/data-standards/reference-sequences/)<br/>
+[Cell Marker 细胞标志物](http://xteam.xbio.top/CellMarker/)<br/>
+[expasy 查询细胞系详细信息](https://web.expasy.org/cellosaurus/CVCL_0168)<br/>
+[RNA的二级结构](https://biocyc.org/gene?orgid=ECOLI&id=gltW-tRNA)<br/>
 
 # GO工具
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
