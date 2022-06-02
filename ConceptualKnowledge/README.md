@@ -37,3 +37,49 @@ SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌
 # 一些专门的名词
 mirSVR：热力学稳定性大小（要求小于等于-0.1）分值越低，表明miRNA-mRNA二者结合稳定性越强，相应miRNA下调基因的可能性越大<br/>
 PhastCons：为基因非翻译区在各物种中进化保守性的强弱（大于等于0），保守性越大约好。<br/>
+
+# 测序
+### 二代测序
+illumina测序的核心在于利用可逆终止的、荧光标记的dNTP进行边合成边测序（Sequencing-By-Synthesis,SBS）。Flowcell（流动池）是有着2个或8个lane（泳道）的玻璃板，每个lane可以测一个样本或者多样本的混合物，且随机布满了能够与文库两端接头分别互补配对或一致的寡核苷酸（oligos，P7和P5接头）。一个lane包含两列，每一列有60个tile，每个tile会种下不同的cluster，每个tile在一次循环中会拍照4次（每个碱基一次）。<br/>
+1. 利用转座子（transposome）对双链DNA进行剪切以及接头（adapter）的连接<br/>
+![](figrecord/illuminastep1.1.png)
+![](figrecord/illuminastep1.2.png)
+2. 接头连接成功后，利用低循环扩增技术在接头处进行修饰，分别在两端添加sequencing primer binding site1 / sequencing primer binding site2（即测序引物结合位点）、index1/index2以及我们称之P5和P7的寡核苷酸序列<br/>
+![](figrecord/illuminastep2.1.png)
+![](figrecord/illuminastep2.2.png)
+P5和P7是不同的，它们分别和flowcell上的接头互补和相同。为了方便阐述，将与P5互补的接头称为P5’，与P7互补的接头称为P7’。index1和index2也是不同的，与P5相连的是index2，与P7相连的是index1。关于index，也叫barcodes，因为一个lane可以同时测多个样品，为了避免混淆样品的read products，每种样品的DNA由一种index修饰，这样测序得到的reads都是具有index标记的，在测序结果中，依据之前标签与样品的对应关系，就可以获得对应样品的数据。而这里的index1和index2是为了区分paired-end测序得到的双端reads。
+3. Flowcell上随机分布了两种不同的寡核苷酸序列，分别与P5互补（即P5’），与P7一致（即P7）。<br/>
+![](figrecord/illuminastep3.1.png)
+4. 待测sequence通过P5与folwcell上的P5’序列杂交互补，以待测sequence为模板进行互补链（即reverse strand）的延伸，互补链的两端为P5’和P7’。<br/>
+![](figrecord/illuminastep4.1.png)
+5.  接下来模板链被切断并洗下<br/>
+![](figrecord/illuminastep5.1.png)
+6. Reverse strand的P7’与Flowcell上的P7杂交互补，进行链的合成，这就是我们所熟知的桥式PCR。接下来合成的双链被解链，再分别与Flowcell上的接头杂交互补，延伸，解链，杂交，延伸，解链...如此重复35个循环<br/>
+![](figrecord/illuminastep6.1.png)
+![](figrecord/illuminastep6.2.png)
+7. 桥式PCR完成后，使用NAOH将双链解链，并利用甲酰胺基嘧啶糖苷酶（Fpg）对8-氧鸟嘌呤糖苷（8-oxo-G）的选择性切断作用，选择性地将P5’与链的连接切断，留下与Flowcell上P7连接的链，也就是Forward strand。同时游离的3’端被阻断，防止不必要的DNA延伸<br/>
+![](figrecord/illuminastep7.1.png)
+8. 测序引物（sequencing primer）结合到靠近P5的测序引物结合位点1（sequencing primer binding site 1）上，在系统中加入四种dNTP和DNA聚合酶。这里的dNTP有两个特点：它是有荧光基团标记的，每种碱基标记的荧光基团不一样；它的3’末端连了一个叠氮基，这个叠氮基能够阻断后面的碱基与它相连<br/>
+![](figrecord/illuminastep8.1.png)
+因此在聚合酶的作用下，与Forward strand相应位置碱基配对的dNTP就会结合到新合成的链上，而由于叠氮基的存在，后面的dNTP无法继续连接。这时用水将剩余的dNTP和酶给冲掉，将Flowcell进行扫描，扫描出来的荧光对应的碱基的配对碱基即是该链该位置的碱基。同时在这个Flowcell上有成千上万个cluster也在进行同样的反应，因此一个循环就能同时检测多个样本（这也是高通量的核心所在）。这个循环完成后，加入化学试剂把叠氮基和标记的荧光基团切掉，进行下一个循环（碱基的连接、检测与切除）。如此重复直至所有链的碱基序列被检测出，也就是Forward read 序列。<br/>
+![](figrecord/illuminastep8.2.png)
+9. Index测序：所有循环结束后，read products 被洗掉，index1 primer与链上index primer1 结合位点杂交配对，进行index1的合成及检测<br/>
+![](figrecord/illuminastep9.1.png)
+10. Index1测序完成后，洗脱测序产物。此时机器已通过荧光得到了index1的序列<br/>
+![](figrecord/illuminastep10.1.png)
+11. Index2测序：Forward strand顶端的P5序列与Flowcell上的P5’杂交配对，进行index2测序。测序完成后洗脱产物<br/>
+![](figrecord/illuminastep11.1.png)
+12. 洗脱index2测序产物后，以Flowcell上的P5’为引物，Forward strand为模板进行桥式扩增，得到双链<br/>
+![](figrecord/illuminastep12.1.png)
+13. NAOH使双链变性为单链，并洗去已经测序完成的Forward strand<br/>
+![](figrecord/illuminastep13.1.png)
+14. 类似的，readprimer2结合到靠近P7’的read primer binding site 2开始对Reverse strand的测序。测序完成后即可得到Reverse read序列。<br/>
+![](figrecord/illuminastep14.1.png)
+总结<br/>
+![](figrecord/illuminaexample1.png)
+文库片段示意图<br/>
+![](figrecord/illuminaexample2.png)
+<br/>
+
+##### 双端测序比单端测序的优点
+测序最简单的办法是单端测序，单端测序顾名思义，只有一种测序引物 ，使得PCR只能沿着这个引物的方向进行，所有的 reads 都只能按照一个方向进行读取。但是这带来了一些问题，以 illumina 为例，测序的质量会随着测序的进行而下降，所以 reads 约往后面越不准确；研究者们想出来的解决办法就是双端测序，对一个长为 500 bp 的序列，单端测序下游质量会很差，但是从两个方向上分别测 250 bp-300 bp 然后再拼接起来，就可以大大提高测序的准确率了。
