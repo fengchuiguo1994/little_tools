@@ -88,6 +88,43 @@ P5和P7是不同的，它们分别和flowcell上的接头互补和相同。为�
 不管构建多大的文库，测序得到的都是两端很短的序列（比如双端150就是得到两个150bp的reads）；其次中间测不通并不会有问题，而且是非常正常的现象！因为文库构建是随机打断过程，所以即使第一条片段中间没有被测到也没关系，后面的其他片段一定能测到这中间的部分（因为一次测序过程会产生成百上千万条reads，而基因组就那么大）。另外，既然只能测两端很短的一部分，那么小片段和大片段文库的区别在哪？反正都测不完。其实，大片段文库的目的，除了得到序列以外，更重要的是，为了获取片段的坐标距离（即两条reads之间的物理距离关系，将会为序列拼接和基因组结构变异检测提供帮助） 。当然，目前大片段文库还有一些问题，比如现在PCR手段不能扩增太长的片段，另外我们只能测两侧的很短的片段，那么中间合成出来却不能测，造成了浪费！但是这些问题illumina给出了大片段文库的解决办法：在随机打断序列后，大片段比小片段文库多了一个环化处理，经过末端修复，再将一个线性长片段头部进行生物素标记，再进行环化（即：把片段首尾连接成一个环）【我们现在知道了：小片段文库是pair end； 大片段文库是mate pair】
 ![](figrecord/insertsize.1.png)
 ![](figrecord/insertsize.2.png)
+```
+fragment                  ========================================
+fragment + adaptors    ~~~========================================~~~
+SE read                   --------->
+PE reads                R1--------->                    <---------R2
+unknown gap                         ....................
+```
+insertion并不是指R1和R2之间的unknown gap，早在NGS之前，当我们在使用ecoli构建载体的时候，这个概念就已经形成，它是adaptors之间的序列。而unknown gap则称之为inner mate：
+```
+PE reads      R1--------->                    <---------R2
+fragment     ~~~========================================~~~
+insert          ========================================
+inner mate                ....................
+```
+
+### 特异性链
+FR: 我们正常碰到的所有文库<br/>
+RF: 大型插入序列文库<br>
+这里的FR和FR是不管R1和R2的结果，比对到正链的pos会小于比对到负链的pos，这种情况就是FR（在我们正常数据中也是比例最大的，用picard CollectInsertSizeMetrics可以看到），比对到正链的pos大于比对到负链的pos，就是RF（大型经过环化的文库，正常不考虑这种情况）<br/>。至于FF和RR表示R1和R2同时比对到正链或者负链（更少见了，意味着存在SV）。
+
+| Tool | RF/fr-firststrand stranded (dUTP) | FR/fr-secondstrand stranded (Ligation) | Unstranded |
+| --- | --- | --- | --- |
+| IGV (5p to 3p read orientation code) + | F2R1 | F1R2 | F2R1 or F1R2 |
+| TopHat (–library-type parameter) | fr-firststrand | fr-secondstrand | fr-unstranded |
+| HISAT2 (–rna-strandness parameter) | R/RF | F/FR | NONE |
+| HTSeq (–stranded/-s parameter) | reverse | yes | no |
+| STAR | n/a (STAR doesn’t use library strandedness info for mapping) | NONE | NONE |
+| Picard CollectRnaSeqMetrics (STRAND_SPECIFICITY parameter) | SECOND_READ_TRANSCRIPTION_STRAND | FIRST_READ_TRANSCRIPTION_STRAND | NONE |
+| Kallisto quant (parameter) | –rf-stranded | –fr-stranded | NONE |
+| StringTie (parameter) | –rf | –fr | NONE |
+| FeatureCounts (-s parameter) | 2 | 1 | 0 |
+| RSEM (–forward-prob parameter) | 0 | 1 | 0.5 |
+| Salmon (–libType parameter) | ISR (assuming paired-end with inward read orientation) | ISF (assuming paired-end with inward read orientation) | IU (assuming paired-end with inward read orientation) |
+| Trinity (–SS_lib_type parameter) | RF | FR | NONE |
+| MGI CWL YAML (strand parameter) | first | second | NONE |
+| RegTools (strand parameter) | -s 1 | -s 2 | -s 0 |
+| library methods | Example methods/kits: dUTP, NSR, NNSR, Illumina TruSeq Strand Specific Total RNA, NEBNext Ultra II Directional | Example methods/kits: Ligation, Standard SOLiD, NuGEN Encore, 10X 5’ scRNA data | Example kits/data: Standard Illumina, NuGEN OvationV2, SMARTer universal low input RNA kit (TaKara), GDC normalized TCGA data |
 
 ### 碱基
 ![](figrecord/base.1.png)
