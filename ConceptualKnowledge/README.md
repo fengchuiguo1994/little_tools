@@ -1,4 +1,7 @@
 # 转录
+### mRNA（和部分lncRNA）的一生
+![](figrecord/RNA.life.1.png)
+来源：https://github.com/griffithlab/rnaseq_tutorial/blob/master/manuscript/figures/Figure1.pdf
 ### 转录复合物
 [RNA 聚合酶 I负责核糖体 RNA (rRNA) 基因的转录。RNA 聚合酶 II (Pol II) 转录所有蛋白质编码基因，但也转录一些非编码 RNA（例如、snRNA、snoRNA 或长链非编码 RNA）。RNA聚合酶III转录5S rRNA基因，转移RNA（tRNA）的基因，和一些小的非编码RNA（例如，7SK）。当聚合酶遇到称为终止子的序列时，转录结束。](https://en.wikipedia.org/wiki/Gene_expression)
 
@@ -30,13 +33,28 @@ SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌
 ![](figrecord/45SrDNA.png)
 核糖体DNA（Ribosomal DNA，rDNA）是一种DNA序列，该序列用于rRNA编码。核糖体是蛋白质和rRNA分子的组合，翻译mRNA分子以产生蛋白质的组件。如该图所示，真核生物的rDNA包括一个单元段，一个操纵子，以及由NTS、ETS、18S、ITS1、5.8S、ITS2和28S束组成的串联重复序列。rDNA的还有另一个基因，由5S rRNA基因编码，位于大多数真核生物的基因组中。5S rDNA序列也存在于果蝇的串联重复序列
 
+### RNA定量
+用基因芯片得到的样本的各个基因的表达量服从正态分布。RNA-seq中的抽样过程是离散的，reads count服从泊松分布，样本间差异服从负二项分布。<br/>
+对于RNA-seq count而言，当均值增加时，方差期望也会提高，直接对count或者标准化后的count做PCA分析，由于高count在不同样本间的绝对差值大，对结果有影响，所以对齐取对数就会好很多（log2（n+1）），慢慢就约定俗成了。人为生成了服从泊松分布的数据，然后做log变换，发现基本服从了负二项分布（后面拿真实数据测试一下）。<br/>
+```
+lambda = 10^seq(from=-1, to=2, length=1000)
+ots = matrix(rpois(1000*100, lambda), ncol=100)
+library(vsn)
+meanSdPlot(ots, ranks=F)
+
+logots = log2(ots+1)
+meanSdPlot(logots, ranks=F)
+```
+![](figrecord/normal.1.png)
+![](figrecord/normal.2.png)
+DESeq2为count数据提供了两类变换方法，使得不同均值的方差趋于稳定：regularized-logarithm transformation or rlog和variance stabilizing transformation（VST）。数据集少于30选用rlog，大数据集选用VST。<br/>
+RNA定量的方式包括：gene count（原始值）、CPM（counts per million）、log-CPM、FPKM（fragments per kilobase of transcript per million），RPKM（reads per kilobase of transcript per million）<br/>
+第一类：CPM（n/N*1000000）、RPKM（CPM/l * 1000）、FPKM（CPM/l * 1000）、TPM。使用此类计算方式时，如果不同样品之间存在某些基因的表达值极高或者极低，由于它们对细胞中分子总数的影响较大（也就是公式中的分母较大), 有可能导致标准化之后这些基因不存在表达差异，而原本没有差异的基因在标准化之后却显示出差异。<br/>
+第二类：通过多个样本的比较来进行标准化。DESeq2采用的量化因子（RLE），计算所有样本的几何平均值，然后再计算该值与每个比值的中位数。UQ：上四分位数 (upper quartile, UQ)是样品中所有基因的表达除以处于上四分位数的基因的表达值。同时为了保证表达水平的相对稳定，计算得到的上四分位数值要除以所有样品中上四分位数值的中位数。TMM。[三种方法](https://www.jianshu.com/p/a3b78bd49bcc)，[三种方法的介绍](https://www.plob.org/article/14417.html)
+
 # 基因组
 [基因组中有什么](https://gatk.broadinstitute.org/hc/en-us/articles/360041155232-Reference-Genome-Components)<br/>
 [基因组组装](https://www.jianshu.com/p/f1ba7c96160f)<br/>
-
-# 一些专门的名词
-mirSVR：热力学稳定性大小（要求小于等于-0.1）分值越低，表明miRNA-mRNA二者结合稳定性越强，相应miRNA下调基因的可能性越大<br/>
-PhastCons：为基因非翻译区在各物种中进化保守性的强弱（大于等于0），保守性越大约好。<br/>
 
 # 测序
 ### 二代测序
@@ -126,6 +144,15 @@ RF: 大型插入序列文库<br>
 | RegTools (strand parameter) | -s 1 | -s 2 | -s 0 |
 | library methods | Example methods/kits: dUTP, NSR, NNSR, Illumina TruSeq Strand Specific Total RNA, NEBNext Ultra II Directional | Example methods/kits: Ligation, Standard SOLiD, NuGEN Encore, 10X 5’ scRNA data | Example kits/data: Standard Illumina, NuGEN OvationV2, SMARTer universal low input RNA kit (TaKara), GDC normalized TCGA data |
 
+补充。对于hisat2参数，--fr/--rf/--ff 这个不是链特异性的参数，已经跟测序原理相关了，illunima 永远是 --fr， 链特异性参数是 --rna-strandness
+
 ### 碱基
 ![](figrecord/base.1.png)
 其中A、G结构类似，属于嘌呤类；C、T（U）结构类似，属于嘧啶类
+
+# 一些专门的名词
+mirSVR：热力学稳定性大小（要求小于等于-0.1）分值越低，表明miRNA-mRNA二者结合稳定性越强，相应miRNA下调基因的可能性越大<br/>
+PhastCons：为基因非翻译区在各物种中进化保守性的强弱（大于等于0），保守性越大约好。<br/>
+cheRNAs: chromatin-enriched RNAs（染色质富集RNA）
+二代测序错误：二代测序中使用的dNTP不是天然存在的，是经过工程改造的ddNTP。合成酶对ddNTP是有偏好性的，最喜欢的是ddGTP，因此更容易测出的结果是G。因此再统计序列突变的时候，会发现突变都倾向于往G的方向。
+![](figrecord/NGSerror.1.png)
