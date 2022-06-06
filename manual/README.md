@@ -376,3 +376,86 @@ GET_PROCESS_SAM，例如GET_PROCESS_SAM = 1
 ```
 ### [RSEM](https://github.com/bli25/RSEM_tutorial)
 在处理过程中，也存在随机分配，稍微有点取舍的分配，但是真实情况是怎么样的依然未知。
+
+### [PhastCons 保守性](http://compgen.cshl.edu/phast/phastCons-HOWTO.html)
+[PHAST 系统发育分析](http://compgen.cshl.edu/phast/)<br/>
+```
+# 安装CLAPACK
+cd ~/software/
+wget http://www.netlib.org/clapack/clapack.tgz
+tar zxf clapack.tgz
+cd CLAPACK-3.2.1/
+cp make.inc.example make.inc && make f2clib && make blaslib && make lib
+
+# 安装PHAST
+cd ~/software/
+wget https://github.com/CshlSiepelLab/phast/archive/v1.5.tar.gz
+tar zxf v1.5.tar.gz
+cd phast-1.5/src/
+make CLAPACKPATH=/home/chenwen/software/CLAPACK-3.2.1
+
+# 将PHAST添加到环境变量
+echo "export PATH=$HOME/software/phast-1.5/bin:\$PATH" >> ~/.bashrc
+source ~/.bashrc
+
+# 删除安装包
+rm ~/software/clapack.tgz
+rm -rf ~/software/CLAPACK-3.2.1
+rm ~/software/v1.5.tar.gz
+
+mkdir -p ~/software/kent/
+cd ~/software/kent/
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/mafSplit
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bigWigAverageOverBed
+chmod +x *
+
+# 我们这里以斑马鱼（Danio rerio）、鲤鱼（Cyprinus carpio）、鲫鱼（Carassius auratus）基因组为例，斑马鱼的基因组作为参考基因组。假设我们已经通过多基因组比对，得到了Danio_rerio_mulitway.maf。
+# 运行phyloFit生成MOD文件
+phyloFit -i MAF Danio_rerio_mulitway.maf
+# 运行phastCons计算保守性分数
+# phastCons一次只能处理一条染色体，所以我们需要使用mafSplit先分割MAF文件。
+mkdir maf
+mafSplit _.bed maf/ Danio_rerio_mulitway.maf -byTarget -useFullSequenceName
+mkdir wig
+mkdir bed
+for i in maf/*.maf; do x=`basename $i .maf`; phastCons $i phyloFit.mod --target-coverage 0.25 --expected-length 12 --rho 0.4 --msa-format MAF --seqname $x --most-conserved bed/$x_most-cons.bed > wig/$x.wig; done
+cat wig/*.wig >> Danio_rerio_mulitway.wig
+cat bed/*_most-cons.bed >> Danio_rerio_most-cons.bed
+```
+
+### MUMMER
+```
+nucmer  -g 1000 -c 90 -l 40 -t 32  -p $index_name   $ref_file  $query_file
+delta-filter -r -q  -l 1000 $index_name.delta >$index_name.delta.filter
+
+ref_file=/home/jmsong/data/Passion_fruit/result/pf4/arrow+pilon/3_purge_merge/rename/Passion_Fruit_4_polished_chromosomes.fa
+query_file=/home/jmsong/data/Passion_fruit/result/pf9/hic/3ddna/0_rev/genome.FINAL.fasta
+index_name=pf4_pf9
+module load mummer/4.0.0rc1
+nucmer  -g 1000 -c 90 -l 40 -t 32  -p $index_name   $ref_file  $query_file
+delta-filter -r -q  -l 1000 $index_name.delta >$index_name.delta.filter
+#show-coords -TrHcl $index_name.delta.filter >$index_name.delta.filter.coords 
+mummerplot -color  -postscript -R $ref_file -p $index_name.delta.filter $index_name.delta.filter
+
+nucmer --prefix=ref_qry ref.fasta qry.fasta #比对
+delta-filter -q ref_qry.delta > ref_qry.filter #过滤，除去不太适合的部分，但结果不适合读
+show-coords -rcl ref_qry.delta > ref_qry.coords #将结果转换为以人类可读的格式显示匹配的坐标
+show-aligns ref_qry.delta refname qryname > ref_qry.aligns #查看某一个匹配的序列的比对情况
+show-tiling ref_qry.delta > ref_qry.tiling #将contig回帖到ref上
+
+nucmer --prefix=ref_qry ref.fasta qry.fasta
+show-snps -Clr ref_qry.delta > ref_qry.snps #-C指输出唯一匹配的snp -l 输出结果中包括序列的长度 -r 按照 ref的ID和snp位置信息进行排序
+```
+
+### [CircSplice](http://gb.whu.edu.cn/CircSplice/userguide.html)
+鉴定环状RNA
+```
+STAR --runThreadN NumberOfThreads --runMode genomeGenerate --genomeDir /path/to/genomeDir --genomeFastaFiles /path/to/genome/fasta1 /path/to/genome/fasta2 --sjdbGTFfile /path/to/annotations.gtf
+STAR --genomeDir /path/to/genomeDir --readFilesIn Sample.R1_trimmed.fq.gz Sample.R2_trimmed.fq.gz --readFilesCommand zcat --runThreadN 10 --chimSegmentMin 20 --chimScoreMin 1 --alignIntronMax 100000 --outFilterMismatchNmax 4 --alignTranscriptsPerReadNmax 100000 --outFilterMultimapNmax 2 --outFileNamePrefix Sample
+
+# For paired-end library,
+CircSplice.pl Chimeric.out.sam hg38.genome.fa bed_refFlat_hg38.txt
+# For single-end library,
+CircSplice-single.pl Chimeric.out.sam hg38.genome.fa bed_refFlat_hg38.txt
+```
