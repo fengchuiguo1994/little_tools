@@ -125,6 +125,8 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [Cell Marker 细胞标志物](http://xteam.xbio.top/CellMarker/)<br/>
 [expasy 查询细胞系详细信息](https://web.expasy.org/cellosaurus/CVCL_0168)<br/>
 [RNA的二级结构](https://biocyc.org/gene?orgid=ECOLI&id=gltW-tRNA)<br/>
+[人snoRNA数据库 snoRNABase](https://www-snorna.biotoul.fr/)<br/>
+[人 GWAS Catalog](https://www.ebi.ac.uk/gwas/search?query=rs13422172)<br/>
 
 # GO工具
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
