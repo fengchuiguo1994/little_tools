@@ -45,3 +45,7 @@
 [leetcode](https://leetcode-cn.com/problemset/all/?difficulty=%E7%AE%80%E5%8D%95)<br/>
 [谷粉搜搜](http://gfsoso.me/)<br/>
 [谷粉学术](https://gfsoso.99lb.net/)<br/>
+[Markdown插入公式 latex](https://latex.codecogs.com/)<br/>
+
+# 文章查重
+[paperyy](https://www.paperyy.com/NoLoginPost.aspx)<br/>
