@@ -12,6 +12,12 @@
 [植物单细胞RNA-seq数据库](http://ibi.zju.edu.cn/plantscrnadb/index.php)<br/>
 
 ### ncRNA(有冗余分类)
+从Rfam中提取ncRNA的序列。
+```
+mkdir ~/rfam && cd ~/rfam
+curl -C -O http://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/fasta_files/RF0[0001-4222].fa.gz
+gunzip *.gz
+```
 [植物circRNA](http://ibi.zju.edu.cn/index.html/sever.html)<br/>
 [GREAT](http://great.stanford.edu/public/html/)，根据附近的基因的注释，对非编码基因区域进行生物学意义注释。<br/>
 [AnnoLnc2](http://annolnc.gao-lab.org/index.php)。人和小鼠lncRNA的注释，包括lncRNA预测，相关miRNA，保守性，二级结构，GO注释等等。[使用 RepeatMasker 来预测的序列当中是否有重复序列; 通过ViennaRNA (http://rna.tbi.univie.ac.at/) 数据库来预测lncRNA的二级结构；数据库使用了GETx数据库里面的正常组织、CCLE里面的癌症细胞系以及ENCODE数据库里面的数据来进行查看基因的表达情况；通过比较核/胞质表达来确定这个lncRNA主要是在哪个地方表达；使用GTRD来预测lncRNA的可能收到的转录因子调控作用，同时使用TargetScan来预测其miRNA调控的作用；通过GWAS数据库来寻找影响这个lncRNA的SNP，进一步的通过eQTL来评价哪些SNP对于这个lncRNA的表达有影响，这个分析的主要数据来自于GETx；由于使用的RNA-seq的数据，所以就可以看lncRNA的表达和哪些基因存在共表达关系；使用了目前发表的GEO上面的CLIP-seq的数据来进行分析，对于GEO里面没有的蛋白数据，数据库使用lncPro数据库来进行预测。所以在结果当中就包括两个部分，一个是lncPro数据库的结果，另外一个则是CLIP-seq分析的结果；预测这个lncRNA的功能了。由于lncRNA本身是不会编码蛋白来发挥作用的，所以主要是通过其相互作用的基因来预测这个lncRNA的功能，这个数据库主要预测了lncRNA本身GO分析的功能；通过phyloFit来比较物种之间的进化关系](https://www.sci666.com.cn/66870.html)<br/>
@@ -127,6 +133,7 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [RNA的二级结构](https://biocyc.org/gene?orgid=ECOLI&id=gltW-tRNA)<br/>
 [人snoRNA数据库 snoRNABase](https://www-snorna.biotoul.fr/)<br/>
 [人 GWAS Catalog](https://www.ebi.ac.uk/gwas/search?query=rs13422172)<br/>
+[人和小鼠的lncRNA的数据库 AnnoLnc2](http://annolnc.gao-lab.org/)<br/>
 
 # GO工具
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
@@ -166,3 +173,7 @@ ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19/1000G_omni2.5.hg19.
 ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19/hapmap_3.3.hg19.sites.vcf.gz
 ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19/hapmap_3.3.hg19.sites.vcf.idx.gz
 ```
+
+# 杂项
+### 分析流程
+[4DN组织提供了各种数据分析的流程](https://data.4dnucleome.org/resources/data-analysis/hi_c-processing-pipeline?redirected_from=%2Fhelp%2Fanalysis-and-visualization%2Fhi_c-processing-pipeline)<br/>
