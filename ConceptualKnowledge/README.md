@@ -16,24 +16,32 @@
 50 nt到500 nt：rRNA，tRNA，snRNA，snoRNA，SLRNA，SRPRNA 等等；<br/>
 大于500 nt：包括长的mRNA-like的非编码RNA，长的不带polyA 尾巴的非编码RNA等等。<br/>
 
-tRNA（转运RNA）:氨基酸转运
-![](figrecord/2.tRNA.jpg)
-gRNA（导引RNA）：mRNA编辑
-![](figrecord/3.gRNA.jpg)
-snRNA（核内小分子RNA）：mRNA加工（剪接和成熟）
-![](figrecord/4.snRNA.jpg)
-snoRNA（核仁小分子RNA）：rRNA加工（切割和修饰）
-![](figrecord/5.snoRNA.jpg)
-Telomerase RNA：DNA复制
-![](figrecord/6.tertRNA.jpg)
-SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌
-![](figrecord/7.srpRNA.jpg)
+tRNA（转运RNA）:氨基酸转运<br/>
+![](figrecord/2.tRNA.jpg)<br/>
+gRNA（导引RNA）：mRNA编辑<br/>
+![](figrecord/3.gRNA.jpg)<br/>
+snRNA（核内小分子RNA）：mRNA加工（剪接和成熟）<br/>
+![](figrecord/4.snRNA.jpg)<br/>
+snoRNA（核仁小分子RNA）：rRNA加工（切割和修饰）<br/>
+![](figrecord/5.snoRNA.jpg)<br/>
+Telomerase RNA：DNA复制<br/>
+![](figrecord/6.tertRNA.jpg)<br/>
+SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌<br/>
+![](figrecord/7.srpRNA.jpg)<br/>
 
 ### rDNA(核糖体DNA 45S)
 ![](figrecord/45SrDNA.png)
 核糖体DNA（Ribosomal DNA，rDNA）是一种DNA序列，该序列用于rRNA编码。核糖体是蛋白质和rRNA分子的组合，翻译mRNA分子以产生蛋白质的组件。如该图所示，真核生物的rDNA包括一个单元段，一个操纵子，以及由NTS、ETS、18S、ITS1、5.8S、ITS2和28S束组成的串联重复序列。rDNA的还有另一个基因，由5S rRNA基因编码，位于大多数真核生物的基因组中。5S rDNA序列也存在于果蝇的串联重复序列
 
 ### RNA定量
+为什么RNA的表达需要做标准化？<br/>
+![](figrecord/whyfornor.png)<br/>
+- R/FPKM：针对测序深度和转录本长度进行标准化，目的是在不同的样品中比较一个基因，在样品中比较不同的基因（极易受到表达量特别大的rna的影响）
+- TMM：针对转录本库组成的差异和极端异常值进行标准化，目的更好的进行样本间的比较
+- TPM：针对转录本库组成的差异进行标准化，目的更好的进行样本间的比较
+
+![](https://latex.codecogs.com/svg.image?TPM&space;=&space;\tfrac{\tfrac{X_{i}}{L_{i}}}{\sum_{1}^{j}&space;X_{j}/L_{j}})<br/>
+
 用基因芯片得到的样本的各个基因的表达量服从正态分布。RNA-seq中的抽样过程是离散的，reads count服从泊松分布，样本间差异服从负二项分布。<br/>
 对于RNA-seq count而言，当均值增加时，方差期望也会提高，直接对count或者标准化后的count做PCA分析，由于高count在不同样本间的绝对差值大，对结果有影响，所以对齐取对数就会好很多（log2（n+1）），慢慢就约定俗成了。人为生成了服从泊松分布的数据，然后做log变换，发现基本服从了负二项分布（后面拿真实数据测试一下）。<br/>
 ```
