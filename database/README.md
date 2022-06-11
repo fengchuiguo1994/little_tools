@@ -119,6 +119,8 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [Oryzabase 水稻注释](https://shigen.nig.ac.jp/rice/oryzabase/)<br/>
 [RIGW ZS97和MH63的详细注释](http://rice.hzau.edu.cn/rice_rs3/)<br/>
 [Gene lncRNA circRNA数据库](http://ic4r.org/)<br/>
+[综合数据库字典](https://www.hsls.pitt.edu/obrc/index.php?page=rice)<br/>
+
 ### 复合植物
 [大豆 拟南芥 水稻 玉米RNA-seq数据库](http://ipf.sustech.edu.cn/pub/athrdb/)<br/>
 [植物repeat 保守性 开放区 GO注释 转录因子等，个人只用过保守性的结果](http://plantregmap.gao-lab.org/download.php#alignment-conservation)<br/>
@@ -177,3 +179,5 @@ ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19/hapmap_3.3.hg19.sit
 # 杂项
 ### 分析流程
 [4DN组织提供了各种数据分析的流程](https://data.4dnucleome.org/resources/data-analysis/hi_c-processing-pipeline?redirected_from=%2Fhelp%2Fanalysis-and-visualization%2Fhi_c-processing-pipeline)<br/>
+[生物信息分析的流程和工具介绍 字典](http://www.bio-soft.net/rna.html)<br/>
+[RNA结构预测](https://www.cnblogs.com/jcf666/p/13753415.html)<br/>
