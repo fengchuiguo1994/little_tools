@@ -30,6 +30,7 @@ SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌<br/>
 ![](figrecord/7.srpRNA.jpg)<br/>
 
 ### rDNA(核糖体DNA 45S)
+可用RNAmmer预测<br/>
 ![](figrecord/45SrDNA.png)
 核糖体DNA（Ribosomal DNA，rDNA）是一种DNA序列，该序列用于rRNA编码。核糖体是蛋白质和rRNA分子的组合，翻译mRNA分子以产生蛋白质的组件。如该图所示，真核生物的rDNA包括一个单元段，一个操纵子，以及由NTS、ETS、18S、ITS1、5.8S、ITS2和28S束组成的串联重复序列。rDNA的还有另一个基因，由5S rRNA基因编码，位于大多数真核生物的基因组中。5S rDNA序列也存在于果蝇的串联重复序列
 
@@ -40,7 +41,34 @@ SRP（信号识别颗粒）-RNA：参与蛋白质的转运分泌<br/>
 - TMM：针对转录本库组成的差异和极端异常值进行标准化，目的更好的进行样本间的比较
 - TPM：针对转录本库组成的差异进行标准化，目的更好的进行样本间的比较
 
-![](https://latex.codecogs.com/svg.image?TPM&space;=&space;\tfrac{\tfrac{X_{i}}{L_{i}}}{\sum_{1}^{j}&space;X_{j}/L_{j}})<br/>
+![](https://latex.codecogs.com/svg.image?CPM=\tfrac{X_{i}}{N}*10^{6})<br/>
+![](https://latex.codecogs.com/svg.image?FPKM=\tfrac{\tfrac{X_{i}}{L_{i}}}{\sum_{1}^{j}X_{j})<br/>
+![](https://latex.codecogs.com/svg.image?TPM=\tfrac{\tfrac{X_{i}}{L_{i}}}{\sum_{1}^{j}\tfrac{X_{j}}{L_{j}})<br/>
+![](https://latex.codecogs.com/svg.image?TPM=\frac{{FPKM}_{i}}{\sum_{1}^{j}{FPKM}_{j}}*10^6)<br/>
+```
+countToTpm <- function(counts, effLen)
+{
+    rate <- log(counts) - log(effLen)
+    denom <- log(sum(exp(rate)))
+    exp(rate - denom + log(1e6))
+}
+countToFpkm <- function(counts, effLen)
+{
+    N <- sum(counts)
+    exp( log(counts) + log(1e9) - log(effLen) - log(N) )
+}
+fpkmToTpm <- function(fpkm)
+{
+    exp(log(fpkm) - log(sum(fpkm)) + log(1e6))
+}
+countToEffCounts <- function(counts, len, effLen)
+{
+    counts * (len / effLen)
+}
+```
+
+
+Xi表示比对到某基因的reads数目，单位是Millions， Li表示该基因的外显子长度，单位是Kilobase，所以分子的部分就是外显子长度为1Kb的基因的reads数目，即<strong>转录本丰度</strong>。但是二者的分母不一致，FPKM的是总reads数目，没有考虑长度的影响，而TPM的分母是所有转录风度的和，考虑了转录本长度的影响。所以对表达量在各个样本中求和，TPM总是相等，FPKM一般不相等。<br/>
 
 用基因芯片得到的样本的各个基因的表达量服从正态分布。RNA-seq中的抽样过程是离散的，reads count服从泊松分布，样本间差异服从负二项分布。<br/>
 对于RNA-seq count而言，当均值增加时，方差期望也会提高，直接对count或者标准化后的count做PCA分析，由于高count在不同样本间的绝对差值大，对结果有影响，所以对齐取对数就会好很多（log2（n+1）），慢慢就约定俗成了。人为生成了服从泊松分布的数据，然后做log变换，发现基本服从了负二项分布（后面拿真实数据测试一下）。<br/>
