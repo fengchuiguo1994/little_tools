@@ -121,6 +121,9 @@ chrom   start   end rid score   strand  start   end rgb_id  block_number    bloc
 ```
 其中block_start，第一个一定是0，第二个是第二段的起点-第一段的起点。以此类推，都是n个block的起点减去第一个block的起点。
 
+### RNA二级结构可视化
+[VARNA](http://varna.lri.fr/index.php?lang=en&page=downloads&css=varna)<br/>
+
 ### [Gephi](https://gephi.org/)
 ```
 1：新建项目
