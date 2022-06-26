@@ -134,7 +134,7 @@ chrom   start   end rid score   strand  start   end rgb_id  block_number    bloc
 3：创建布局
 布局 -> 选择一个布局 -> Fruchterman Reingold -> 运行（执行到图形不再怎么变化为止）
 4：设置属性
-外观 -> 节点 -> 统一的 -> 设置颜色（#f8b62b） -> 应用 -> 分割 -> 选择一种渲染方式 -> taxonmy -> 设置颜色（#da1c6f） -> 应用
+外观 -> 节点 -> 统一的 -> 设置颜色（#f8b62b 橙色） -> 应用 -> 分割 -> 选择一种渲染方式 -> taxonmy -> 设置颜色（#da1c6f） -> 应用
 外观 -> 边 -> 统一的 -> 设置颜色（#b9b8b8） -> 应用
 5：特异设置
 图 -> 编辑（一个箭头加一个问号） -> 选择红色的点 -> 尺寸改为25 -> 
@@ -142,9 +142,9 @@ chrom   start   end rid score   strand  start   end rgb_id  block_number    bloc
 预览 -> （显示标签，厚度0.2，重新调整权重，Min. rescaled weight 1，颜色 原始的，显示标签） -> 刷新
 SVG/PDF/PNG -> 
 
-panicle： 紫色
+panicle： 紫色（#a1429e）
 leaf：深橙色（青色#00a0e9）
-seedling：绿色
+seedling：绿色（#da1c6f）
 ```
 ![](figformanual/gephi.1.png)
 
@@ -291,6 +291,12 @@ perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla
 ```
 
 # 注释
+### 染色质状态注释
+我们用chromhmm来进行染色质状态（chromosome states）注释<br/>
+```
+java -jar /public/home/lxie/program/ChromHMM/ChromHMM.jar LearnModel ./output/ ./lm_15 15 spe
+```
+
 ### 转录组注释
 [InterProscan](http://www.ebi.ac.uk/interpro/download/)，[GitHub](https://github.com/ebi-pf-team/interproscan)
 ```
@@ -300,6 +306,14 @@ module load interproscan/5.48-83.0 && interproscan.sh --appl Pfam -t n -dp -i Pf
 
 ### microRNA分析
 [植物miRNA分析软件](https://www.jianshu.com/p/398049692584): [miR-PREFeR](miR-PREFeR)
+
+### KEGG注释
+KEGG网站提供了在线KEGG注释功能。[KEGG主页](https://www.genome.jp/kegg/)上的[blastkoala](https://www.kegg.jp/blastkoala/)是完成该任务的工具。提交蛋白序列，选中物种类型，就可以提交任务了。宏基因组可以使用GhostKOALA。KEGG Mapper则提供了编辑KEGG通路图样修改的功能。<br/>
+[KEGG Organisms](https://www.genome.jp/kegg/catalog/org_list.html)包含了目前所有有KEGG注释的物种的结果。Organisms选项栏中的第一个点击进去。以[果蝇](https://www.genome.jp/kegg-bin/show_organism?org=dme)为例。然后点击[Brite hierarchy](https://www.genome.jp/kegg-bin/show_organism?menu_type=gene_catalogs&org=dme)。点击[00001  KEGG Orthology (KO)](https://www.genome.jp/brite/dme00001.keg)。点击[Download htext](https://www.genome.jp/kegg-bin/download_htext?htext=dme00001.keg&format=htext&filedir=kegg/brite/dme)即可下载该物种的KEGG的层次注释的结果。分为 A/B/C/D 四类，依次越来越细分，一般因为AB两类过大而不处理。
+
+### GO注释
+GO注释一般用interproscan完成。[geneontology](http://current.geneontology.org/products/pages/downloads.html)上提供了一些常见模式生物的GO注释结果。一些其它的网站也提供了GO注释的结果，比如[NCBI](https://ftp.ncbi.nih.gov/gene/DATA/)的，比如[EBI](https://ftp.ebi.ac.uk/pub/databases/GO/goa/)的，还有[Rfam2go](https://ftp.ebi.ac.uk/pub/databases/Rfam/14.8/)的<br/>
+[go-basic.obo](http://current.geneontology.org/ontology/go-basic.obo)提供了最新的GO层次注释的结果。
 
 # Linux
 ### sort （Linux常用命令）
@@ -462,3 +476,20 @@ CircSplice.pl Chimeric.out.sam hg38.genome.fa bed_refFlat_hg38.txt
 # For single-end library,
 CircSplice-single.pl Chimeric.out.sam hg38.genome.fa bed_refFlat_hg38.txt
 ```
+
+### 模拟二代测序数据
+[art-illumina](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/)<br/>
+[wgsim](https://github.com/lh3/wgsim)<br/>
+
+### 鉴定R-loop
+[QmRLFS-finder](https://github.com/piroonj/QmRLFS-finder)<br/>
+
+### 细胞系详细信息查询网站
+[Expasy](https://web.expasy.org/cellosaurus/CVCL_0023)<br/>
+
+### 数据下载
+[EBI数据库中的数据查询和下载](https://www.ebi.ac.uk/ena/browser/view/SRR1569501?show=reads)<br/>
+
+### 相互作用预测（DNA-DNA RNA-RNA DNA-RNA）
+[RIsearch](https://rth.dk/resources/risearch/) 预测DNA-RNA， DNA-DNA，RNA-RNA交互<br/>
+[LnChrom](https://academic.oup.com/database/article/doi/10.1093/database/bay039/4999394?login=true) 预测DNA-RNA相互作用<br/>
