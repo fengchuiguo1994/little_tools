@@ -126,6 +126,8 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [植物repeat 保守性 开放区 GO注释 转录因子等，个人只用过保守性的结果](http://plantregmap.gao-lab.org/download.php#alignment-conservation)<br/>
 [PlantTFDB 植物转录因子数据库，跟上面一起的](http://planttfdb.gao-lab.org/)<br/>
 [植物复合数据库](https://mp.weixin.qq.com/s?__biz=MzA5OTI1MzM4Mw==&mid=2247485282&idx=1&sn=8c14fa485455a32bea5e2a269ceedcb8&chksm=90846a8aa7f3e39cf9a23dc4c8ea62ef696a1dce6f2d4648d316b7c3ed0c7aef55c788f17006&mpshare=1&scene=23&srcid=12175Mndpizc8SCj0DaIwUWR&sharer_sharetime=1608189227953&sharer_shareid=fb0a8cc66caa940860c8750158cdb4b4#rd)<br/>
+[植物GWAS](https://easygwas.ethz.ch/)<br/>
+[动物植物RNA互作数据库](http://rnainter.org/batch_search/)<br/>
 
 # 动物数据库
 [人和鼠等多组织表达量数据查询](https://www.ebi.ac.uk/gxa/home#)<br/>
@@ -136,6 +138,9 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 [人snoRNA数据库 snoRNABase](https://www-snorna.biotoul.fr/)<br/>
 [人 GWAS Catalog](https://www.ebi.ac.uk/gwas/search?query=rs13422172)<br/>
 [人和小鼠的lncRNA的数据库 AnnoLnc2](http://annolnc.gao-lab.org/)<br/>
+[RegulomeDB 人类SNP的gwas和其它关联分析的结果](https://www.regulomedb.org/regulome-search/)<br/>
+[HaploReg 人类SNP的gwas和其它关联分析的结果](https://pubs.broadinstitute.org/mammals/haploreg/haploreg.php)<br/>
+[RISE 人类RNA互作数据库](http://rise.life.tsinghua.edu.cn/)<br/>
 
 # GO工具
 [EMBL-EBI quickGO](https://www.ebi.ac.uk/QuickGO/)<br/>
