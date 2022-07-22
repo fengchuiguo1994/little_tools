@@ -18,6 +18,19 @@
 [python自带的color bar](https://matplotlib.org/2.0.2/examples/color/colormaps_reference.html)<br/>
 [python版区间树](https://github.com/bxlab/bx-python/blob/main/lib/bx/intervals/intersection.pyx)<br/>
 [绘图matplotlib](https://matplotlib.org/2.0.2/faq/howto_faq.html#how-to-search-examples)<br/>
+[绘图1](https://mp.weixin.qq.com/s?__biz=MzI3NTkyMjA4NA==&mid=2247490937&idx=1&sn=b237cc76fd85bfdf12574508add256e6&chksm=eb7c30b2dc0bb9a4578b38b030674180993099e58be119c1e3a21d4a9cb496653b0770b8c860&scene=21#wechat_redirect)<br/>
+[绘图2](https://zhuanlan.zhihu.com/p/74689200)<br/>
+
+# R
+[R教程](https://www.math.pku.edu.cn/teachers/lidf/docs/Rbook/html/_Rbook/prog-type-list.html)<br/>
+[R 假设检验1](https://xiangxing98.github.io/R_Learning/R_distribution_in_r_and_its_application.nb.html)<br/>
+[R 假设检验2](http://support.ptc.com/help/mathcad/zh_CN/index.html#page/PTC_Mathcad_Help/negative_binomial_distribution.html)<br/>
+[R绘图1](https://chf2012.github.io/2017/08/09/%E8%BD%AF%E4%BB%B6%E5%BA%94%E7%94%A8_%E7%A8%8B%E5%BA%8F%E7%BC%96%E7%A8%8B/R/R_%E4%B8%93%E9%A2%98%E6%80%BB%E7%BB%93/R_ggplot2_%E5%8F%AF%E8%A7%86%E5%8C%96%E6%89%8B%E5%86%8C/)<br/>
+[R绘图2](https://www.cnblogs.com/nxld/p/6059603.html)<br/>
+[评估聚类划分多少类合适](https://www.cnblogs.com/ljhdo/p/4578692.html)<br/>
+[silhouette指标值确定最优聚类数目](https://www.cnblogs.com/yizhaoAI/p/10399800.html)<br/>
+[评估聚类划分多少类合适2](https://cloud.tencent.com/developer/article/1055784)<br/>
+[画布操作](https://www.jianshu.com/p/fcfc3c7cb4e0)<br/>
 
 # markdown开发
 [插入数学公式](https://editor.codecogs.com/)<br/>
@@ -46,6 +59,18 @@
 [谷粉搜搜](http://gfsoso.me/)<br/>
 [谷粉学术](https://gfsoso.99lb.net/)<br/>
 [Markdown插入公式 latex](https://latex.codecogs.com/)<br/>
+[深度学习deep learning教程](https://github.com/MLEveryday/100-Days-Of-ML-Code)<br/>
+[RGB颜色转化](https://www.sioe.cn/yingyong/yanse-rgb-16/)<br/>
+
+# 操作系统
+[鸟哥私房菜](https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/59.html)<br/>
+[MSDN微软软件下载](https://msdn.itellyou.cn/)<br/>
+[各种办公软件下载](https://mp.weixin.qq.com/s?__biz=MzU0ODQ5NTE2OA==&mid=100000061&idx=1&sn=e000d01e327adbb8b3440e25ed93b168&chksm=7bbf0b124cc882049417aa12c44312ef4d2a2d9bc41005fd3588940fcde9c65712eba4753332&mpshare=1&scene=23&srcid=1117a5pfMlc90OIz2giHwWrB&sharer_sharetime=1656252682858&sharer_shareid=966dc036df525b9746318af7a15588f1#rd)<br/>
+
 
 # 文章查重
 [paperyy](https://www.paperyy.com/NoLoginPost.aspx)<br/>
+
+# 在线工具
+[序列比对](http://www.detaibio.com/sms2/pairwise_align_dna.html)<br/>
+[学术检索](https://scholar.chongbuluo.com/?utm_source=qq&utm_medium=social&utm_oi=739249293998723072)<br/>
