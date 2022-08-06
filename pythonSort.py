@@ -79,3 +79,9 @@ bb = aa.split(",")
 bb.sort(key=functools.cmp_to_key(blockcmp))
 for i in bb:
     print(i)
+
+
+## 字典排序（转化成列表再排序的）
+aa = {1:5,2:4,3:3,4:2,5:1} 
+aabb = sorted(aa.items(),key=lambda x:x[0]) # 按照键值对排序
+aabb = sorted(aa.items(),key=lambda x:x[1]) # 按照键值对排序
