@@ -290,6 +290,10 @@ gtfToGenePred -genePredExt zunla.gtf zunla.txt
 perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla_refGene.txt --out zunla_refGeneMrna.fa
 ```
 
+# 组装
+### 合并单倍型组装的结果
+[HaploMerger2]()可以用来合并用三代数据直接组装出来的单倍型的基因组到只剩一份拷贝。
+
 # 注释
 ### 染色质状态注释
 我们用chromhmm来进行染色质状态（chromosome states）注释<br/>
