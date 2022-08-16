@@ -395,6 +395,11 @@ MIN_INSERT_SIZE，例如MIN_INSERT_SIZE = 100
 MAX_INSERT_SIZE，例如MAX_INSERT_SIZE = 600
 GET_PROCESS_SAM，例如GET_PROCESS_SAM = 1
 ```
+### [bedtools](https://bedtools.readthedocs.io/en/latest/index.html)
+```
+bedtools intersect -nonamecheck -wa -wb -b whole.gene.bed -a read_1.bed
+```
+bedtools intersect是对-b文件建立区间树，是需要整个存入内存中的。所以，请设置-b为较小的文件。
 ### [RSEM](https://github.com/bli25/RSEM_tutorial)
 在处理过程中，也存在随机分配，稍微有点取舍的分配，但是真实情况是怎么样的依然未知。
 
