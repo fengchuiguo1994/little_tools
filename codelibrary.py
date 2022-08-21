@@ -164,6 +164,28 @@ def regionTree(tmp,resFrag):
     if tmp[0] not in resFrag:
         resFrag[tmp[0]] = Intersecter()
     resFrag[tmp[0]].add_interval(Interval(int(tmp[1]),int(tmp[2]),tmp[3:]))
+
+def regionTreePro(tmp,resFrag):
+    """
+    tmp: The length of the list is at least 3(chrom,start,end)
+    resFrag: a dictionary to store the Interval tree
+    """
+    s = int(tmp[1])
+    e = int(tmp[2])
+    if tmp[0] not in resFrag:
+        resFrag[tmp[0]] = Intersecter()
+    result = resFrag[tmp[0]].find(s,e)
+    if len(result) == 0:
+        resFrag[tmp[0]].add_interval(Interval(s,e,[tmp[3:]])) # 这里用的列表，也可替换为字典、集合等等
+    else:
+        flag = True
+        for ii in result:
+            if s == ii.start and e == ii.end:
+                ii.value.append(tmp[3:])
+                flag = False
+                break
+        if flag:
+            resFrag[tmp[0]].add_interval(Interval(s,e,[tmp[3:]])) # 这里用的列表，也可替换为字典、集合等等
     
 def regionFind(tree,start,end):
     """
