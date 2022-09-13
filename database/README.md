@@ -70,6 +70,187 @@ Unknown
 
 ### 人类基因组
 [GRC](https://www.ncbi.nlm.nih.gov/grc)<br/>
+```
+cd ~/reference
+mkdir -p genome/hg19  && cd genome/hg19 
+nohup wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz &
+tar zvfx chromFa.tar.gz
+cat *.fa > hg19.fa
+rm chr*.fa
+ 
+cd ~/reference
+mkdir -p genome/hg38  && cd genome/hg38 
+nohup wget http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz  &
+ 
+cd ~/reference
+mkdir -p  genome/mm10  && cd genome/mm10 
+nohup wget http://hgdownload.cse.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz  &
+tar zvfx chromFa.tar.gz
+cat *.fa > mm10.fa
+rm chr*.fa
+ 
+cd ~/biosoft/RNA-SeQC
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/ThousandReads.bam
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/gencode.v7.annotation_goodContig.gtf.gz
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/Homo_sapiens_assembly19.fasta.gz
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/Homo_sapiens_assembly19.other.tar.gz
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/gencode.v7.gc.txt
+wget http://www.broadinstitute.org/cancer/cga/sites/default/files/data/tools/rnaseqc/rRNA.tar.gz
+ 
+cd ~/reference
+mkdir -p index/bowtie && cd index/bowtie 
+nohup time ~/biosoft/bowtie/bowtie2-2.2.9/bowtie2-build  ~/reference/genome/hg19/hg19.fa  ~/reference/index/bowtie/hg19 1>hg19.bowtie_index.log 2>&1 &
+nohup time ~/biosoft/bowtie/bowtie2-2.2.9/bowtie2-build  ~/reference/genome/hg38/hg38.fa  ~/reference/index/bowtie/hg38 1>hg38.bowtie_index.log 2>&1 &
+nohup time ~/biosoft/bowtie/bowtie2-2.2.9/bowtie2-build  ~/reference/genome/mm10/mm10.fa  ~/reference/index/bowtie/mm10 1>mm10.bowtie_index.log 2>&1 &
+  
+cd ~/reference
+mkdir -p index/bwa && cd index/bwa 
+nohup time ~/biosoft/bwa/bwa-0.7.15/bwa index   -a bwtsw   -p ~/reference/index/bwa/hg19  ~/reference/genome/hg19/hg19.fa 1>hg19.bwa_index.log 2>&1   &
+nohup time ~/biosoft/bwa/bwa-0.7.15/bwa index   -a bwtsw   -p ~/reference/index/bwa/hg38  ~/reference/genome/hg38/hg38.fa 1>hg38.bwa_index.log 2>&1   &
+nohup time ~/biosoft/bwa/bwa-0.7.15/bwa index   -a bwtsw   -p ~/reference/index/bwa/mm10  ~/reference/genome/mm10/mm10.fa 1>mm10.bwa_index.log 2>&1   &
+  
+cd ~/reference
+mkdir -p index/hisat && cd index/hisat 
+nohup wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/hg19.tar.gz  &
+nohup wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/hg38.tar.gz  &
+nohup wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/grcm38.tar.gz &
+nohup wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/mm10.tar.gz  &
+tar zxvf hg19.tar.gz
+tar zxvf grcm38.tar.gz
+tar zxvf hg38.tar.gz
+tar zxvf mm10.tar.gz 
+  
+mkdir -p ~/annotation/variation/human/ExAC
+cd ~/annotation/variation/human/ExAC
+## http://exac.broadinstitute.org/
+## ftp://ftp.broadinstitute.org/pub/ExAC_release/current
+wget ftp://ftp.broadinstitute.org/pub/ExAC_release/current/ExAC.r0.3.1.sites.vep.vcf.gz.tbi 
+nohup wget ftp://ftp.broadinstitute.org/pub/ExAC_release/current/ExAC.r0.3.1.sites.vep.vcf.gz &
+wget ftp://ftp.broadinstitute.org/pub/ExAC_release/current/cnv/exac-final-cnv.gene.scores071316 
+wget ftp://ftp.broadinstitute.org/pub/ExAC_release/current/cnv/exac-final.autosome-1pct-sq60-qc-prot-coding.cnv.bed
+ 
+mkdir -p ~/annotation/variation/human/dbSNP
+cd ~/annotation/variation/human/dbSNP
+## https://www.ncbi.nlm.nih.gov/projects/SNP/
+## ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b147_GRCh38p2/
+## ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b147_GRCh37p13/
+nohup wget ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b147_GRCh37p13/VCF/All_20160601.vcf.gz &
+wget ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b147_GRCh37p13/VCF/All_20160601.vcf.gz.tbi 
+ 
+mkdir -p ~/annotation/variation/human/1000genomes
+cd ~/annotation/variation/human/1000genomes 
+## ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ 
+nohup wget  -c -r -nd -np -k -L -p  ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502 &
+ 
+mkdir -p ~/annotation/variation/human/cosmic
+cd ~/annotation/variation/human/cosmic
+## we need to register before we can download this file. 
+ 
+mkdir -p ~/annotation/variation/human/ESP6500
+cd ~/annotation/variation/human/ESP6500
+# http://evs.gs.washington.edu/EVS/
+nohup wget http://evs.gs.washington.edu/evs_bulk_data/ESP6500SI-V2-SSA137.GRCh38-liftover.snps_indels.vcf.tar.gz & 
+ 
+mkdir -p ~/annotation/variation/human/UK10K
+cd ~/annotation/variation/human/UK10K
+# http://www.uk10k.org/
+nohup wget ftp://ngs.sanger.ac.uk/production/uk10k/UK10K_COHORT/REL-2012-06-02/UK10K_COHORT.20160215.sites.vcf.gz & 
+ 
+mkdir -p ~/annotation/variation/human/gonl
+cd ~/annotation/variation/human/gonl
+## http://www.nlgenome.nl/search/
+## https://molgenis26.target.rug.nl/downloads/gonl_public/variants/release5/
+nohup wget  -c -r -nd -np -k -L -p  https://molgenis26.target.rug.nl/downloads/gonl_public/variants/release5  &
+ 
+mkdir -p ~/annotation/variation/human/omin
+cd ~/annotation/variation/human/omin
+ 
+mkdir -p ~/annotation/variation/human/GWAS
+cd ~/annotation/variation/human/GWAS
+ 
+mkdir -p ~/annotation/variation/human/hapmap
+cd ~/annotation/variation/human/hapmap
+# ftp://ftp.ncbi.nlm.nih.gov/hapmap/
+wget ftp://ftp.ncbi.nlm.nih.gov/hapmap/phase_3/relationships_w_pops_051208.txt 
+nohup wget -c -r -np -k -L -p  -nd -A.gz ftp://ftp.ncbi.nlm.nih.gov/hapmap/phase_3/hapmap3_reformatted &
+# ftp://ftp.hgsc.bcm.tmc.edu/pub/data/HapMap3-ENCODE/ENCODE3/ENCODE3v1/
+wget ftp://ftp.hgsc.bcm.tmc.edu/pub/data/HapMap3-ENCODE/ENCODE3/ENCODE3v1/bcm-encode3-QC.txt 
+wget ftp://ftp.hgsc.bcm.tmc.edu/pub/data/HapMap3-ENCODE/ENCODE3/ENCODE3v1/bcm-encode3-submission.txt.gz
+ 
+## 1 million single nucleotide polymorphisms (SNPs) for DNA samples from each of the three ethnic groups in Singapore – Chinese, Malays and Indians.
+## The Affymetrix Genome-Wide Human SNP Array 6.0   && The Illumina Human1M single BeadChip 
+## http://www.statgen.nus.edu.sg/~SGVP/
+## http://www.statgen.nus.edu.sg/~SGVP/singhap/files-website/samples-information.txt
+# http://www.statgen.nus.edu.sg/~SGVP/singhap/files-website/genotypes/2009-01-30/QC/
+ 
+## Singapore Sequencing Malay Project (SSMP) 
+mkdir -p ~/annotation/variation/human/SSMP
+cd ~/annotation/variation/human/SSMP
+## http://www.statgen.nus.edu.sg/~SSMP/
+## http://www.statgen.nus.edu.sg/~SSMP/download/vcf/2012_05 
+ 
+## Singapore Sequencing Indian Project (SSIP) 
+mkdir -p ~/annotation/variation/human/SSIP
+cd ~/annotation/variation/human/SSIP
+# http://www.statgen.nus.edu.sg/~SSIP/
+## http://www.statgen.nus.edu.sg/~SSIP/download/vcf/dataFreeze_Feb2013
+ 
+wget ftp://ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/Homo_sapiens.GRCh37.75.gtf.gz 
+wget ftp://ftp.ensembl.org/pub/release-86/gtf/homo_sapiens/Homo_sapiens.GRCh38.86.chr.gtf.gz 
+ 
+mkdir -p ~/reference/gtf/gencode
+cd  ~/reference/gtf/gencode
+## https://www.gencodegenes.org/releases/current.html
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.2wayconspseudos.gtf.gz
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.long_noncoding_RNAs.gtf.gz 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.polyAs.gtf.gz 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz 
+## https://www.gencodegenes.org/releases/25lift37.html 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/gencode.v25lift37.annotation.gtf.gz 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/gencode.v25lift37.metadata.HGNC.gz 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/gencode.v25lift37.metadata.EntrezGene.gz 
+wget ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/gencode.v25lift37.metadata.RefSeq.gz 
+ 
+mkdir -p ~/reference/gtf/ensembl/homo_sapiens_86
+cd  ~/reference/gtf/ensembl/homo_sapiens_86
+## http://asia.ensembl.org/info/data/ftp/index.html
+ 
+cd ~/reference
+mkdir -p  genome/human_g1k_v37  && cd genome/human_g1k_v37
+# http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/ 
+nohup wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz  &
+gunzip human_g1k_v37.fasta.gz
+wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.fai
+wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/README.human_g1k_v37.fasta.txt
+java -jar ~/biosoft/picardtools/picard-tools-1.119/CreateSequenceDictionary.jar R=human_g1k_v37.fasta O=human_g1k_v37.dict
+ 
+## ftp://ftp.broadinstitute.org/bundle/b37/
+mkdir -p ~/annotation/GATK
+cd ~/annotation/variation/GATK
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_phase1.snps.high_confidence.b37.vcf.gz 
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/dbsnp_138.b37.vcf.gz
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/human_g1k_v37.fasta.gz 
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.b37.sites.vcf.gz
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/Mills_and_1000G_gold_standard.indels.b37.vcf.gz 
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/hapmap_3.3.b37.vcf.gz
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_phase1.indels.b37.vcf.gz 
+wget ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37/1000G_phase1.indels.b37.vcf.idx.gz
+gunzip 1000G_phase1.indels.b37.vcf.idx.gz
+gunzip 1000G_phase1.indels.b37.vcf.gz
+  
+mkdir -p  ~/institute/ENSEMBL/gtf
+cd  ~/institute/ENSEMBL/gtf
+wget ftp://ftp.ensembl.org/pub/release-87/gtf/homo_sapiens/Homo_sapiens.GRCh38.87.chr.gtf.gz 
+wget ftp://ftp.ensembl.org/pub/release-87/gtf/mus_musculus/Mus_musculus.GRCm38.87.chr.gtf.gz
+wget ftp://ftp.ensembl.org/pub/release-87/gtf/danio_rerio/Danio_rerio.GRCz10.87.chr.gtf.gz
+
+cd ~/institute/TCGA/firehose
+## https://gdac.broadinstitute.org/
+wget http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/ACC/20160128/gdac.broadinstitute.org_ACC.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_minus_germline_cnv_hg19__seg.Level_3.2016012800.0.0.tar.gz  -O ACC.gistic.seg.tar.gz
+wget http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/ACC/20160128/gdac.broadinstitute.org_ACC.Merge_snp__genome_wide_snp_6__broad_mit_edu__Level_3__segmented_scna_hg19__seg.Level_3.2016012800.0.0.tar.gz  -O ACC.raw.seg.tar.gz 
+wget http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/ACC/20160128/gdac.broadinstitute.org_ACC.Mutation_Packager_Calls.Level_3.2016012800.0.0.tar.gz -O ACC.maf.tar.gz
+wget http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/ACC/20160128/gdac.broadinstitute.org_ACC.Mutation_Packager_Oncotated_Calls.Level_3.2016012800.0.0.tar.gz -O ACC.maf.anno.tar.gz
+```
 
 ### 植物基因组
 [PlantGDB 植物基因组整合](http://www.plantgdb.org/)
