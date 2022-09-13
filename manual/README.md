@@ -300,6 +300,7 @@ perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla
 ```
 java -jar /public/home/lxie/program/ChromHMM/ChromHMM.jar LearnModel ./output/ ./lm_15 15 spe
 ```
+[ChromHMM下载连接](http://compbio.mit.edu/ChromHMM/)<br/>
 
 ### 转录组注释
 [InterProscan](http://www.ebi.ac.uk/interpro/download/)，[GitHub](https://github.com/ebi-pf-team/interproscan)
@@ -450,6 +451,34 @@ cat wig/*.wig >> Danio_rerio_mulitway.wig
 cat bed/*_most-cons.bed >> Danio_rerio_most-cons.bed
 ```
 
+### clusterprofile
+[做非模式生物的KEGG富集分析](https://www.jianshu.com/p/d484003dced5)<br/>
+[案例2](https://www.jianshu.com/p/feaefcbdf986)<br/>
+模式生物举例
+```
+gene.info：
+chrUextra	523023	523086	FBgn0264003	.	-	mir-5613	pre_miRNA
+chr3R	353	12473	FBgn0037213	.	+	CG12581	protein_coding
+chr3R	12684	21933	FBgn0053294	.	+	CR33294	pseudogene
+chr3R	15413	15982	FBgn0000500	.	-	Dsk	protein_coding
+chr3R	22930	30294	FBgn0037215	.	+	CG12582	protein_coding
+chr3R	30206	41033	FBgn0037217	.	-	CG14636	protein_coding
+chr3R	37504	53244	FBgn0037218	.	+	aux	protein_coding
+chr3R	44178	45852	FBgn0051516	.	-	CG31516	protein_coding
+chr3R	53105	54971	FBgn0261436	.	-	DhpD	protein_coding
+chr3R	56500	58054	FBgn0037220	.	-	CG14641	protein_coding
+
+library(clusterProfiler)
+library(org.Dm.eg.db)
+keytypes(org.Dm.eg.db)
+
+mydat = read.table("gene.info",header=F,stringsAsFactors=F,comment.char="")
+names(mydat) = c("chromosome","start","end","gene_id","score","strand","gene_name","gene_type")
+genedf = bitr(mydat$gene_id,fromType="ENSEMBL",toType=c("ENTREZID","ENSEMBL"),OrgDb = org.Dm.eg.db)
+write.table(genedf,file="dm3.geneid2ncbiid.txt",sep="\t",quote=F, row.names=F, col.names=F)
+gene.kegg = bitr_kegg(genedf$ENTREZID,fromType="ncbi-geneid",toType="kegg",organism='dme')
+write.table(gene.kegg,file="dm3.gene2kegg.txt",sep="\t",quote=F, row.names=F, col.names=F)
+```
 ### MUMMER
 ```
 nucmer  -g 1000 -c 90 -l 40 -t 32  -p $index_name   $ref_file  $query_file
