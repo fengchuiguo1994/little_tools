@@ -68,8 +68,52 @@ Unknown
 ### 玉米基因组
 [B73](https://www.maizegdb.org/assembly#stockInfo)<br/>
 
+### 小鼠基因组
+[ChromHMM注释](https://github.com/gireeshkbogu/chromatin_states_chromHMM_mm9)<br/>
+
 ### 人类基因组
 [GRC](https://www.ncbi.nlm.nih.gov/grc)<br/>
+[ChromHMM注释](https://egg2.wustl.edu/roadmap/web_portal/chr_state_learning.html)结果<br/>
+[ChromHMM解释](https://pubs.broadinstitute.org/mammals/haploreg/documentation_v2.html)<br/>
+```
+STATE NO.	MNEMONIC	DESCRIPTION	COLOR NAME	COLOR CODE
+1	TssA	Active TSS	Red	255,0,0
+2	TssAFlnk	Flanking Active TSS	Orange Red	255,69,0
+3	TxFlnk	Transcr. at gene 5' and 3'	LimeGreen	50,205,50
+4	Tx	Strong transcription	Green	0,128,0
+5	TxWk	Weak transcription	DarkGreen	0,100,0
+6	EnhG	Genic enhancers	GreenYellow	194,225,5
+7	Enh	Enhancers	Yellow	255,255,0
+8	ZNF/Rpts	ZNF genes & repeats	Medium Aquamarine	102,205,170
+9	Het	Heterochromatin	PaleTurquoise	138,145,208
+10	TssBiv	Bivalent/Poised TSS	IndianRed	205,92,92
+11	BivFlnk	Flanking Bivalent TSS/Enh	DarkSalmon	233,150,122
+12	EnhBiv	Bivalent Enhancer	DarkKhaki	189,183,107
+13	ReprPC	Repressed PolyComb	Silver	128,128,128
+14	ReprPCWk	Weak Repressed PolyComb	Gainsboro	192,192,192
+15	Quies	Quiescent/Low	White	255,255,255
+
+STATE NO.	MNEMONIC	DESCRIPTION	COLOR NAME	COLOR CODE
+1	TssA	Active TSS	Red	255,0,0
+2	TssFlnk	Flanking TSS	Orange Red	255,69,0
+3	TssFlnkU	Flanking TSS Upstream	Orange Red	255,69,0
+4	TssFlnkD	Flanking TSS Downstream	Orange Red	255,69,0
+5	Tx	Strong transcription	Green	0,128,0
+6	TxWk	Weak transcription	DarkGreen	0,100,0
+7	EnhG1	Genic enhancer1	GreenYellow	194,225,5
+8	EnhG2	Genic enhancer2	GreenYellow	194,225,5
+9	EnhA1	Active Enhancer 1	Orange	255,195,77
+10	EnhA2	Active Enhancer 2	Orange	255,195,77
+11	EnhWk	Weak Enhancer	Yellow	255,255,0
+12	ZNF/Rpts	ZNF genes & repeats	Medium Aquamarine	102,205,170
+13	Het	Heterochromatin	PaleTurquoise	138,145,208
+14	TssBiv	Bivalent/Poised TSS	IndianRed	205,92,92
+15	EnhBiv	Bivalent Enhancer	DarkKhaki	189,183,107
+16	ReprPC	Repressed PolyComb	Silver	128,128,128
+17	ReprPCWk	Weak Repressed PolyComb	Gainsboro	192,192,192
+18	Quies	Quiescent/Low	White	255,255,255
+```
+[circRNADb](http://reprod.njmu.edu.cn/cgi-bin/circrnadb/circRNADb.php)环状RNA<br/>
 ```
 cd ~/reference
 mkdir -p genome/hg19  && cd genome/hg19 
