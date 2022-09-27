@@ -226,7 +226,10 @@ XT:M => Mate-sw (成对比对的时候，当一端是被另一端救援而被确
 STAR-Fusion --left_fq GM12878_R1.fq.gz --right_fq GM12878_R2.fq.gz --genome_lib_dir ~/Tools/STAR-Fusion/genome/GRCh38_v27_CTAT_lib_Feb092018/ctat_genome_lib_build_dir/ --CPU 20 --no_annotation_filter --examine_coding_effect --extract_fusion_reads --FusionInspector validate --denovo_reconstruct
 ```
 
-### 
+### longranger
+```
+barcode list: ${longranger}/longranger-cs/2.2.2/tenkit/lib/python/tenkit/barcodes
+```
 
 # 定量工具
 ### featureCounts
