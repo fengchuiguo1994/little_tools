@@ -396,6 +396,58 @@ MIN_INSERT_SIZE，例如MIN_INSERT_SIZE = 100
 MAX_INSERT_SIZE，例如MAX_INSERT_SIZE = 600
 GET_PROCESS_SAM，例如GET_PROCESS_SAM = 1
 ```
+
+HiCPro分单倍型。<br/>
+分两步，第一步：markAllelicStatus.py （285-292行）<br/>
+```
+if g1_count > 0 and g2_count > 0:
+    code = 3
+elif g1_count > 0 and g2_count == 0:
+    code = 1
+elif g2_count > 0 and g1_count == 0:
+    code = 2
+elif g1_count == 0 and g2_count == 0:
+    code = 0
+```
+第二步：split_valid_interactions.py （117-151行）<br/>
+它将一端有一端无的也算了。<br/>
+```
+if r1as == 1 and r2as == 1:
+    isG1 = True
+    G1G1_ascounter += 1
+    handle_g1.write(line)
+elif r1as == 1 and r2as == 0:
+    isG1 = True
+    G1U_ascounter += 1
+    handle_g1.write(line)
+elif r1as == 0 and r2as == 1:
+    isG1=True
+    UG1_ascounter += 1
+    handle_g1.write(line)
+
+elif r1as == 2 and r2as == 2:
+    isG2 = True
+    G2G2_ascounter += 1
+    handle_g2.write(line)
+elif r1as == 2 and r2as == 0:
+    isG2 = True
+    G2U_ascounter += 1
+    handle_g2.write(line)
+elif r1as == 0 and r2as == 2:
+    isG2 = True
+    UG2_ascounter += 1
+    handle_g2.write(line)
+
+elif r1as == 1 and r2as == 2:
+    G1G2_ascounter += 1
+elif r1as == 2 and r2as == 1:
+    G2G1_ascounter += 1
+
+elif r1as == 3 or r2as == 3:
+    CF_ascounter += 1
+else:
+    UU_ascounter += 1
+```
 ### [bedtools](https://bedtools.readthedocs.io/en/latest/index.html)
 ```
 bedtools intersect -nonamecheck -wa -wb -b whole.gene.bed -a read_1.bed
