@@ -312,6 +312,16 @@ module load interproscan/5.48-83.0 && interproscan.sh --appl Pfam -t n -dp -i Pf
 可以移除参数--appl Pfam，对所有的数据库进行注释，默认是对蛋白序列，-t n修改为DNA/RNA核苷酸序列
 ```
 
+### ncRNA注释
+[infernal](http://eddylab.org/infernal/)注释ncRNA（rRNA、tRNA、microRNA[结果一般]、snRNA、snoRNA）
+```
+module load infernal/1.1.3
+module load Rfam/14.1
+cmscan -Z $genomeLength --cut_ga --rfam --nohmmonly --tblout ncRNA.tblout --fmt 2 --clanin $Rfamclanin $Rfam genome.fa > ncRNA.cmscan
+awk 'BEGIN{OFS="\t";} {if(FNR==1) print target_name\taccession\tquery_name\tquery_start\tquery_end\tstrand\tscore\tEvalue"; if(FNR>2 && $20!="=" && $0!~/^#/) print $2,$3,$4,$10,$11,$12,$17,$18, $27; }' ncRNA.tblout > ncRNA.filter.tblout
+awk -v OFS="\t" '{$2=$2-1;print $0}' ncRNA.filter.tblout > ncRNA.bed
+```
+
 ### microRNA分析
 [植物miRNA分析软件](https://www.jianshu.com/p/398049692584): [miR-PREFeR](miR-PREFeR)
 
