@@ -297,6 +297,16 @@ perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla
 ### 合并单倍型组装的结果
 [HaploMerger2]()可以用来合并用三代数据直接组装出来的单倍型的基因组到只剩一份拷贝。
 
+# DNA甲基化
+### DNA m5C 甲基化分析软件
+##### hisat-3n可以针对任何转化方向的数据处理
+hisat-3n可以针对
+```
+hisat-3n-build --base-change C,T --repeat-index hg19.fa hg19
+
+hisat-3n -x ~/test_single/compare_software/reference_index/hisat_3N/hg19 -1 ../test_data/SRR5392315_head1M_1.cut2.fastq -2 ../test_data/SRR5392315_head1M_2.cut2.fastq -S hisat-3N.sam --base-change C,T --no-repeat-index -q -p 4
+```
+
 # 注释
 ### 染色质状态注释
 我们用chromhmm来进行染色质状态（chromosome states）注释<br/>
