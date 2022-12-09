@@ -377,6 +377,8 @@ SP  | Strongylocentrotus | 海胆 | repbase中查阅
 
 ```
 
+# 印记基因
+### [印记基因数据库](https://www.geneimprint.com/site/genes-by-species.Homo+sapiens)
 
 
 # 蛋白数据库
