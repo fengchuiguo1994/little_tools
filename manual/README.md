@@ -311,6 +311,22 @@ hisat-3n -x ~/test_single/compare_software/reference_index/hisat_3N/hg19 -1 ../t
 ### 染色质状态注释
 我们用chromhmm来进行染色质状态（chromosome states）注释<br/>
 ```
+# ANCHORFILES
+awk '$3=="gene"' genome.gtf | awk '{if($7=="+"){print $1"\t"$4-1"\t"$7;}else{print $1"\t"$5"\t"$7;}}' | gzip > RefSeqTSS.MH63.txt.gz
+awk '$3=="gene"' genome.gtf | awk '{if($7=="+"){print $1"\t"$5"\t"$7;}else{print $1"\t"$4-1"\t"$7;}}' | gzip > RefSeqTES.MH63.txt.gz
+# CHROMSIZES
+samtools faidx genome.fa.fai
+cut -f 1-2 genome.fa.fai > MH63.txt
+# COORDS
+
+awk '$3=="exon"' genome.gtf | awk '{print $1"\t"$4-1"\t"$5}' | sort --parallel=4 -k1,1 -k2,2n -k3,3n | uniq | gzip > RefSeqExon.MH63.bed.gz
+awk '$3=="gene"' genome.gtf | awk '{print $1"\t"$4-1"\t"$5}' | sort --parallel=4 -k1,1 -k2,2n -k3,3n | uniq | gzip > RefSeqGene.MH63.bed.gz
+zcat ../../ANCHORFILES/MH63/RefSeqTES.MH63.txt.gz | awk '{print $1"\t"$2"\t"$2+1}' | gzip > RefSeqTES.MH63.bed.gz
+zcat ../../ANCHORFILES/MH63/RefSeqTSS.MH63.txt.gz | awk '{print $1"\t"$2"\t"$2+1}' | gzip > RefSeqTSS.MH63.bed.gz
+zcat ../../ANCHORFILES/MH63/RefSeqTSS.MH63.txt.gz | awk '{start=$2-2000;if(start<0){start=0;}print $1"\t"start"\t"$2+2000}' | gzip > RefSeqTSS2kb.MH63.bed.gz
+cpg_lh genome.fa | awk '{$2 = $2 - 1; width = $3 - $2; printf("%s\t%d\t%s\t%s %s\t%s\t%s\t%0.0f\t%0.1f\t%s\t%s\n", $1, $2, $3, $5, $6, width, $6, width*$7*0.01, 100.0*2*$6/width, $7, $9);}' | sort -k1,1 -k2,2n | cut -f 1-3 | gzip > CpGIsland.MH63.bed.gz # ucsc
+```
+```
 java -jar /public/home/lxie/program/ChromHMM/ChromHMM.jar LearnModel ./output/ ./lm_15 15 spe
 ```
 [ChromHMM下载连接](http://compbio.mit.edu/ChromHMM/)<br/>
