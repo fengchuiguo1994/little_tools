@@ -1237,3 +1237,255 @@ public class MultiMergeSort {
         }
     }
 }
+
+
+
+public class Bed<N extends Number & Comparable,V> implements Comparable<Bed>,Cloneable{
+    private String chrom;
+    private N start;
+    private N end;
+    private String name;
+    private float cov;
+    private V value;
+    public Bed(String c,N s, N e){
+        chrom = c;
+        start = s;
+        end = e;
+        if(start.compareTo(end) > 0 ){ // 序列从0开始
+            throw new IllegalArgumentException("beginning of range must be less and equal than end");
+        }
+        name = null;
+        cov = 0f;
+        value = null;
+    }
+    public Bed(String c,N s, N e, String n){
+        this(c,s,e);
+        name = n;
+    }
+    public Bed(String c,N s, N e, V v){
+        this(c,s,e);
+        value = v;
+    }
+    public void setChrom(String chrom) {
+        this.chrom = chrom;
+    }
+    public String getChrom() {
+        return chrom;
+    }
+    public void setStart(N start) {
+        this.start = start;
+    }
+    public N getStart() {
+        return start;
+    }
+    public void setEnd(N end) {
+        this.end = end;
+    }
+    public N getEnd() {
+        return end;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setCov(float cov) {
+        this.cov = cov;
+    }
+    public float getCov() {
+        return cov;
+    }
+    public void setValue(V value) {
+        this.value = value;
+    }
+    public V getValue() {
+        return value;
+    }
+    @Override
+    public int compareTo(Bed o) {
+        int res = 0;
+        if (this != o) {
+            res = chrom.compareTo(o.getChrom());
+            if (res != 0) {
+                res = start.compareTo(o.getStart());
+                if (res != 0) {
+                    res = end.compareTo(o.getEnd());
+                }
+            }
+        }
+        return res;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        } else {
+            Region obj = (Region) o;
+            return chrom.equals(getChrom()) && start.equals(obj.getStart()) && end.equals(obj.getEnd());
+        }
+    }
+    @Override
+    public String toString () {
+        StringBuilder sb = new StringBuilder();
+        sb.append(chrom).append("\t").append(start).append("\t").append(end);
+        return sb.toString();
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Bed obj = null;
+        try {
+            obj = (Bed) super.clone();
+        } catch (CloneNotSupportedException ex){
+            ex.printStackTrace();
+        }
+        return obj;
+    }
+    public boolean contains (String c, N pos) { // [) 左闭右开的区间
+        if (chrom.equals(c)) {
+            return pos.compareTo(start) >= 0 && pos.compareTo(end) < 0;
+        }
+        return false;
+    }
+    public boolean contains (String c, N s, N e){
+        return contains(c,s) && contains(c,e);
+    }
+    public boolean contains (Bed<N,N> o) {
+        return contains(o.getChrom(),o.getStart()) && contains(o.getChrom(),o.getEnd());
+    }
+    public boolean intersects (String c, N s, N e){
+        if (chrom.equals(c)) {
+            return e.compareTo(start) > 0 && s.compareTo(end) < 0;
+        }
+        return false;
+    }
+    public boolean intersects(Bed<N,N> o){
+        return intersects(o.getChrom(),o.getStart(),o.getEnd());
+    }
+
+    public void mergeRegion(N s, N e){
+        if (start.compareTo(s) > 0) {
+            setStart(s);
+        }
+        if (end.compareTo(e) < 0) {
+            setEnd(e);
+        }
+    }
+    public void mergeRegion(Bed<N,N> o){
+        mergeRegion(o.getStart(),o.getEnd());
+    }
+}
+
+
+
+public class Region<N extends Number & Comparable,T> implements Cloneable,Comparable<Region> {
+    private N start;
+    private N end;
+    private T value;
+    public Region(N s, N e){
+        start = s;
+        end = e;
+        if(start.compareTo(end) > 0 ){ // 序列从0开始
+            throw new IllegalArgumentException("beginning of range must be less and equal than end");
+        }
+        value = null;
+    }
+    public Region(N s, N e, T data){
+        start = s;
+        end = e;
+        if(start.compareTo(end) > 0 ){ // 序列从0开始
+            throw new IllegalArgumentException("beginning of range must be less and equal than end");
+        }
+        value = data;
+    }
+    @Override
+    public int compareTo(Region o) {
+        int res;
+        if (this == o) {
+            res = 0;
+        } else {
+            int result = start.compareTo(o.getStart());
+            if (result == 0) {
+                res = end.compareTo(o.getEnd());
+            } else {
+                res = result;
+            }
+        }
+        return res;
+    }
+    @Override
+    public boolean equals(Object o) {
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || this.getClass() != o.getClass()) {
+            result = false;
+        } else {
+            Region obj = (Region) o;
+            result = start.equals(obj.getStart()) && end.equals(obj.getEnd());
+        }
+        return result;
+    }
+    @Override
+    public int hashCode () {
+        int result = start.hashCode();
+        result = 31*result + end.hashCode();
+        result = 31*result + value.hashCode();
+        return result;
+    }
+    @Override
+    public String toString () {
+        StringBuilder sb = new StringBuilder();
+        sb.append(start).append("\t").append(end);
+        if (value != null){
+            sb.append("\t").append(value);
+            // return String.format("%d\t%d",start,end);
+        }
+        return sb.toString();
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Region obj = null;
+        try {
+            obj = (Region) super.clone();
+        } catch (CloneNotSupportedException ex){
+            ex.printStackTrace();
+        }
+        return obj;
+    }
+    public boolean contains (N pos) { // [) 左闭右开的区间
+        return pos.compareTo(start) >= 0 && pos.compareTo(end) < 0;
+    }
+    public boolean contains (N s, N e){
+        return contains(s) && contains(e);
+    }
+    public boolean contains (Region<N,N> o) {
+        return contains(o.getStart()) && contains(o.getEnd());
+    }
+    public boolean intersects (N s, N e){
+        return e.compareTo(start) > 0 && s.compareTo(end) < 0;
+    }
+    public boolean intersects(Region<N,N> o){
+        return intersects(o.getStart(),o.getEnd());
+    }
+    public void setStart(N start) {
+        this.start = start;
+    }
+    public N getStart() {
+        return start;
+    }
+    public void setEnd(N end) {
+        this.end = end;
+    }
+    public N getEnd() {
+        return end;
+    }
+    public void setValue(T value) {
+        this.value = value;
+    }
+    public T getValue() {
+        return value;
+    }
+}
