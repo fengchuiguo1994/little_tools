@@ -1,0 +1,8 @@
+Fastq_file_1	/public/home/xyhuang/MH63RIC/ChIA-PET/trim/MH63_H3K4me3_Rep1_R1.pair.fq
+Fastq_file_2	/public/home/xyhuang/MH63RIC/ChIA-PET/trim/MH63_H3K4me3_Rep1_R2.pair.fq
+linker_file	/public/home/xyhuang/MH63RIC/ChIA-PET/linker_info.txt
+minimum_linker_alignment_score  14
+minimum_tag_length      18
+maximum_tag_length	1000
+minSecondBestScoreDiff  3
+output_data_with_ambiguous_linker_info	1
