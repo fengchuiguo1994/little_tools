@@ -8,6 +8,11 @@ rowscale = function(x) {
 }
 mydatscale = apply(mydat, 2, rowscale)
 
+## 标准化
+```
+scalemat = scale(mat, center = TRUE, scale = TRUE) # 默认按列
+```
+
 ## 画布分屏
 ```
 aa = par(cex=0.7, mai=c(0.1,0.1,0.1,0.1))
