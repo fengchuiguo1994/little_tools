@@ -161,3 +161,73 @@ readDir() {
 }
 
 readDir root
+
+## 调用系统参数
+uname -a
+
+cat /etc/*-release | sort -u
+
+cat /proc/version
+
+glibc version
+ldd --version | head -n 1
+
+grep -m 1 'model name' /proc/cpuinfo | cut -d ':' -f 2 | sed 's/^[ \t]*//'
+
+grep 'physical id' /proc/cpuinfo | sort -u | wc -l
+
+grep -c processor /proc/cpuinfo
+
+grep -m 1 'flags' /proc/cpuinfo | cut -d ':' -f 2 | sed 's/^\s*//'
+
+grep MemTotal /proc/meminfo | cut -d ':' -f 2 | sed 's/^[ \t]*//'
+
+df -Ph | awk '{print $2, $3, $4}'
+
+mount | cut -d ' ' -f 5,6
+
+bash -c 'ulimit -a'
+
+bash -c 'ulimit -aH'
+
+cat /proc/sys/fs/file-{max,nr}
+
+sysctl vm
+
+cat /sys/kernel/mm/*transparent_hugepage/enabled
+
+cat /proc/self/cgroup
+
+cgroup mem stats
+
+cat /sys/fs/cgroup/memory/user.slice/memory.*soft_limit_in_bytes
+
+cat /sys/fs/cgroup/memory/user.slice/memory.limit_in_bytes
+
+cat /sys/fs/cgroup/memory/user.slice/memory.memsw.limit_in_bytes
+
+head -n 1 /proc/1/sched | cut -d ' ' -f 1
+
+which qsub
+
+which bsub
+
+which configureBclToFastq.pl
+
+which bcl2fastq
+
+which java
+
+java -version 2>&1 | cat
+
+echo $TENX_REFDATA
+
+cat $TENX_REFDATA/version
+
+which qconf
+
+sinfo -O nodes,maxcpuspernode,memory,time
+
+mrp --version
+
+ls $(dirname $(dirname $(which mrp)))/jobmanagers/*.template
