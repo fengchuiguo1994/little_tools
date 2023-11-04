@@ -1,0 +1,8 @@
+Fastq_file_1	/data/home/ruanlab/huangxingyu/20230912/trim/SCG0192.read1.pair.fastq
+Fastq_file_2	/data/home/ruanlab/huangxingyu/20230912/trim/SCG0192.read2.pair.fastq
+linker_file	/data/home/ruanlab/huangxingyu/20230912/linker_info.txt
+minimum_linker_alignment_score  14
+minimum_tag_length      18
+maximum_tag_length	1000
+minSecondBestScoreDiff  3
+output_data_with_ambiguous_linker_info	1
