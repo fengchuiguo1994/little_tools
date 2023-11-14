@@ -13,6 +13,22 @@ mydatscale = apply(mydat, 2, rowscale)
 scalemat = scale(mat, center = TRUE, scale = TRUE) # 默认按列
 ```
 
+## 安装 rstudio server 服务
+```
+yum -y install epel-release
+yum install R
+wget https://download2.rstudio.org/server/centos7/x86_64/rstudio-server-rhel-2023.09.1-494-x86_64.rpm
+yum install rstudio-server-rhel-2023.09.1-494-x86_64.rpm
+adduser rstudio
+passwd rstudio # rstudio123456
+usermod -g rstudio-server rstudio
+# firewall-cmd --zone=public --list-ports
+firewall-cmd --zone=public --add-port=8787/tcp --permanent
+firewall-cmd --reload
+
+# ip:8787/
+```
+
 ## 画布分屏
 ```
 aa = par(cex=0.7, mai=c(0.1,0.1,0.1,0.1))
