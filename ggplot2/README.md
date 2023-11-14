@@ -8,7 +8,18 @@ geom_bar(stat = 'identity', position = 'fill',colour = 'black')
 ```
 
 #### 设置颜色
-在aes中可以用color设置边框颜色和fill设置填充颜色。在后续的设置也需要对对应的属性进行设置。
+在aes中可以用color设置边框颜色和fill设置填充颜色。在后续的设置也需要对对应的属性进行设置。 <br/>
+ggplot2 默认的颜色 <br/>
+```
+library(scales)
+hue_pal()(3)
+hue_pal()(10)
+hue_pal()(100)
+
+pie(rep(1,100),hue_pal()(100))
+barplot(1:300,col=hue_pal()(300))
+```
+
 ###### 图例（guides）
 设置图例
 ```
