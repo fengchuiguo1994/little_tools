@@ -231,6 +231,23 @@ STAR-Fusion --left_fq GM12878_R1.fq.gz --right_fq GM12878_R2.fq.gz --genome_lib_
 barcode list: ${longranger}/longranger-cs/2.2.2/tenkit/lib/python/tenkit/barcodes
 ```
 
+### deeptools
+```
+computeMatrix reference-point -p 15 --referencePoint TSS -b 10000 -a 10000 -R ucsc_refseq.bed6 -S test.bw --skipZeros -out ./test.TSS.gz  --outFileSortedRegions ./test.genes.bed
+
+# reference-point # 选择模式
+# -p 15 线程
+# --referencePoint TSS  # 选择参考点: TES, center
+# -b 10000 -a 10000  # 感兴趣的区域，-b上游，-a下游
+# -R  基因注释信息
+# -S  提供的 bigwig 文件
+# --skipZeros 
+# -out ./test.TSS.gz  输出为文件用于plotHeatmap, plotProfile
+#--outFileSortedRegions  ./test.TSS.bed  输出的文件名
+
+plotHeatmap/plotProfile -m matrix_two_groups.gz -out ExampleHeatmap2.png --colorMap RdBu --whatToShow 'heatmap and colorbar' --zMin -3 --zMax 3 --kmeans 4
+```
+
 # 定量工具
 ### featureCounts
 [subread for featureCounts](https://github.com/DeskGen/subread).<br/>
