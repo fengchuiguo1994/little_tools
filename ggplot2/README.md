@@ -1,7 +1,27 @@
+# R绘图
+[参考1](https://zhuanlan.zhihu.com/p/619400037) <br/>
+plot(x,y) # plot绘图默认为散点图，可以通过type参数修改绘图的类型。其中，type=”n”为不显示图像。bty修改边框类型，bty = "n"，表示无边框。col设置颜色。lty直线类型。lwd线条宽度。pch是点的形状。<br/>
+par() # mai，数字向量，格式为c(bottom, left, top, right),以英寸为单位定义绘图区边缘空白大小。new，逻辑值，默认值为FALSE，如果设定为TRUE，那么下一个高级绘图命令会清空当前绘图设备。oma、omi，参数形式为c(bottom, left, top, right) ，用于设定外边界。<br/>
+legend() # 图例 <br/>
+segments() # 线段 <br/>
+arrows() # 箭头 <br/>
+rect() # 矩形框 <br/>
+polygon() # 多边形 <br/>
+draw.ellipse() # 椭圆（plotrix包） <br/>
+draw.circle() # 圆（plotrix包） <br/>
+```
+
+
+```
+
 # ggplot2
 ----
 
 #### 图形设置
+###### barplot（geom_bar）
+```
+geom_bar(stat = 'identity', position = 'fill',colour = 'black')
+```
 ###### barplot（geom_bar）
 ```
 geom_bar(stat = 'identity', position = 'fill',colour = 'black')
