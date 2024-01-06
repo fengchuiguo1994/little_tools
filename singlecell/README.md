@@ -74,6 +74,14 @@ clustree(seurat) +
 
 sapply(grep( "^RNA_snn_res",colnames(seurat@meta.data),value = TRUE), function( x) length(unique(seurat@meta.data[, x])))
 clip()
+
+
+# 整合数据
+ifnb.list = list(SCG0054=SCG0054flt,SCG0074=SCG0074flt,SCG0075=SCG0075flt,SCG0076=SCG0076flt,SCG0077=SCG0077flt,SCG0078=SCG0078flt,SCG0079=SCG0079flt,SCG0080=SCG0080flt)
+features <- SelectIntegrationFeatures(object.list = ifnb.list)
+immune.anchors <- FindIntegrationAnchors(object.list = ifnb.list, anchor.features = features)
+immune.combined <- IntegrateData(anchorset = immune.anchors)
+DefaultAssay(immune.combined) <- "integrated"
 ```
 
 ## 时序分析
