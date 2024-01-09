@@ -72,6 +72,7 @@ Unknown
 [ChromHMM注释](https://github.com/gireeshkbogu/chromatin_states_chromHMM_mm9)<br/>
 
 ### 人类基因组
+[gwas_catalog]() gwas数据库<br/>
 [GRC](https://www.ncbi.nlm.nih.gov/grc)<br/>
 [ChromHMM注释](https://egg2.wustl.edu/roadmap/web_portal/chr_state_learning.html)结果<br/>
 [ChromHMM解释](https://pubs.broadinstitute.org/mammals/haploreg/documentation_v2.html)<br/>
