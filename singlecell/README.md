@@ -608,3 +608,12 @@ nohup wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz
 tar zvfx chromFa.tar.gz
 cat *.fa > hg19.fa
 rm chr*.fa
+
+
+
+#### 一些软件
+```
+python38：
+hicexplorer # pip install hicexplorer
+hicrep # python版hicrep
+```
