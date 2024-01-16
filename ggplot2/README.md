@@ -97,6 +97,12 @@ scale_fill_manual(values = brewer.pal(length(unique(mydat$age)),"Spectral"))
 scale_fill_manual(values = brewer.pal(length(unique(mydat$celltype)),"Spectral"))
 scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Dark2"))(length(unique(mydat$celltype))))
 ```
+
+ggsci色卡
+![ggsci色卡](color/color3.png)
+根据ggsci自定义的15个颜色
+![](color/color2.png)
+
 ###### 轴标签（ylab，xlab）
 ```
 ylab('Fraction')
