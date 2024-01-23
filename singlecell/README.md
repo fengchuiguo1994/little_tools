@@ -24,6 +24,8 @@ chr19	34254557	34254615	chr19	34254890	34255027	SCG0092_AAACAGCCAGACAAAC-1	12150
 ```
 
 ## scRNA-Seq
+#### 鉴定mark gene
+[mark gene是针对原数据的normalization之后的矩阵](https://github.com/satijalab/seurat/discussions/4000)。如果是用seurat的integrate，需要指定assay为integrated做聚类，在做findmark的时候需要将assay指定为原始的（RNA）。[链接2](https://github.com/satijalab/seurat/issues/7532)。<br/>
 ```
 library(Signac)
 library(Seurat)
