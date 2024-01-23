@@ -398,3 +398,13 @@ class bed6(bed3):
         if not isinstance(other,bed6):
             return True
         return not self.__eq__(other)
+    
+
+# color
+import matplotlib.pyplot as plt
+
+color_list = [(0.1,0.1,0.1),(0.1,0.1,0.1,0.5),'#FFFF00','#FFFF00FF','#F0F','0.5','r','blue','C0','xkcd:blue','tab:blue']
+for i, j in enumerate(color_list):
+    plt.plot([i,i], c=j)
+    plt.annotate(repr(j), (0,i+0.1))
+plt.show()
