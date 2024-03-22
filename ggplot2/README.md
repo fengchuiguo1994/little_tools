@@ -1,3 +1,6 @@
+# 一个绘图参考
+[参考一](https://mjfrigaard.github.io/fm-ggp2/frequency_polygons.html)，
+
 # R绘图
 [参考1](https://zhuanlan.zhihu.com/p/619400037) <br/>
 plot(x,y) # plot绘图默认为散点图，可以通过type参数修改绘图的类型。其中，type=”n”为不显示图像。bty修改边框类型，bty = "n"，表示无边框。col设置颜色。lty直线类型。lwd线条宽度。pch是点的形状。<br/>
