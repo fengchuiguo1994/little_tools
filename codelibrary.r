@@ -250,3 +250,27 @@ cor_taylorspearman <- function(X){
 }
 
 ```
+
+## 分组计数
+```
+library(dplyr)
+mtcars %>% group_by(cyl,am) %>% summarise(total=n())
+```
+
+## 将每行合并为字符串
+```
+df$combined <- apply(df, 1, function(row) paste(row, collapse=""))
+```
+
+## 合并图/拼图
+```
+library(patchwork)
+```
+
+## 字符串分割/分隔
+```
+library(stringr)
+
+df <- data.frame(player=c('John_Wall', 'Dirk_Nowitzki', 'Steve_Nash'), dots=c(22, 29, 18), assists=c(8, 4, 15))
+df[c('First', 'Last')] <- str_split_fixed(df$player, '_', 2)
+```
