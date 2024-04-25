@@ -14,6 +14,7 @@ cols = pal_npg()(10)
 
 
 library(scales)
+hex <- hue_pal()(3)
 
 
 library(viridis)
