@@ -231,3 +231,12 @@ sinfo -O nodes,maxcpuspernode,memory,time
 mrp --version
 
 ls $(dirname $(dirname $(which mrp)))/jobmanagers/*.template
+
+## 计算程序运行时间和内存消耗
+```
+time
+/usr/bin/time
+
+/usr/bin/time -f 'real %E\nuser %U\nsys  %S\nmem  %M' grep -f file.txt pattern.txt
+# 注意这里的内存单位为kb
+```
