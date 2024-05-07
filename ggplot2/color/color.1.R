@@ -36,3 +36,19 @@ par(fig=c(0.3,0.5,0.8,0.9), new=TRUE)
 r <- seq(7, 255, 8)
 col <- rgb(r, 0, 0, alpha = 255, maxColorValue = 255)
 image(x = 1:8, y = 1:4, z = matrix(1:32, ncol = 4), col = col, axes = F, ann = F)
+
+
+## ggsci
+```
+library("ggsci")
+library("ggplot2")
+library("gridExtra")
+
+scale_color_palname() # scale_color_npg() scale_color_aaas()
+scale_fill_palname() # scale_fill_npg() scale_fill_aaas()
+
+mypal <- pal_npg("nrc", alpha = 0.7)(9)
+mypal <- pal_aaas("default", alpha = 0.7)(9)
+library("scales")
+show_col(mypal)
+```
