@@ -10,11 +10,14 @@ color = colorRampPalette(c("#4DBBD5FF","#FF6F00FF","#E64B35FF"))(101)
 
 
 library(ggsci)
+library(scales)
 cols = pal_npg()(10)
+show_col(cols)
 
 
 library(scales)
 hex <- hue_pal()(3)
+show_col(hex)
 
 
 library(viridis)
