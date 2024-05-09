@@ -58,3 +58,46 @@ ggplot(countCellCount, aes(y = annotationratio,axis1 = factor(annotation,levels 
   theme(panel.border = element_blank()) + #去除外层边框
   theme(axis.line = element_blank(),axis.ticks = element_blank(),axis.text = element_blank()) 
 dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+countCellCount2 = readRDS("countCellCount.RData")
+countCellCount = head(countCellCount2,n=3)
+countCellCount = countCellCount[-7,]
+countCellCount1 = data.frame(value=countCellCount$Freq, subject="source", type=countCellCount$annotation)                                                                                  
+countCellCount2 = data.frame(value=countCellCount$Freq, subject="target", type=countCellCount$celltype)
+countCellCount3 = data.frame(value=countCellCount$celltyperatio, subject="source", type=countCellCount$annotation)                                                                                  
+countCellCount4 = data.frame(value=countCellCount$celltyperatio, subject="target", type=countCellCount$celltype)
+countCellCount5 = data.frame(value=countCellCount$annotationratio, subject="source", type=countCellCount$annotation)                                                                                  
+countCellCount6 = data.frame(value=countCellCount$annotationratio, subject="target", type=countCellCount$celltype)
+data_long2 = rbind(countCellCount1, countCellCount2)
+ggplot(data_long2 , aes(x = subject, stratum = type, alluvium = value, label =type)) + 
+  geom_stratum(aes(fill = type),alpha= 0.5) + 
+  geom_text(stat = "stratum", size = 2.5) + 
+  geom_flow() + 
+  theme_void() + 
+  theme(legend.position= 'none')
+
+colorlist = c(brewer.pal(8,"Dark2"),brewer.pal(12,"Paired"))
+
+ggplot(countCellCount2, aes(y = Freq,axis1 = factor(annotation,levels = c("Meninges","Cortex_L1","Cortex-L2/3","Cortex_L4","Cortex_L5","Cortex_L6","Lateral-ventral cortex","Cortical amygdalar area","Posterior amygdalar nucleus","Fiber tract","Subiculum","Stratum oriens of CA1", "CA1","Stratum lacunosum/raditum of CA1","Molecular layer of dentate gyrus","Dentate gyrus","Cavity","Thalamus","Midbrain","Substandia nigra/Ventral tegmental area")), axis2 = factor(celltype,levels = c("VLMC2","TEGLU7","TEGLU4","TEGLU8","TEGLU10","TEGLU2","TEGLU3","TEGLU12","TEGLU15","TEGLU22","TEGLU6","TEGLU23","TEGLU24","ACTE2","DGGRC2","DEGLU1","MOL2","ACNT1","TEINH18")), fill = annotation, alpha=Freq))+
+  geom_flow()+
+  geom_alluvium(aes(fill = annotation), curve_type = "sine") +
+  # scale_fill_manual(values = c(Brown = "#70493D", Hazel = "#E2AC76",Green = "#3F752B", Blue  = "#81B0E4")) +
+  scale_fill_manual(values = colorlist) +
+  # scale_fill_manual(values = rep("grey",20)) +
+  guides(fill = "none") +
+  geom_stratum(alpha = 0.5) +
+  geom_text(stat = "stratum", size=3, aes(label = after_stat(stratum)), reverse = T) +
+  scale_x_continuous(breaks = 1:2, expand = c(0,0), labels = c("annotation", "celltype")) +
+  ggtitle("")
