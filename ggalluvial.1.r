@@ -10,3 +10,27 @@ ggplot(mtcars,
   geom_stratum() +
   geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
   theme_minimal()
+
+
+library(ggplot2)
+library(ggalluvial)
+
+ggplot(as.data.frame(UCBAdmissions), aes(y = Freq, axis1 = Gender, axis2 = Dept)) +
+  geom_alluvium(aes(fill = Admit), width = 1/14) +
+  geom_stratum(width = 1/8, fill = "green",color = "black") + #设置节点及边框颜色
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) + #设置节点标签
+  scale_x_discrete(limits = c("Gender", "Dept"), expand = c(0, 0)) +
+  # scale_fill_brewer(type = "qual",palette = 6) + #颜色填充
+  ggtitle("UC Berkeley admissions and rejections, by sex and department")
+
+
+
+ggplot(as.data.frame(HairEyeColor), aes(y = Freq,axis1 = Hair, axis2 = Eye, fill = Eye,axis3 = Sex,alpha=Freq))+
+  geom_flow()+
+  geom_alluvium(aes(fill = Eye), curve_type = "sine") +
+  scale_fill_manual(values = c(Brown = "#70493D", Hazel = "#E2AC76",Green = "#3F752B", Blue  = "#81B0E4")) +
+  guides(fill = "none") +
+  geom_stratum(alpha = .2) +
+  geom_text(stat = "stratum", size=3, aes(label = after_stat(stratum)), reverse = T) +
+  scale_x_continuous(breaks = 1:3, expand = c(0,0), labels = c("Hair", "Eye", "Sex")) +
+  ggtitle("Eye colors of 592 subjects, by sex and hair color")
