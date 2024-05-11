@@ -240,3 +240,18 @@ time
 /usr/bin/time -f 'real %E\nuser %U\nsys  %S\nmem  %M' grep -f file.txt pattern.txt
 # 注意这里的内存单位为kb
 ```
+
+## ImageMagick图片处理
+格式转换
+```
+convert foo.jpg foo.png
+find ./ -name "*.jpg"|xargs -i basename {} .jpg|xargs -i convert {}.jpg {}.png
+
+convert -resize 50%x50%  -quality 70 -strip foo.jpg bar.jpg
+find ./ -name "*.jpg"|xargs -i basename {} .jpg|xargs -i convert -resize 50%x50% {}.jpg {}_50.jpg
+
+convert -blur 80 foo.jpg foo.png # 高斯模糊
+convert -monochrome foo.png bar.png # 把图片变为黑白颜色
+convert -paint 4 foo.png bar.png # 油画效果
+convert -charcoal 2 foo.png bar.png # 铅笔画效果
+```
