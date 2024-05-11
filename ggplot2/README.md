@@ -12,19 +12,12 @@ rect() # 矩形框 <br/>
 polygon() # 多边形 <br/>
 draw.ellipse() # 椭圆（plotrix包） <br/>
 draw.circle() # 圆（plotrix包） <br/>
-```
 
-
-```
-
+----
 # ggplot2
 ----
 
 #### 图形设置
-###### barplot（geom_bar）
-```
-geom_bar(stat = 'identity', position = 'fill',colour = 'black')
-```
 ###### barplot（geom_bar）
 ```
 geom_bar(stat = 'identity', position = 'fill',colour = 'black')
@@ -44,8 +37,24 @@ barplot(1:300,col=hue_pal()(300))
 ```
 
 ###### 图例（guides）
-设置图例
+[设置图例](https://www.jianshu.com/p/6ba336b3931f)
 ```
+guides()
+theme()
+scale_*_***() # colour/fill
+```
+```
+guides(
+  colour/fill = guide_colorbar()/guide_legend(), 
+  size = guide_legend(),
+  shape = guide_legend(),
+  linetype = guide_legend(),
+  alpha = guide_legend()
+)
+guide_colorbar()用于连续型变量，guide_legend()用于离散型变量。
+
+
+
 # 翻转图例
 guides(color = guide_legend(reverse = TRUE))
 guides(fill = guide_legend(reverse = TRUE))
@@ -53,14 +62,23 @@ guides(fill = guide_legend(reverse = TRUE))
 ###### [自定义颜色](https://zhuanlan.zhihu.com/p/361654063)
 一些色卡，[色卡一](https://colorbrewer2.org/#type=sequential&scheme=Greys&n=3)，[色卡二](https://www.webdesignrankings.com/resources/lolcolors/)，[色卡三](https://www.jianshu.com/p/b1897f06328d)
 ```
-scale_*_brewer() # colour/fill # 针对离散型数据
+连续型数据
 scale_*_distiller() # colour/fill # 针对连续型数据
 scale_*_fermenter() # colour/fill # 针对分箱数据
 scale_*_gradient # colour/fill # 双色渐变
 scale_*_gradient3 # colour/fill # 三色渐变
 scale_*_gradientn # colour/fill # 多色渐变
+scale_*_viridis_c() # colour/fill # viridis调色板
+
+
+离散型数据
 scale_*_hue # colour/fill # 分箱颜色设置，标度函数
+scale_*_discrete # colour/fill # 分箱颜色设置，标度函数
 scale_*_grey # colour/fill # 设置灰度颜色
+scale_*_viridis_d() # colour/fill # viridis调色板
+scale_*_brewer() # colour/fill # 针对离散型数据, colorbrewer调色板
+scale_*_manual() # colour/fill # 针对离散型数据, 自定义色板
+
 scale_*_steps() # colour/fill # 双色渐变 # 分箱渐变色与渐变色类似，只是应用的数据不同
 scale_*_steps2() # colour/fill # 三色渐变 # 分箱渐变色与渐变色类似，只是应用的数据不同
 scale_*_stepsn() # colour/fill # 多色渐变 # 分箱渐变色与渐变色类似，只是应用的数据不同
