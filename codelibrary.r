@@ -274,3 +274,83 @@ library(stringr)
 df <- data.frame(player=c('John_Wall', 'Dirk_Nowitzki', 'Steve_Nash'), dots=c(22, 29, 18), assists=c(8, 4, 15))
 df[c('First', 'Last')] <- str_split_fixed(df$player, '_', 2)
 ```
+
+## 颜色读取，转换
+```
+is_color <- function(color_str) {
+  # 判断是否为颜色字符串
+  # black
+  color_names <- colors()
+  if (tolower(color_str) %in% tolower(color_names)) {
+    return(TRUE)
+  }
+  
+  # 判断是否为 16 进制颜色代码
+  # #234567
+  hex_pattern <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+  if (grepl(hex_pattern, color_str)) {
+    return(TRUE)
+  }
+  # 234567
+  hex_pattern <- "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+  if (grepl(hex_pattern, color_str)) {
+    return(TRUE)
+  }
+  
+  # 判断是否为 RGB 字符串
+  # rgb(1,2,3) rgb(125,242,32)
+  rgb_pattern <- "^rgb\\(\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*\\)$"
+  if (grepl(rgb_pattern, color_str, perl = TRUE)) {
+    return(TRUE)
+  }
+  # 125,242,32
+  rgb_pattern <- "^\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*$"
+  if (grepl(rgb_pattern, color_str, perl = TRUE)) {
+    return(TRUE)
+  }
+  
+  return(FALSE)
+}
+
+colorts <- function(color_str) {
+  # 判断是否为颜色字符串
+  # black
+  color_names <- colors()
+  if (tolower(color_str) %in% tolower(color_names)) {
+    # library(gplots)
+    # color_str = col2hex(color_str)
+    return(color_str)
+  }
+  
+  # 判断是否为 16 进制颜色代码
+  # #234567
+  hex_pattern <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+  if (grepl(hex_pattern, color_str)) {
+    return(color_str)
+  }
+  # 234567
+  hex_pattern <- "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+  if (grepl(hex_pattern, color_str)) {
+    return(paste0("#",color_str))
+  }
+  
+  # 判断是否为 RGB 字符串
+  # rgb(1,2,3) rgb(125,242,32)
+  rgb_pattern <- "^rgb\\(\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*\\)$"
+  if (grepl(rgb_pattern, color_str, perl = TRUE)) {
+    # color_nums <- as.numeric(gsub("rgb\\(|\\)", "", color_str, perl=TRUE, fixed=FALSE))
+    color_nums <- as.numeric(strsplit(gsub("rgb\\(|\\)", "", color_str), ",")[[1]])
+    return (rgb(color_nums[1], color_nums[2], color_nums[3], maxColorValue = 255))
+  }
+  # 125,242,32
+  rgb_pattern <- "^\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*,\\s*([0-9]{1,3})\\s*$"
+  if (grepl(rgb_pattern, color_str, perl = TRUE)) {
+    color_nums <- as.numeric(strsplit(color_str, ",")[[1]])
+    return (rgb(color_nums[1], color_nums[2], color_nums[3], maxColorValue = 255))
+  }
+}
+
+color_str <- "125,242,32"
+is_color(color_str)
+colorts(color_str)
+```
