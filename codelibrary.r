@@ -16,11 +16,12 @@ unzip inconsolata.zip
 cp -Rfp inconsolata/* /usr/share/texmf
 
 yum-builddep R
-yum install readline readline-devel readline-static libX11-devel libXt-devel libcurl-devel
+yum install readline readline-devel readline-static libX11-devel libXt-devel libcurl-devel 
+yum install libpng libpng-devel libtiff libtiff-devel libjpeg-turbo libjpeg-turbo-devel
 wget https://mirror.nju.edu.cn/CRAN/src/base/R-4/R-4.2.3.tar.gz
 tar xf R-4.2.3.tar.gz && cd R-4.2.3
 ./configure --enable-R-shlib --with-x --with-cairo --with-libpng --with-jpeglib --prefix=/DIR/
-make && make install
+make -j12 && make install
 ```
 
 ## 命令行参数
