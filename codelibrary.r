@@ -19,7 +19,7 @@ yum-builddep R
 yum install readline readline-devel readline-static libX11-devel libXt-devel libcurl-devel
 wget https://mirror.nju.edu.cn/CRAN/src/base/R-4/R-4.2.3.tar.gz
 tar xf R-4.2.3.tar.gz && cd R-4.2.3
-./configure --enable-R-shlib --with-x --with-cairo --prefix=/DIR/
+./configure --enable-R-shlib --with-x --with-cairo --with-libpng --with-jpeglib --prefix=/DIR/
 make && make install
 ```
 
