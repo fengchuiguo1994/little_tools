@@ -1,3 +1,28 @@
+## 安装R
+```
+wget https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download
+tar zxf download && cd pcre-8.45
+./configure --prefix=/usr/local/pcre-7.8 --libdir=/usr/local/lib/pcre --includedir=/usr/local/include/pcre
+make && make install
+
+wget https://curl.se/download/curl-7.55.0.tar.xz
+tar xf curl-7.55.0.tar.xz
+cd curl-7.55.0/
+./configure
+make && make install
+
+wget http://mirrors.ctan.org/fonts/inconsolata.zip
+unzip inconsolata.zip 
+cp -Rfp inconsolata/* /usr/share/texmf
+
+yum-builddep R
+yum install readline readline-devel readline-static libX11-devel libXt-devel libcurl-devel
+wget https://mirror.nju.edu.cn/CRAN/src/base/R-4/R-4.2.3.tar.gz
+tar xf R-4.2.3.tar.gz && cd R-4.2.3
+./configure --enable-R-shlib --with-x --with-cairo --prefix=/DIR/
+make && make install
+```
+
 ## 命令行参数
 args=commandArgs(T) 
 # args[1] args[2] args[3]...
