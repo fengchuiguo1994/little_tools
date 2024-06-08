@@ -255,3 +255,46 @@ convert -monochrome foo.png bar.png # 把图片变为黑白颜色
 convert -paint 4 foo.png bar.png # 油画效果
 convert -charcoal 2 foo.png bar.png # 铅笔画效果
 ```
+
+## 安装包
+#### 安装gcc
+[gcc需要的三个gmp、mpc、mpfr包](https://gcc.gnu.org/pub/gcc/infrastructure/)，[下载链接2](https://ftp.gnu.org/gnu/)
+```
+cd Tools
+make gcc
+make gcc/gmp gcc/mpc gcc/mpfr
+
+tar -jxvf gmp-4.3.2.tar.bz2
+cd gmp-4.3.2
+./configure --prefix=/home/Tools/gcc/gmp/ #gmp安装路径
+make
+make install
+cd ..
+
+tar -jxvf mpfr-2.4.2.tar.bz2
+cd mpfr-2.4.2
+./configure --prefix=/home/Tools/gcc/mpfr/ --with-gmp=/home/Tools/gcc/gmp/ #congfigure后面是mpfr安装路径及依赖的gmp路径
+make
+make install
+cd ..
+
+tar -zxvf mpc-0.8.1.tar.gz
+cd mpc-0.8.1
+./configure --prefix=/home/Tools/gcc/mpc/ --with-gmp=/home/Tools/gcc/gmp/ --with-mpfr=/home/Tools/gcc/mpfr/
+make
+make install
+cd ..
+
+添加环境变量到~/.bashrc
+export LD_LIBRARY_PATH=/home/Tools/gcc/gmp/lib/:/home/Tools/gcc/mpfr/lib/:/home/Tools/gcc/mpc/lib/
+export LIBRARY_PATH=$LD_LIBRARY_PATH
+```
+[安装gcc](https://gcc.gnu.org/releases.html)
+```
+make gcc/gcc
+tar -jxvf gcc-8.4.0.tar.bz2
+cd gcc-gcc-8.4.0
+./configure --prefix=/home/Tools/gcc/gcc/ --enable-threads=posix --disable-checking --disable-multilib --with-mpc=/home/Tools/gcc/mpc/ --with-gmp=/home/Tools/gcc/gmp/ --with-mpfr=/home/Tools/gcc/mpfr/ 
+make -j 10
+make install
+```
