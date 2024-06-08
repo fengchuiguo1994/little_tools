@@ -14,6 +14,7 @@ make && make install
 wget http://mirrors.ctan.org/fonts/inconsolata.zip
 unzip inconsolata.zip 
 cp -Rfp inconsolata/* /usr/share/texmf
+mktexlsr
 
 yum-builddep R
 yum install readline readline-devel readline-static libX11-devel libXt-devel libcurl-devel 
@@ -22,8 +23,74 @@ wget https://mirror.nju.edu.cn/CRAN/src/base/R-4/R-4.2.3.tar.gz
 tar xf R-4.2.3.tar.gz && cd R-4.2.3
 ./configure --enable-R-shlib --with-x --with-cairo --with-libpng --with-jpeglib --prefix=/DIR/
 make -j12 && make install
+
+wget https://ftp.gnu.org/gnu/texinfo/texinfo-6.8.tar.gz
+tar zxf texinfo-6.8.tar.gz
+cd texinfo-6.8/
+./configure --prefix=/data/home/ruanlab/huangxingyu/Tools/texinfo-6.8
+make && make install
+# add path
+
+# texlive
+wget https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz
+tar zxf install-tl-unx.tar.gz
+cd install-tl-20240602/
+
+# 自定义安装路径
+export TEXLIVE_INSTALL_PREFIX=~/.local/texlive
+export TEXLIVE_INSTALL_TEXDIR=~/.local/texlive/2019
+
+./install-tl
+
+
+关闭selinux
+wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2024.04.1-748-x86_64.rpm
+yum install rstudio-server-rhel-2024.04.1-748-x86_64.rpm
+# vim /etc/rstudio/rserver.conf
+rstudio-server start
+rstudio-server status
+
+
+yum install perl-IPC-Cmd perl-CPAN
+wget https://www.openssl.org/source/openssl-1.1.1u.tar.gz
+tar zxf openssl-1.1.1u.tar.gz
+cd openssl-1.1.1u
+./config  --prefix=/usr/local/openssl
+make
+make install
+ln -s /usr/local/openssl/lib64/libssl.so.1.1 /usr/lib/libssl.so.1.1
+ln -s /usr/local/openssl/lib64/libcrypto.so.1.1 /usr/lib/libcrypto.so.1.1
 ```
 
+## 安装包
+```
+install.packages("pak")
+library(pak)
+repo_get() # 查看镜像
+pak::pak("tibble") # 安装包
+pak::pak(c("BiocNeighbors", "ComplexHeatmap", "circlize", "NMF")) # 安装包
+pak::pak("tibble", lib = "PATH") # 安装包到指定路径
+pak::pak("tidyverse/tibble") # 从GitHub安装
+pak::pak("tidyverse/tibble@tag") # 从GitHub安装
+pak::pak("url::https://cran.r-project.org/src/contrib/Archive/tibble/tibble_3.1.7.tar.gz") # 在线安装
+pak::local_install("CytoTRACE") # 本地安装
+pak::pak("local::./CytoTRACE_0.3.3.tar.gz") # 本地安装
+pak::pak("tibble", upgrade = TRUE) # 更新包的所有依赖，默认不更新依赖
+pkg_remove("tibble") # 卸载
+pak::pkg_deps("tibble") # 查看包的依赖
+pak::pkg_deps_tree("tibble") # 查看包的依赖
+pak::pkg_deps_tree("tidyverse/tibble") # 查看github包依赖
+
+# 网络不是太好，可以使用国内的cran、Bioconductor镜像。操作为：在 $HOME/.Rprofile 中添加如下两行
+options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/")) 
+options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
+
+R CMD INSTALL Matrix_1.6-5.tar.gz
+
+
+options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/")))  # 更换默认镜像
+install.packages('Seurat')
+```
 ## 命令行参数
 args=commandArgs(T) 
 # args[1] args[2] args[3]...
