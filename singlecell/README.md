@@ -23,6 +23,14 @@ chr8	3395221	3395259	chr8	3395726	3395764	SCG0092_AAACAGCCAGACAAAC-1	120804683:2
 chr19	34254557	34254615	chr19	34254890	34255027	SCG0092_AAACAGCCAGACAAAC-1	121506217:22098:8454274:58852226:1508:26332:16282	37	+	+
 ```
 
+#### [scanpy](https://scanpy.readthedocs.io/en/latest/tutorials/plotting/advanced.html)<br/>
+```
+import scanpy as sc
+# sc.pl.embedding 自定义绘图
+sc.pl.embedding(adata, color='leiden', basis="X_pca")
+sc.pl.embedding(query, color=["total_counts", "n_genes_by_counts"], basis="spatial", save="test.spatial.png")
+```
+
 ## scRNA-Seq
 #### 鉴定mark gene
 [mark gene是针对原数据的normalization之后的矩阵](https://github.com/satijalab/seurat/discussions/4000)。如果是用seurat的integrate，需要指定assay为integrated做聚类，在做findmark的时候需要将assay指定为原始的（RNA）。[链接2](https://github.com/satijalab/seurat/issues/7532)。<br/>
