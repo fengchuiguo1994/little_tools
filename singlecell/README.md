@@ -1,3 +1,11 @@
+## mark gene
+胚胎细胞：[wiki](https://zh.wikipedia.org/wiki/%E4%B8%AD%E8%83%9A%E5%B1%82)
+![](img/fig1.png)
+内胚层Endoderm mark gene：SOX17, FOXA2, CXCR4, GATA4 <br/>
+中胚层Mesoderm mark gene：NCAM1, TBXT <br/>
+外胚层Ectoderm mark gene：NES, PAX6, TUBB3, OTX2 <br/>
+[Evaluation of commonly used ectoderm markers in iPSC trilineage differentiation](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6570500/)
+
 ## 通用
 #### ChIAPIPE数据分析需要识别正确的测序标签，从geo上下载的数据已经丢失read id，变为SRR的序列，人为构建正确的read id。
 ```
