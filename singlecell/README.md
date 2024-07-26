@@ -6,6 +6,16 @@
 外胚层Ectoderm mark gene：NES, PAX6, TUBB3, OTX2 <br/>
 [Evaluation of commonly used ectoderm markers in iPSC trilineage differentiation](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6570500/)
 
+人胚胎阶段（卡内基分类）：[ref1](https://en.wikipedia.org/wiki/Carnegie_stages), [ref2](https://www.ehd.org/virtual-human-embryo/intro.php?stage=1), [ref3](https://embryology.med.unsw.edu.au/embryology/index.php/Carnegie_Stages)
+
+[脑：](https://www.nature.com/articles/s41593-020-00794-1)
+- 大类：祖细胞和神经元细胞
+  - 类：hindbrain：HOX基因（后脑）; midbrain: PAX7（中脑）; thalamus: GBX2（丘脑）; medial ganglionic eminence: NKX2-1（内侧神经节隆起）; cerebral cortex: FOXG1（大脑皮层）
+    - 亚类：神经上皮细胞（neuroepithelial cells）、放射状胶质细胞（radial glia）、中间祖细胞 (intermediate progenitor cells， IPC)、神经元（neurons）、间充质样细胞（mesenchymal-like cells）。含有SOX2祖细胞：放射状胶质细胞；不含有SOX2祖细胞：神经上皮细胞。
+
+
+广义祖细胞 ( SOX2 )、放射状胶质细胞 ( NES )、IPC ( PPP1R17 ) 和神经元 ( BCL11B ) 
+新生神经元以 DCX（绿色）标记，祖细胞以 SOX2（红色）标记，IPC 以 TBR2（黄色）标记，成熟神经元以 CTIP2（青色）标记
 ## 通用
 #### ChIAPIPE数据分析需要识别正确的测序标签，从geo上下载的数据已经丢失read id，变为SRR的序列，人为构建正确的read id。
 ```
