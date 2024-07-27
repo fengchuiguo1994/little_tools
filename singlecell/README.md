@@ -117,6 +117,7 @@ C --> M[B细胞];
 [所有的T细胞都来源于造血干细胞（HSC），造血干细胞会分化为多能祖细胞（MPP），多能祖细胞又会分化为共同淋巴祖细胞（CLP），之后CLP只有三种分化路径，即T细胞、B细胞和NK细胞。 那些分化为T细胞的CLP将会随着血流到达胸腺，并成为早期胸腺祖细胞(ETP)，现在这些细胞既不表达CD4也不表达CD8。这些细胞将经过一轮分裂之后会进入DN1阶段。在DN2阶段(CD44+CD25+)，细胞上调RAG1/2并重排TCR（T细胞受体）-β基因座，V-D-J序列和恒定区序列，目的是产生一个有功能的TCR-β链。当细胞经过DN3阶段(CD44-CD25+)时，细胞将会和TCRβ一起表达一个未经重排的α-链（pre-Tα），如果重排后的β-链可以和pre-Tα形成二聚体，细胞将产生信号停止β-链的重排。虽然这个信号需要pre-TCR在细胞膜上表达，不过它与pre-TCR和配体的结合无关。如果pre-TCR形成了，细胞会下调CD25并进入DN4阶段(CD25-CD44-)，这些细胞将继续分裂并重排TCRα的基因座。双阳性(CD4+/CD8+)的T细胞会向胸腺皮层深处迁移，并会接触到胸腺皮层上皮细胞表面的“自体抗原”（self-antigens）。这些自体抗原结合在胸腺上皮细胞表面的MHC分子上，只有与胸腺细胞的MHC分子表现出足够强的结合力的T细胞，才能接收到必要的“存活信号”，而无法接收到足够“存活信号”的T细胞将会凋亡。在这个持续几天的阳性选择过程中，大部分的T细胞都会死去。一个T细胞的命运就在阳性选择的过程中被决定。在双阳性(CD4+/CD8+)T细胞中，能够与MHC Ⅱ类分子结合得较好的将成为CD4+细胞，而和MHC Ⅰ类分子有更高亲和力的将成为CD8+细胞。将成为CD4+细胞的细胞将会逐渐下调自己的CD8，最终成为单阳性的CD4+细胞。在阳性选择中存活下来的T细胞将会向胸腺皮质边缘和髓质区迁移；在髓质区，它们又会接触到胸腺髓质上皮细胞（mTECs）表面的自体抗原。mTECs会在它们的MHC Ⅰ类分子上呈递来自全身各个组织的自体抗原。一些mTECs被胸腺树状细胞吞噬，它们的自体抗原就会呈递在树状细胞的MHC Ⅱ类分子上（经过了阳性选择的CD4+细胞只能识别MHC Ⅱ类分子）。在这里，与自体抗原表现出过强的亲和力的T细胞会接收到凋亡信号并凋亡（在这些细胞中也有一部分会成为调节T细胞），存活下来的细胞就作为成熟的初级T细胞离开胸腺。这一过程是中枢免疫耐受的重要组成部分，其意义在于筛选掉可能对自体抗原产生反应的T细胞，从而避免自体免疫疾病的发生。经过阳性选择和阴性选择，最初到达胸腺的T细胞中有98%死亡，存活下来的2%成为了具有成熟免疫功能的T细胞。胸腺产生成熟T细胞的数量大致随着个体衰老而减少，在中年人的体内，胸腺的大小平均每年缩小3%。所以，对中老年人而言，外周T细胞的增殖和再生对于免疫系统的意义更大。](https://zh.wikipedia.org/wiki/T%E7%BB%86%E8%83%9E)
 
 ###### mark gene
+血液分类：<br/>
 [CellMarker](http://117.50.127.228/CellMarker/index.html), [proteinatlas](https://www.proteinatlas.org/), [Adult mouse brain](http://mousebrain.org/adolescent/celltypes.html), [dropviz1](https://www.genengnews.com/best-of-the-web/dropviz/), [dropviz2](http://dropviz.org/), 
 
 | 细胞类型 | marker基因 |
@@ -164,6 +165,45 @@ C --> M[B细胞];
 1. 先分大类：
 T/NK cells (CD3D+ IL32+ NKG7+), myeloid cells (CD14+ FCGR3A+ S100A9+) and B cells (CD79B+ CD79A+ IGHM+)
 ```
+
+
+胚胎大脑分类（已成形）：<br/>
+[Single-cell atlas of early human brain development highlights heterogeneity of human neuroepithelial cells and early radial glia](https://www.nature.com/articles/s41593-020-00794-1#MOESM1), [brain web](https://cells-test.gi.ucsc.edu/?ds=early-brain&cell=CS14_3_TGGACGCAGTGGAGTC_7335)<br/>
+human brain in Carnegie stages (CS) 12 to 22 (卡内基分期，妊娠6-10周，胎儿时期的大脑，此时已发育成型)，mark gene参见正文+附图+附表，三者对应起来看
+| 脑区分类 | marker基因 |
+| ----------- | ----------- |
+| hindbrain 后脑 | HOX |
+| midbrain 中脑 | PAX7 |
+|	thalamus 丘脑 | GBX2 |
+|	medial ganglionic eminence 内侧神经节隆起 | NKX2-1 |
+| cerebral cortex 大脑皮层 | FOXG1 |
+
+| 细胞类型 | marker基因 |
+| ----------- | ----------- |
+|	progenitor cells (PCs) 祖细胞 | SOX2 |
+| neuroepithelial cells 神经上皮细胞 | NGFR, Nestin, SOX2, Notch1, HES1, HES3, SOX10, PAX6 |
+| radial glia 放射状胶质细胞 | NES, PAX6, HES1, HES5, GFAP, GLAST, BLBP, SOX2, Nestin, Vimentin, TN-C, N-cadherin |
+|	intermediate progenitor cells (IPCs) 中间祖细胞 | PPP1R17, TBR2, TBR2 |
+|	Immature neurons 未成熟神经元 | BCL11B, DCX |
+| neurons 神经元 | BCL11B, CTIP2, NEUROD6, CALB2, MEF2C  |
+| Oligodendroycte precursor cells (OPCs) 少突胶质细胞前体细胞 | PDGF 受体 α, NG2 |
+| oligodendrocytes 少突胶质细胞 | olig 1、olig 2、olig 3、MBP、OSP、MOG、SOX10 |
+| Schwann cells 施旺细胞 | MPZ, NCAM, GAP43, S100 |
+| Microglia 小胶质细胞 | AIF1, CD11b、CD45、Iba1、F4/80、CD68、CD40 |
+| Astrocytes 星形胶质细胞 | GFAP、EAAT1/GLAST、EAAT2/GLT-1、谷氨酰氨合成酶、S100-β, ALDH1L1 |
+| mesenchymal-like cells 间充质样细胞 | FOXG1 |
+| endothelial 内皮 | FN1 |
+| pericyte 周细胞 | RGS5 |
+| mesenchymal 间充质 | LUM |
+
+[Nestin](https://weibo.com/ttarticle/p/show?id=2309404750839695671609): 一种在神经上皮干细胞中特异性表达的中间丝蛋白。在放射状胶质细胞中持续存在，直到星形胶质细胞发育。Nestin几乎不在成熟中枢神经细胞上表达。<br/>
+SOX2: 干细胞的标志, 广义的祖细胞, 在经过有丝分裂之后的神经元中下调。<br/>
+HES3: 是DNA结合蛋白超家族的成员，bHLH转录抑制因子。仅在小脑Purkinje细胞中表达。<br/>
+PAX6: 神经外胚层
+
+
+胚胎分类（未成形）：<br/>
+[A molecular atlas of the developing ectoderm defines neural, neural crest, placode, and nonneural progenitor identity in vertebrates](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5663519/), [Deconstructing and reconstructing the mouse and human early embryo](https://www.nature.com/articles/s41556-018-0144-x)
 
 ## 通用
 #### ChIAPIPE数据分析需要识别正确的测序标签，从geo上下载的数据已经丢失read id，变为SRR的序列，人为构建正确的read id。
