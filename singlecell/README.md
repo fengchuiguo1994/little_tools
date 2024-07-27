@@ -25,7 +25,7 @@
 
 ```mermaid
 graph TD;
-A[结缔组织] --> B[基质细胞(stromal cell)];
+A[结缔组织] --> B[基质细胞 stromal cell];
 A --> C[细胞间质];
 B --> D[成纤维细胞(fibroblast)];
 B --> P[周细胞(pericyte)];
