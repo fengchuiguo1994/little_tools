@@ -2,7 +2,9 @@
 胚胎细胞：[wiki](https://zh.wikipedia.org/wiki/%E4%B8%AD%E8%83%9A%E5%B1%82)<br/>
 基质细胞: [wiki](https://zh.wikipedia.org/wiki/%E5%9F%BA%E8%B4%A8%E7%BB%86%E8%83%9E)<br/>
 ![](img/fig1.png)<br/>
+![](img/fig4.png)<br/>
 ![](img/fig2.png)<br/>
+![](img/fig3.png)<br/>
 
 内胚层Endoderm mark gene：SOX17, FOXA2, CXCR4, GATA4 <br/>
 中胚层Mesoderm mark gene：NCAM1, TBXT <br/>
@@ -60,6 +62,10 @@ K --> O[网状纤维];
     - 未分化的间充质细胞(undifferentiated mesenchymal cell): 是保留在成体结缔组织内的一些较原始的细胞，它们保持着间充质细胞的分化潜能，在炎症与创伤时可增殖分化为成纤维细胞、脂肪细胞。间充质细胞常分布在小血管尤其是毛细血管周围，并能分化为血管壁的平滑肌和内皮细胞。
     - 网状细胞(reticular cell): 网状组织成为支架，网孔中充满淋巴细胞和巨噬细胞，或者是发育不同阶 段的各种血细胞。网状细胞则成为T、B淋巴细胞和血细胞发育微环境的细胞成分之一。
     - 纤维，包括胶原纤维、弹性纤维和网状纤维
+
+
+###### 神经系统
+[神经干细胞（英语：Neural stem cells (NSCs)）](https://zh.wikipedia.org/wiki/%E7%A5%9E%E7%B6%93%E5%B9%B9%E7%B4%B0%E8%83%9E)是一类存在于中枢神经系统中的干细胞，属于多能干细胞。神经干细胞在人、小鼠等生物的胚胎发育中扮演重要角色，亦存在于这些生物的成体中。这类细胞具有分化为神经元、星状细胞、寡突胶质细胞的能力。胚胎发育过程中，神经干细胞称为“放射状胶质细胞”（Radial glial cell）。
 
 ## 通用
 #### ChIAPIPE数据分析需要识别正确的测序标签，从geo上下载的数据已经丢失read id，变为SRR的序列，人为构建正确的read id。
