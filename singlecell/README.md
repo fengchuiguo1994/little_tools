@@ -119,6 +119,52 @@ C --> M[B细胞];
 ###### mark gene
 [CellMarker](http://117.50.127.228/CellMarker/index.html), [proteinatlas](https://www.proteinatlas.org/), [Adult mouse brain](http://mousebrain.org/adolescent/celltypes.html), [dropviz1](https://www.genengnews.com/best-of-the-web/dropviz/), [dropviz2](http://dropviz.org/), 
 
+| 细胞类型 | marker基因 |
+| ----------- | ----------- |
+| T Cells | CD3D, CD3E |
+| Th | CD3D, CD3E, CD40LG |
+| Tc | CD3D, CD3E, CD8A, CD8B |
+| gdT | TRDV2, TRGV9 |
+| B cells | CD19,CD79A,CD79B, MS4A1 [CD20] |
+| Plasma cells | IGHG1, MZB1, SDC1, CD79A |
+| Monocytes and DCs | CST3, LYZ |
+| Monocytes and macrophages | CST3, LYZ, CD68, CD163, CD14 
+| NK Cells | FGFBP2, FCG3RA, CX3CR1, GNLY, NKG7, TYOBP, PRF1 |
+| Neutrophils | CST3, LYZ, FCGR3B, CSF3R |
+| Photoreceptor cells | RCVRN |
+| Megakaryocytes | CST3, PF4, PPBP |
+| Fibroblasts | FGF7, MME |
+| Endothelial cells | PECAM1, VWF |
+| epi or tumor | EPCAM, KRT18, KRT19, PROM1, ALDH1A1, CD24 |
+| immune | CD45, PTPRC |
+| epithelial/cancer | EpCAM+, EPCAM |
+| stromal | CD10+, MME, fibo or CD31+, PECAM1, endo |
+| mast cell | CST3, KIT, CPA3 |
+| RBC | HBA1, HBA2, HBB, HBD, HBE1, HBG1, HBG2, HBM, HBQ1, HBZ(用于细胞过滤) |
+
+[dropClust: efficient clustering of ultra-large scRNA-seq data](https://academic.oup.com/nar/article/46/6/e36/4816215?login=false)
+| 细胞类型 | marker基因 |
+| ----------- | ----------- |
+| Naive T cells	| CD27, CCR7, CD8A, CD8B
+| CD4+ memory cells	| IL7R, CD27, CCR7
+|	NKT cells	| ZNF683, CD8A, CD8B
+|	B cells	| CD79A, CD37
+| CD8+ T cells |	GZMK, CD8A, CD8B
+|	NK cells |	CD160, NKG7, GNLY, CD247, CCL3, GZMB
+| CD16+ and CD14+ monocytes |	CD68, CD16 (FCGR3A), CD14, S100A12
+|	Regulatory T cells |	CCR10, CD25 (IL2RA), CD52, CMTM7, FOXP3
+|	Monocyte derived dendritic cells |	CST3, CD1C, FCER1A
+|	Megakaryocyte progenitors |	PF4, PPBP, PLA2G12A
+|	Progenitor-NK cells |	ID2
+|	Plasmacytoid dendritic cells |	GZMB, CD123 (IL3RA)
+
+[Single-Cell Analyses Inform Mechanisms of Myeloid-Targeted Therapies in Colon Cancer](https://www.cell.com/cell/fulltext/S0092-8674(20)30341-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS009286742030341X%3Fshowall%3Dtrue), [COVID-19 immune features revealed by a large-scale single-cell transcriptome atlas](https://www.cell.com/cell/fulltext/S0092-8674(21)00148-3), [Temporally integrated single cell RNA sequencing analysis of PBMC from experimental and natural primary human DENV-1 infections](https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1009240), [A single-cell map for the transcriptomic signatures of peripheral blood mononuclear cells in end-stage renal disease](https://academic.oup.com/ndt/article/36/4/599/5688957?login=false), [Single-cell RNA sequencing reveals the sustained immune cell dysfunction in the pathogenesis of sepsis secondary to bacterial pneumonia](https://www.sciencedirect.com/science/article/pii/S0888754321000884?via%3Dihub), 
+
+```
+1. 先分大类：
+T/NK cells (CD3D+ IL32+ NKG7+), myeloid cells (CD14+ FCGR3A+ S100A9+) and B cells (CD79B+ CD79A+ IGHM+)
+```
+
 ## 通用
 #### ChIAPIPE数据分析需要识别正确的测序标签，从geo上下载的数据已经丢失read id，变为SRR的序列，人为构建正确的read id。
 ```
