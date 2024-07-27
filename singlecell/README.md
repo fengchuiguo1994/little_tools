@@ -27,12 +27,12 @@
 graph TD;
 A[结缔组织] --> B[基质细胞 stromal cell];
 A --> C[细胞间质];
-B --> D[成纤维细胞(fibroblast)];
-B --> P[周细胞(pericyte)];
+B --> D[成纤维细胞 fibroblast];
+B --> P[周细胞 pericyte];
 B --> E[巨噬细胞];
 B --> F[浆细胞];
 B --> G[肥大细胞];
-B --> H[脂肪细胞(adipocyte)];
+B --> H[脂肪细胞 adipocyte];
 B --> I[白细胞];
 B --> J[未分化间充质细胞];
 
@@ -71,11 +71,11 @@ K --> O[网状纤维];
 [造血干细胞（英语：Hematopoietic stem cells, HSCs）](https://zh.wikipedia.org/wiki/%E9%80%A0%E8%A1%80%E5%B9%B2%E7%BB%86%E8%83%9E)是可以分化出所有血细胞的干细胞。增殖、分化血细胞的过程称作造血作用 (Hematopoiesis)，主要发生在红骨髓。而红骨髓则是在胚胎发育过程中，从中胚层分化出来的。人类的造血干细胞在胚龄第2～3周时开始产生，主要产生位置在卵黄囊。胚龄第2～3月时，主要产生造血干细胞的位置在肝和脾。胚龄第5个月起，一直到出生之后，主要产生造血干细胞的位置则在骨髓。<strong>HSCs 分化出的血细胞可以分成两大群系：骨髓群系（myeloid lineage）和淋巴群系（lymphoid lineage）</strong>，两者皆参与树突状细胞的形成。骨髓群系的细胞包含有：单核球、巨噬细胞、嗜中性白血细胞、嗜碱性白血细胞、嗜酸性白血细胞、红血细胞、巨核细胞和血小板。淋巴群系的细胞则有：T细胞、B细胞、自然杀手细胞等。HSCs 在骨髓组织内的占比约是1/10000。<br/>
 ```mermaid
 graph TD;
-A[造血干细胞(Hematopoietic stem cells, HSCs)] --> B[骨髓群系（myeloid lineage）];
-A --> C[淋巴群系（lymphoid lineage）];
+A[造血干细胞 Hematopoietic stem cells, HSCs] --> B[骨髓群系 myeloid lineage];
+A --> C[淋巴群系 lymphoid lineage];
 
-B --> D[单核球()];
-B --> P[巨噬细胞()];
+B --> D[单核球];
+B --> P[巨噬细胞];
 B --> E[嗜中性白血细胞];
 B --> F[嗜碱性白血细胞];
 B --> G[嗜酸性白血细胞];
