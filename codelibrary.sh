@@ -263,6 +263,10 @@ convert -charcoal 2 foo.png bar.png # 铅笔画效果
 cd Tools
 mkdir gcc
 mkdir gcc/gmp gcc/mpc gcc/mpfr gcc/gcc
+wget https://gcc.gnu.org/pub/gcc/infrastructure/gmp-4.3.2.tar.bz2
+wget https://gcc.gnu.org/pub/gcc/infrastructure/mpfr-2.4.2.tar.bz2
+wget https://gcc.gnu.org/pub/gcc/infrastructure/mpc-0.8.1.tar.gz
+wget https://ftp.wayne.edu/gnu/gcc/gcc-8.4.0/gcc-8.4.0.tar.gz
 
 tar -jxvf gmp-4.3.2.tar.bz2
 cd gmp-4.3.2
