@@ -296,4 +296,8 @@ cd gcc-8.4.0
 ./configure --prefix=/home/Tools/gcc/gcc/ --enable-threads=posix --disable-checking --disable-multilib --with-mpc=/home/Tools/gcc/mpc/ --with-gmp=/home/Tools/gcc/gmp/ --with-mpfr=/home/Tools/gcc/mpfr/ 
 make -j 10
 make install
+
+添加环境变量到~/.bashrc
+export PATH=/home/Tools/gcc/gcc/bin/:$PATH
+export LD_LIBRARY_PATH=/home/Tools/gcc/gcc/lib/:/home/Tools/gcc/gcc/lib64/:$LD_LIBRARY_PATH
 ```
