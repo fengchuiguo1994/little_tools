@@ -261,8 +261,8 @@ convert -charcoal 2 foo.png bar.png # 铅笔画效果
 [gcc需要的三个gmp、mpc、mpfr包](https://gcc.gnu.org/pub/gcc/infrastructure/)，[下载链接2](https://ftp.gnu.org/gnu/)
 ```
 cd Tools
-make gcc
-make gcc/gmp gcc/mpc gcc/mpfr
+mkdir gcc
+mkdir gcc/gmp gcc/mpc gcc/mpfr gcc/gcc
 
 tar -jxvf gmp-4.3.2.tar.bz2
 cd gmp-4.3.2
@@ -291,9 +291,8 @@ export LIBRARY_PATH=$LD_LIBRARY_PATH
 ```
 [安装gcc](https://gcc.gnu.org/releases.html)
 ```
-make gcc/gcc
 tar -jxvf gcc-8.4.0.tar.bz2
-cd gcc-gcc-8.4.0
+cd gcc-8.4.0
 ./configure --prefix=/home/Tools/gcc/gcc/ --enable-threads=posix --disable-checking --disable-multilib --with-mpc=/home/Tools/gcc/mpc/ --with-gmp=/home/Tools/gcc/gmp/ --with-mpfr=/home/Tools/gcc/mpfr/ 
 make -j 10
 make install
