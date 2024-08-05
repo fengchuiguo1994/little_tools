@@ -307,7 +307,10 @@ docker.io/centos                   centos7             eeb6ee3f44bd        2 yea
 docker.io/continuumio/miniconda3   4.6.14              6b5cf97566c3        5 years ago         457 MB
 
 $ docker save eeb6ee3f44bd -o centos7.tar
-
+$ docker load --input basic-browser.tar # 本地读取到镜像。
+$ docker tag 2a0ae7aa16d3 basic-browser # 对于load的镜像，它是none的，需指定镜像id重命名。
+$ docker tag none:none basic-browser:latest # 重命名
+$ docker run  -d --name basic-browser -p 39999:8000 -v mongodb:/data/db -v mysql:/var/lib/mysql  basic-browser # 将镜像提交到容器
 ```
 
 ## Shell开发
