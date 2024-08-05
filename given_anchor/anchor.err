@@ -1,0 +1,5 @@
+Warning message:
+In N - m :
+  Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
