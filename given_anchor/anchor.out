@@ -1,0 +1,680 @@
+Sender: LSF System <lsfadmin@s004>
+Subject: Job 1411953: <anchor> in cluster <hzauhpc> Done
+
+Job <anchor> was submitted from host <mn02> by user <xyhuang> in cluster <hzauhpc> at Sat Nov  9 00:40:04 2019.
+Job was executed on host(s) <s004>, in queue <smp>, as user <xyhuang> in cluster <hzauhpc> at Sat Nov  9 00:40:04 2019.
+</public/home/xyhuang> was used as the home directory.
+</public/home/xyhuang/multi-ChIA/meizheng/Drosophila/chiapet/insitu_RNAPII_Drosophila/given_anchor> was used as the working directory.
+Started at Sat Nov  9 00:40:04 2019.
+Terminated at Sat Nov  9 00:41:21 2019.
+Results reported at Sat Nov  9 00:41:21 2019.
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+bash run.sh
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   153.45 sec.
+    Max Memory :                                 1555 MB
+    Average Memory :                             343.91 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                156
+    Run time :                                   76 sec.
+    Turnaround time :                            77 sec.
+
+The output (if any) follows:
+
+[Sat Nov 09 00:40:04 CST 2019] start PetClusterWithGivenAnchors ... 
+[Sat Nov 09 00:40:05 CST 2019] 1M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:05 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 400K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 500K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 600K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 700K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 800K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:06 CST 2019] 900K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 1000K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 1100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 1200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:07 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:08 CST 2019] 2M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:08 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 400K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 500K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 600K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 700K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 800K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:09 CST 2019] 900K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 1000K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:10 CST 2019] 3M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:11 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 400K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 500K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:11 CST 2019] 600K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 700K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 800K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 900K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 1000K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 1100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 1200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:12 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 4M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:13 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:14 CST 2019] 5M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:14 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:14 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:14 CST 2019] 200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:14 CST 2019] 300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 400K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 500K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 600K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 700K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 800K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 900K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 1000K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:15 CST 2019] 1100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 1200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 1300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:16 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 6M PETs read from ../dm3.RNAPII.pre_cluster.sorted
+[Sat Nov 09 00:40:17 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 100K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 200K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 300K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 400K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:17 CST 2019] 500K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:18 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:18 CST 2019] 0K iPets processed to generate anchor clusters
+[Sat Nov 09 00:40:20 CST 2019] start TagCountInGivenRegions ... 
+[Sat Nov 09 00:40:26 CST 2019] start TagCountInGivenRegions ... 
+
+R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> N <- as.matrix(read.table("nTags.txt"))
+> ###### input format for data
+> ###### AB  A  B
+> ###### AB: pet count between anchors A and B
+> ###### A: tags in anchor A
+> ###### B: tags in anchor B
+> data <- as.matrix(read.table("data.txt"))
+> nRows <- length(data[,1])
+> q <- data[,1] - 1
+> m <- data[,2]
+> n <- N - m
+> k <- data[,3]
+> x <- phyper(q, m, n, k, lower.tail = FALSE)
+> 
+> ###### p-value adjustment with Benjamini-Hockberg method
+> fdr <- p.adjust(x, "BH")
+> a <- matrix(1, nRows, 4)
+> a[,1] <- x
+> a[,2] <- fdr
+> a[,3:4] <- -log10(a[,1:2]) ###### -log10(p-value)
+> a[is.infinite(a[,3]),3] <- 1000 ###### replace the extreme values with 1000
+> a[is.infinite(a[,4]),4] <- 1000 ###### replace the extreme values with 1000
+> a <- as.data.frame(a)
+> for (i in 1:2) {
++   a[[i]] <- as.numeric(format(a[[i]], digits = 3))
++ }
+> for (i in 3:4) {
++   a[[i]] <- round(a[[i]], 2)
++ }
+> write.table(a, file="result.txt", sep = "\t", row.names = FALSE, col.names = FALSE)
+> 
+> 
+begin to read input file
+finish reading file,use time 0.007618 s
+deal with the number 1 subgraph
+deal with the number 2 subgraph
+deal with the number 3 subgraph
+deal with the number 4 subgraph
+deal with the number 5 subgraph
+deal with the number 6 subgraph
+deal with the number 7 subgraph
+deal with the number 8 subgraph
+deal with the number 9 subgraph
+deal with the number 10 subgraph
+deal with the number 11 subgraph
+deal with the number 12 subgraph
+deal with the number 13 subgraph
+deal with the number 14 subgraph
+deal with the number 15 subgraph
+deal with the number 16 subgraph
+deal with the number 17 subgraph
+deal with the number 18 subgraph
+deal with the number 19 subgraph
+deal with the number 20 subgraph
+deal with the number 21 subgraph
+deal with the number 22 subgraph
+deal with the number 23 subgraph
+deal with the number 24 subgraph
+deal with the number 25 subgraph
+deal with the number 26 subgraph
+deal with the number 27 subgraph
+deal with the number 28 subgraph
+deal with the number 29 subgraph
+deal with the number 30 subgraph
+deal with the number 31 subgraph
+deal with the number 32 subgraph
+deal with the number 33 subgraph
+deal with the number 34 subgraph
+deal with the number 35 subgraph
+deal with the number 36 subgraph
+deal with the number 37 subgraph
+deal with the number 38 subgraph
+deal with the number 39 subgraph
+deal with the number 40 subgraph
+deal with the number 41 subgraph
+deal with the number 42 subgraph
+deal with the number 43 subgraph
+deal with the number 44 subgraph
+deal with the number 45 subgraph
+deal with the number 46 subgraph
+deal with the number 47 subgraph
+deal with the number 48 subgraph
+deal with the number 49 subgraph
+deal with the number 50 subgraph
+deal with the number 51 subgraph
+deal with the number 52 subgraph
+deal with the number 53 subgraph
+deal with the number 54 subgraph
+deal with the number 55 subgraph
+deal with the number 56 subgraph
+deal with the number 57 subgraph
+deal with the number 58 subgraph
+deal with the number 59 subgraph
+deal with the number 60 subgraph
+deal with the number 61 subgraph
+deal with the number 62 subgraph
+deal with the number 63 subgraph
+deal with the number 64 subgraph
+deal with the number 65 subgraph
+deal with the number 66 subgraph
+deal with the number 67 subgraph
+deal with the number 68 subgraph
+deal with the number 69 subgraph
+deal with the number 70 subgraph
+deal with the number 71 subgraph
+deal with the number 72 subgraph
+deal with the number 73 subgraph
+deal with the number 74 subgraph
+deal with the number 75 subgraph
+deal with the number 76 subgraph
+deal with the number 77 subgraph
+deal with the number 78 subgraph
+deal with the number 79 subgraph
+deal with the number 80 subgraph
+deal with the number 81 subgraph
+deal with the number 82 subgraph
+deal with the number 83 subgraph
+deal with the number 84 subgraph
+deal with the number 85 subgraph
+deal with the number 86 subgraph
+deal with the number 87 subgraph
+deal with the number 88 subgraph
+deal with the number 89 subgraph
+deal with the number 90 subgraph
+deal with the number 91 subgraph
+deal with the number 92 subgraph
+deal with the number 93 subgraph
+deal with the number 94 subgraph
+deal with the number 95 subgraph
+deal with the number 96 subgraph
+deal with the number 97 subgraph
+deal with the number 98 subgraph
+deal with the number 99 subgraph
+deal with the number 100 subgraph
+deal with the number 101 subgraph
+deal with the number 102 subgraph
+deal with the number 103 subgraph
+deal with the number 104 subgraph
+deal with the number 105 subgraph
+deal with the number 106 subgraph
+deal with the number 107 subgraph
+deal with the number 108 subgraph
+deal with the number 109 subgraph
+deal with the number 110 subgraph
+deal with the number 111 subgraph
+deal with the number 112 subgraph
+deal with the number 113 subgraph
+deal with the number 114 subgraph
+deal with the number 115 subgraph
+deal with the number 116 subgraph
+deal with the number 117 subgraph
+deal with the number 118 subgraph
+deal with the number 119 subgraph
+deal with the number 120 subgraph
+deal with the number 121 subgraph
+deal with the number 122 subgraph
+deal with the number 123 subgraph
+deal with the number 124 subgraph
+deal with the number 125 subgraph
+deal with the number 126 subgraph
+deal with the number 127 subgraph
+deal with the number 128 subgraph
+deal with the number 129 subgraph
+deal with the number 130 subgraph
+deal with the number 131 subgraph
+deal with the number 132 subgraph
+deal with the number 133 subgraph
+deal with the number 134 subgraph
+deal with the number 135 subgraph
+deal with the number 136 subgraph
+deal with the number 137 subgraph
+deal with the number 138 subgraph
+deal with the number 139 subgraph
+deal with the number 140 subgraph
+deal with the number 141 subgraph
+deal with the number 142 subgraph
+deal with the number 143 subgraph
+deal with the number 144 subgraph
+deal with the number 145 subgraph
+deal with the number 146 subgraph
+deal with the number 147 subgraph
+deal with the number 148 subgraph
+deal with the number 149 subgraph
+deal with the number 150 subgraph
+deal with the number 151 subgraph
+deal with the number 152 subgraph
+deal with the number 153 subgraph
+deal with the number 154 subgraph
+deal with the number 155 subgraph
+deal with the number 156 subgraph
+deal with the number 157 subgraph
+deal with the number 158 subgraph
+deal with the number 159 subgraph
+deal with the number 160 subgraph
+deal with the number 161 subgraph
+deal with the number 162 subgraph
+deal with the number 163 subgraph
+deal with the number 164 subgraph
+deal with the number 165 subgraph
+deal with the number 166 subgraph
+deal with the number 167 subgraph
+deal with the number 168 subgraph
+deal with the number 169 subgraph
+deal with the number 170 subgraph
+deal with the number 171 subgraph
+deal with the number 172 subgraph
+deal with the number 173 subgraph
+deal with the number 174 subgraph
+deal with the number 175 subgraph
+deal with the number 176 subgraph
+deal with the number 177 subgraph
+deal with the number 178 subgraph
+deal with the number 179 subgraph
+deal with the number 180 subgraph
+deal with the number 181 subgraph
+deal with the number 182 subgraph
+deal with the number 183 subgraph
+deal with the number 184 subgraph
+deal with the number 185 subgraph
+deal with the number 186 subgraph
+deal with the number 187 subgraph
+deal with the number 188 subgraph
+deal with the number 189 subgraph
+deal with the number 190 subgraph
+deal with the number 191 subgraph
+deal with the number 192 subgraph
+deal with the number 193 subgraph
+deal with the number 194 subgraph
+deal with the number 195 subgraph
+deal with the number 196 subgraph
+deal with the number 197 subgraph
+deal with the number 198 subgraph
+deal with the number 199 subgraph
+deal with the number 200 subgraph
+deal with the number 201 subgraph
+deal with the number 202 subgraph
+deal with the number 203 subgraph
+deal with the number 204 subgraph
+deal with the number 205 subgraph
+deal with the number 206 subgraph
+deal with the number 207 subgraph
+deal with the number 208 subgraph
+deal with the number 209 subgraph
+deal with the number 210 subgraph
+deal with the number 211 subgraph
+deal with the number 212 subgraph
+deal with the number 213 subgraph
+deal with the number 214 subgraph
+deal with the number 215 subgraph
+deal with the number 216 subgraph
+deal with the number 217 subgraph
+deal with the number 218 subgraph
+deal with the number 219 subgraph
+deal with the number 220 subgraph
+deal with the number 221 subgraph
+deal with the number 222 subgraph
+deal with the number 223 subgraph
+deal with the number 224 subgraph
+deal with the number 225 subgraph
+deal with the number 226 subgraph
+deal with the number 227 subgraph
+deal with the number 228 subgraph
+deal with the number 229 subgraph
+deal with the number 230 subgraph
+deal with the number 231 subgraph
+deal with the number 232 subgraph
+deal with the number 233 subgraph
+deal with the number 234 subgraph
+deal with the number 235 subgraph
+deal with the number 236 subgraph
+deal with the number 237 subgraph
+deal with the number 238 subgraph
+deal with the number 239 subgraph
+deal with the number 240 subgraph
+deal with the number 241 subgraph
+deal with the number 242 subgraph
+deal with the number 243 subgraph
+deal with the number 244 subgraph
+deal with the number 245 subgraph
+deal with the number 246 subgraph
+deal with the number 247 subgraph
+deal with the number 248 subgraph
+deal with the number 249 subgraph
+deal with the number 250 subgraph
+deal with the number 251 subgraph
+deal with the number 252 subgraph
+deal with the number 253 subgraph
+deal with the number 254 subgraph
+deal with the number 255 subgraph
+deal with the number 256 subgraph
+deal with the number 257 subgraph
+deal with the number 258 subgraph
+deal with the number 259 subgraph
+deal with the number 260 subgraph
+deal with the number 261 subgraph
+deal with the number 262 subgraph
+deal with the number 263 subgraph
+deal with the number 264 subgraph
+deal with the number 265 subgraph
+deal with the number 266 subgraph
+deal with the number 267 subgraph
+deal with the number 268 subgraph
+deal with the number 269 subgraph
+deal with the number 270 subgraph
+deal with the number 271 subgraph
+deal with the number 272 subgraph
+deal with the number 273 subgraph
+deal with the number 274 subgraph
+deal with the number 275 subgraph
+deal with the number 276 subgraph
+deal with the number 277 subgraph
+deal with the number 278 subgraph
+deal with the number 279 subgraph
+deal with the number 280 subgraph
+deal with the number 281 subgraph
+deal with the number 282 subgraph
+deal with the number 283 subgraph
+deal with the number 284 subgraph
+deal with the number 285 subgraph
+deal with the number 286 subgraph
+deal with the number 287 subgraph
+deal with the number 288 subgraph
+deal with the number 289 subgraph
+deal with the number 290 subgraph
+deal with the number 291 subgraph
+deal with the number 292 subgraph
+deal with the number 293 subgraph
+deal with the number 294 subgraph
+deal with the number 295 subgraph
+deal with the number 296 subgraph
+deal with the number 297 subgraph
+deal with the number 298 subgraph
+deal with the number 299 subgraph
+deal with the number 300 subgraph
+deal with the number 301 subgraph
+deal with the number 302 subgraph
+deal with the number 303 subgraph
+deal with the number 304 subgraph
+deal with the number 305 subgraph
+deal with the number 306 subgraph
+deal with the number 307 subgraph
+deal with the number 308 subgraph
+deal with the number 309 subgraph
+deal with the number 310 subgraph
+deal with the number 311 subgraph
+deal with the number 312 subgraph
+deal with the number 313 subgraph
+deal with the number 314 subgraph
+deal with the number 315 subgraph
+deal with the number 316 subgraph
+deal with the number 317 subgraph
+deal with the number 318 subgraph
+deal with the number 319 subgraph
+deal with the number 320 subgraph
+deal with the number 321 subgraph
+deal with the number 322 subgraph
+deal with the number 323 subgraph
+deal with the number 324 subgraph
+deal with the number 325 subgraph
+deal with the number 326 subgraph
+deal with the number 327 subgraph
+deal with the number 328 subgraph
+deal with the number 329 subgraph
+deal with the number 330 subgraph
+deal with the number 331 subgraph
+deal with the number 332 subgraph
+deal with the number 333 subgraph
+deal with the number 334 subgraph
+deal with the number 335 subgraph
+deal with the number 336 subgraph
+deal with the number 337 subgraph
+deal with the number 338 subgraph
+deal with the number 339 subgraph
+deal with the number 340 subgraph
+deal with the number 341 subgraph
+deal with the number 342 subgraph
+deal with the number 343 subgraph
+deal with the number 344 subgraph
+deal with the number 345 subgraph
+deal with the number 346 subgraph
+deal with the number 347 subgraph
+deal with the number 348 subgraph
+deal with the number 349 subgraph
+deal with the number 350 subgraph
+deal with the number 351 subgraph
+deal with the number 352 subgraph
+deal with the number 353 subgraph
+deal with the number 354 subgraph
+deal with the number 355 subgraph
+deal with the number 356 subgraph
+deal with the number 357 subgraph
+deal with the number 358 subgraph
+deal with the number 359 subgraph
+deal with the number 360 subgraph
+deal with the number 361 subgraph
+deal with the number 362 subgraph
+deal with the number 363 subgraph
+deal with the number 364 subgraph
+deal with the number 365 subgraph
+deal with the number 366 subgraph
+deal with the number 367 subgraph
+deal with the number 368 subgraph
+deal with the number 369 subgraph
+deal with the number 370 subgraph
+deal with the number 371 subgraph
+deal with the number 372 subgraph
+deal with the number 373 subgraph
+deal with the number 374 subgraph
+deal with the number 375 subgraph
+deal with the number 376 subgraph
+deal with the number 377 subgraph
+deal with the number 378 subgraph
+deal with the number 379 subgraph
+deal with the number 380 subgraph
+deal with the number 381 subgraph
+deal with the number 382 subgraph
+deal with the number 383 subgraph
+deal with the number 384 subgraph
+deal with the number 385 subgraph
+deal with the number 386 subgraph
+deal with the number 387 subgraph
+deal with the number 388 subgraph
+deal with the number 389 subgraph
+deal with the number 390 subgraph
+deal with the number 391 subgraph
+deal with the number 392 subgraph
+deal with the number 393 subgraph
+deal with the number 394 subgraph
+deal with the number 395 subgraph
+deal with the number 396 subgraph
+deal with the number 397 subgraph
+deal with the number 398 subgraph
+deal with the number 399 subgraph
+deal with the number 400 subgraph
+deal with the number 401 subgraph
+deal with the number 402 subgraph
+deal with the number 403 subgraph
+deal with the number 404 subgraph
+deal with the number 405 subgraph
+deal with the number 406 subgraph
+deal with the number 407 subgraph
+deal with the number 408 subgraph
+deal with the number 409 subgraph
+deal with the number 410 subgraph
+deal with the number 411 subgraph
+deal with the number 412 subgraph
+deal with the number 413 subgraph
+deal with the number 414 subgraph
+deal with the number 415 subgraph
+deal with the number 416 subgraph
+deal with the number 417 subgraph
+deal with the number 418 subgraph
+deal with the number 419 subgraph
+deal with the number 420 subgraph
+deal with the number 421 subgraph
+deal with the number 422 subgraph
+
+
+PS:
+
+Read file <anchor.err> for stderr output of this job.
+

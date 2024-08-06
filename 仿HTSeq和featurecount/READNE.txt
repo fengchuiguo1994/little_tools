@@ -1,0 +1,10 @@
+1:经过测试markgene.py和
+featureCounts -a hg38.remove.gtf -o featureCounts.${i}.${j}.txt -t ${j} -g gene_id -s ${i} -R BAM -T 1 --Rpath ${j}${i}featureCounts --verbose allrich-23.uniqmap.tmp.1.bam
+htseq-count -f bam -s ${i} -o htseq.${j}.${i}.${j}.sam -t ${j} -i gene_id -m union allrich-23.uniqmap.tmp.1.bam ~/zhangyan/genome/hg38.analysisSet.chroms/hg38.remove.gtf > htseq.${j}.${i}.union.sam.count
+
+markgene和featurecount以及htseq的默认模式的结果是一模一样的。
+
+在10M reads的测试下：
+featureCounts 用时1m30s左右
+htseq 用时23m左右
+mytools 用时5m30s左右
