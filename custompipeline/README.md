@@ -19,6 +19,8 @@ java -Xmx30g -jar /data/home/ruanlab/huangxingyu/Tools/ChIA-PIPE-master/util/jui
 java -jar /data/home/ruanlab/huangxingyu/Tools/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 10 -phred33 LHH0135_GT20-15524_GGACTCCT-ATAGAGAG_S1_L002_R1_001.fastq.gz LHH0135_GT20-15524_GGACTCCT-ATAGAGAG_S1_L002_R2_001.fastq.gz LHH0135_R1.fq.gz LHH0135_R1.un.fq.gz LHH0135_R2.fq.gz LHH0135_R2.un.fq.gz LEADING:10 TRAILING:10 ILLUMINACLIP:/data/home/ruanlab/huangxingyu/Tools/Trimmomatic-0.39/adapters/NexteraPE-PE.fa:2:30:7:8:true SLIDINGWINDOW:4:15 MINLEN:50
 ```
 
-
-
-
+#### chiapet连接两端的coverage
+```
+awk '$2<$5 {print $1 "\t" $2 "\t" $5}; $2>$5 {print $1 "\t" $5 "\t" $2}' RMCP-101.ipet | sort-k 1.4n -k2n -k3n | awk '{print $0 "\t" "IPET"NR}' | bedToBam -i stdin -g chrom.sizes > RMCP-101.ipet.sorted.bam
+samtools index RMCP-101.ipet.sorted.bam
+multiBamSummary bins --bamfiles *.ipet.sorted.bam --minMappingQuality 30 -out RMCP-101 RMCP-093 ipet.npz --outRawCounts RMCP-101 RMCP-093ipet.tab
