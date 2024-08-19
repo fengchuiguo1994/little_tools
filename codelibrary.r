@@ -447,3 +447,32 @@ color_str <- "125,242,32"
 is_color(color_str)
 colorts(color_str)
 ```
+
+## 累计曲线
+```
+library(ggplot2)
+library(dplyr)
+
+# 创建示例数据框
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(1, 3, 2, 5, 4)
+)
+
+# 计算累计数量
+data <- data %>%
+  arrange(x) %>%
+  mutate(cumulative_count = cumsum(y))
+
+# 绘制累计数量的散点图
+p <- ggplot(data, aes(x = x, y = cumulative_count)) +
+  geom_point() +
+  geom_line() +  # 可选：连接点
+  labs(title = "累计数量的散点图",
+       x = "X 轴",
+       y = "累计数量") +
+  theme_minimal()
+
+# 显示图形
+print(p)
+```
