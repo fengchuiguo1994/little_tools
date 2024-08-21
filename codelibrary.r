@@ -476,3 +476,11 @@ p <- ggplot(data, aes(x = x, y = cumulative_count)) +
 # 显示图形
 print(p)
 ```
+
+## 在R中调用python
+```
+install.packages("reticulate")
+library(reticulate)
+py_config() # 查看当前python的配置
+reticulate::use_python("/data/home/ruanlab/huangxingyu/miniconda3/envs/GDALS4/bin/python") # 设置使用的python路径
+```
