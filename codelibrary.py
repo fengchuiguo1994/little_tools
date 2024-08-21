@@ -417,6 +417,10 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro/
 
+## 配置micromamba/miniconda/channels
+![https://mp.weixin.qq.com/s/qt9XvLvHniwQCe6rZAzEZA](https://mp.weixin.qq.com/s/qt9XvLvHniwQCe6rZAzEZA)
+
+
 ## cat ~/.condarc 
 auto_activate_base: false
 channels:
