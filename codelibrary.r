@@ -91,20 +91,7 @@ R CMD INSTALL Matrix_1.6-5.tar.gz
 options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/")))  # 更换默认镜像
 install.packages('Seurat')
 ```
-## 命令行参数
-args=commandArgs(T) 
-# args[1] args[2] args[3]...
 
-## scale
-rowscale = function(x) {
-  return = (x - mean(x))/sd(x) * 1000
-}
-mydatscale = apply(mydat, 2, rowscale)
-
-## 标准化
-```
-scalemat = scale(mat, center = TRUE, scale = TRUE) # 默认按列
-```
 
 ## 安装 rstudio server 服务
 ```
@@ -120,6 +107,40 @@ firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
 # ip:8787/
+usermod -aG rstudio huangjiaxiang # 添加其它用户权限
+usermod -aG rstudio huangxingyu # 添加其它用户权限
+```
+修改rstudio server设置文件
+```
+cat /etc/rstudio/rserver.conf 
+# Server Configuration File
+
+# rsession-which-r=/usr/bin/R
+rsession-which-r=/usr/local/bin/R # 自己安装的R4.2.3到root环境中的。
+```
+
+## 在R中调用python
+```
+install.packages("reticulate")
+library(reticulate)
+py_config() # 查看当前python的配置
+reticulate::use_python("/data/home/ruanlab/huangxingyu/miniconda3/envs/GDALS4/bin/python") # 设置使用的python路径
+```
+
+## 命令行参数
+args=commandArgs(T) 
+# args[1] args[2] args[3]...
+
+
+## scale
+rowscale = function(x) {
+  return = (x - mean(x))/sd(x) * 1000
+}
+mydatscale = apply(mydat, 2, rowscale)
+
+## 标准化
+```
+scalemat = scale(mat, center = TRUE, scale = TRUE) # 默认按列
 ```
 
 ## 画布分屏
@@ -475,12 +496,4 @@ p <- ggplot(data, aes(x = x, y = cumulative_count)) +
 
 # 显示图形
 print(p)
-```
-
-## 在R中调用python
-```
-install.packages("reticulate")
-library(reticulate)
-py_config() # 查看当前python的配置
-reticulate::use_python("/data/home/ruanlab/huangxingyu/miniconda3/envs/GDALS4/bin/python") # 设置使用的python路径
 ```
