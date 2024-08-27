@@ -119,6 +119,12 @@ cat /etc/rstudio/rserver.conf
 rsession-which-r=/usr/local/bin/R # 自己安装的R4.2.3到root环境中的。
 ```
 
+```
+rstudio-server status
+rstudio-server start/restart
+```
+
+
 ## 在R中调用python
 ```
 install.packages("reticulate")
