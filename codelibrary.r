@@ -137,6 +137,8 @@ reticulate::use_python("/data/home/ruanlab/huangxingyu/miniconda3/envs/GDALS4/bi
 args=commandArgs(T) 
 # args[1] args[2] args[3]...
 
+## 读取文本
+mydat = read.table(infile, header = T, sep = "\t", check.names = F, stringsAsFactors = F)
 
 ## scale
 rowscale = function(x) {
