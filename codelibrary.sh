@@ -1,6 +1,5 @@
 ## shell控制的循环
-案例一：
-```
+#### 案例一：
 total=100
 nthread=7
 
@@ -25,9 +24,8 @@ do
     fi
     let index=$index+1
 done
-```
-案例二
-```
+
+#### 案例二：
 # testrun.sh  
 echo $1
 sleep 10
@@ -50,7 +48,18 @@ do
     bash testrun.sh $i &
     jobmax
 done
-```
+
+#### 案例三：
+用变量控制循环
+for i in $(seq $num); do echo $i; done # i 是1到num的自然数循环
+
+#### 案例四：
+现有1000个两列的文件，要求将第一列舍弃，第二列以列合并的形式合并成一个新文件，用shell命令完成
+cat <(paste result/SCG00*-15872_SI-NA-D6/bulkChiatac/SCG00*-15872_SI-NA-D6.hg38.bulk_stats.tsv | cut -f 1 | paste $(for i in $(seq $(paste result/SCG00*-15872_SI-NA-D6/bulkChiatac/SCG00*-15872_SI-NA-D6.hg38.bulk_stats.tsv | wc -l)); do echo -e "- \c"; done)) <(awk '{print $2}' result/SCG00*-15872_SI-NA-D6/bulkChiatac/SCG00*-15872_SI-NA-D6.hg38.bulk_stats.tsv | paste $(for i in $(seq $(paste result/SCG00*-15872_SI-NA-D6/bulkChiatac/SCG00*-15872_SI-NA-D6.hg38.bulk_stats.tsv | wc -l)); do echo -e "- \c"; done) ) | awk '{for(i=1;i<=NF;i++){a[FNR,i]=$i}}END{for(i=1;i<=NF;i++){for(j=1;j<=FNR;j++){printf a[j,i]"\t"}print ""}}' -
+
+cat test | paste - - # 有多少个 - ，就是把多少行的内容挪到一行，以此循环
+awk '{for(i=1;i<=NF;i++){a[FNR,i]=$i}}END{for(i=1;i<=NF;i++){for(j=1;j<=FNR;j++){printf a[j,i]"\t"}print ""}}' filename # 矩阵文件转置。
+所以是先将以列为对象的表头转成单行，然后通过awk依次将所有文件需要的内容提取出来并处理成单列，然后将单列按paste - - - - 这样将单列做成按样本的多行，合并起来，最终将整个文件转置得到最终paste结果
 
 ## 帮助文档
 SOFT="loaddata.sh"
