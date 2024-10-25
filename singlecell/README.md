@@ -134,7 +134,7 @@ C --> M[B细胞];
 | Neutrophils | CST3, LYZ, FCGR3B, CSF3R |
 | Photoreceptor cells | RCVRN |
 | Megakaryocytes | CST3, PF4, PPBP |
-| Fibroblasts | FGF7, MME |
+| Fibroblasts | FGF7, MME, ACTA2 |
 | Endothelial cells | PECAM1, VWF |
 | epi or tumor | EPCAM, KRT18, KRT19, PROM1, ALDH1A1, CD24 |
 | immune | CD45, PTPRC |
