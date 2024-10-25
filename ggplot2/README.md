@@ -177,3 +177,7 @@ colorRampPalette(brewer.pal(8, "Dark2"))(20)[3:18]
 ## BarPlot
 #### barplot.1.R
 ![barplot.1.R](barplot/barplot.1.png)
+
+## TextPlot
+#### textplot.1.R
+![](barplot/textplot.1.png)
