@@ -283,6 +283,29 @@ featureCounts -a ~/zhangyan/genome/hg38.analysisSet.chroms/hg38.remove.gtf -o fe
 htseq-count -f bam -r name -s yes -a 30 -o test1.yes.bam -o test2.yes.bam -o test3.yes.bam -o test4.yes.bam -o test5.yes.bam -o test6.yes.bam -p bam -c hg38HPV18REF.yes.count -n 6 --with-header aligndir/Sample6_cancer_Rep1.bam aligndir/Sample6_cancer_Rep2.bam aligndir/Sample6_cancer_Rep3.bam aligndir/Sample6_normal_Rep1.bam aligndir/Sample6_normal_Rep2.bam aligndir/Sample6_normal_Rep3.bam ${gtf}
 ```
 
+### [StringTie](https://ccb.jhu.edu/software/stringtie/)
+stringtie组装：
+```
+stringtie MT1.sorted.bam -v -G genome.gtf -l MT1 -B -o MT1.gtf -p 8 -m 100 -A out.gtf -C MT1.cov
+-v ：输出明细
+-G ：参考基因组
+-p ：线程数目设置
+-l ：重命名文件中的转录组id
+-B ：输出表达量文件
+-o ：文件输出目录
+-f ：最小组装的转录本的reads数目
+-m ：最小转录本长度
+-A ：输出指定id的reads数目（不用设置
+-C ：输出转录本reads数目
+-e ：只组装提供gtf文件中的转录本
+-x ：同-e
+```
+stringtie定量：
+```
+stringtie test.bam -G refer.gtf -o test.gtf -p 8 -e -B -rf
+stringtie test.bam -G refer.gtf -o test.gtf -p 8 -e -B -v -A test.abundance -C test.cov
+```
+
 # 序列拼接工具
 ### flash
 [flash](http://ccb.jhu.edu/software/FLASH/index.shtml)
