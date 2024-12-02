@@ -233,6 +233,9 @@ barcode list: ${longranger}/longranger-cs/2.2.2/tenkit/lib/python/tenkit/barcode
 
 ### deeptools
 ```
+bamCoverage -b normal.flt.bam -o normal.RPKM.bw -p 10 -bs 5 --normalizeUsing RPKM
+```
+```
 computeMatrix reference-point -p 15 --referencePoint TSS -b 10000 -a 10000 -R ucsc_refseq.bed6 -S test.bw --skipZeros -out ./test.TSS.gz  --outFileSortedRegions ./test.genes.bed
 
 # reference-point # 选择模式
@@ -272,6 +275,12 @@ featureCounts -a gencode_v26_Subread_to_DEXSeq.gtf -o SRR1797250.gene.count -t e
 
 featureCounts -a ~/zhangyan/genome/hg38.analysisSet.chroms/hg38.remove.gtf -o featureCounts.${i}.${j}.txt -t ${j} -g gene_id -s ${i} -R BAM -T 1 --Rpath ${j}.${i}.featureCounts --verbose allrich-23.uniqmap.tmp.1.bam
 featureCounts -a ~/zhangyan/genome/hg38.analysisSet.chroms/hg38.remove.gtf -o featureCounts.${i}.${j}.longest.txt -t ${j} -g gene_id --largestOverlap -s ${i} -R BAM -T 1 --Rpath ${j}.${i}.featureCounts.longest --verbose allrich-23.uniqmap.tmp.1.bam
+```
+
+### [HTSeq](https://htseq.readthedocs.io/en/master/index.html)
+[HTSeq](https://github.com/htseq/htseq)
+```
+htseq-count -f bam -r name -s yes -a 30 -o test1.yes.bam -o test2.yes.bam -o test3.yes.bam -o test4.yes.bam -o test5.yes.bam -o test6.yes.bam -p bam -c hg38HPV18REF.yes.count -n 6 --with-header aligndir/Sample6_cancer_Rep1.bam aligndir/Sample6_cancer_Rep2.bam aligndir/Sample6_cancer_Rep3.bam aligndir/Sample6_normal_Rep1.bam aligndir/Sample6_normal_Rep2.bam aligndir/Sample6_normal_Rep3.bam ${gtf}
 ```
 
 # 序列拼接工具
