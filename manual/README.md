@@ -341,6 +341,24 @@ dsk2ascii -file $i.20.h5 -out $i.20.txt
 gtfToGenePred -genePredExt zunla.gtf zunla.txt
 perl ../retrieve_seq_from_fasta.pl --format refGene --seqfile zunla.fasta  zunla_refGene.txt --out zunla_refGeneMrna.fa
 ```
+从公共数据构建数据库
+```
+perl annotate_variation.pl --downdb --buildver hg38 cytoBand humandb/
+# NOTICE: Web-based checking to see whether ANNOVAR new version is available ... Done
+# NOTICE: Downloading annotation database http://hgdownload.cse.ucsc.edu/goldenPath/hg38/database/cytoBand.txt.gz ... OK
+# NOTICE: Uncompressing downloaded files
+# NOTICE: Finished downloading annotation files for hg38 build version, with files saved at the 'humandb' directory
+
+perl annotate_variation.pl --downdb --buildver hg38 -webfrom annovar refGene humandb/
+# NOTICE: Web-based checking to see whether ANNOVAR new version is available ... Done
+# NOTICE: Downloading annotation database http://www.openbioinformatics.org/annovar/download/hg38_refGene.txt.gz ... OK
+# NOTICE: Downloading annotation database http://www.openbioinformatics.org/annovar/download/hg38_refGeneMrna.fa.gz ... OK
+# NOTICE: Downloading annotation database http://www.openbioinformatics.org/annovar/download/hg38_refGeneVersion.txt.gz ... OK
+# NOTICE: Uncompressing downloaded files
+# NOTICE: Finished downloading annotation files for hg38 build version, with files saved at the 'humandb' directory
+
+
+```
 
 # 组装
 ### 合并单倍型组装的结果
