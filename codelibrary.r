@@ -544,3 +544,19 @@ dd = do.call(rbind, lapply(files, function(x) {cc[[x]]}))
 write.table(bb, file="bb.list", sep="\t", quote=F)
 write.table(dd, file="dd.list", sep="\t", quote=F)
 ```
+
+
+#### 栅格读写，图像读写
+Raster包和Terra包
+```
+tissue_lowres_image <- as.matrix(Matrix::sparseMatrix(i = seq(1,20000),j = seq(1,20000),x = seq(0.00005,1,0.00005)))
+tissue_lowres_image_r <- raster::raster(tissue_lowres_image)
+tissue_lowres_image_r <- raster::writeRaster(tissue_lowres_image_r, file.path("test_AreaGridIMG.tif"), overwrite=T, format="GTiff")
+
+似乎raster最大处理 20000 * 20000 左右个点，windows，苹果电脑似乎能打开更多点的图片。
+```
+
+#### UMAP
+```
+uwot
+```
