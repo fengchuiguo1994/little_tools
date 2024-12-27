@@ -42,7 +42,8 @@ calc_uq <- function (expr_mat, spikes=NULL){
 
 # 校正批次效应的方法有很多，一项研究比较了6种去除批次效应的方法，其中包括ComBat方法（parametric prior method，ComBat_p和non-parametric method，ComBat_n）、代理变量法（Surrogate variable analysis，SVA）、基于比值的方法（Geometric ratio-based method，Ratio_G）、平均中心方法（Mean-centering，PAMR）和距离加权判别（Distance-weighted discrimination，DWD）方法，综合多种指标认为ComBat在精确性、准确性和整体性能方面（precision, accuracy and overall performance）总体优于其他方法。
 # SVA的ComBat处理批次效应，SVA包中有两个函数可以用来校正批次效应：ComBat和ComBat_seq。ComBat使用参数或非参数经验贝叶斯模型，输入数据为干净的、标准化的表达数据，通常是芯片数据。ComBat_seq是一个使用负二项回归的ComBat改进模型，专门针对RNA-Seq count数据。我需要分析的数据便是RNAseq数据，后面例子便会详细介绍这个函数。
-
+# raw counts矩阵（combat-seq函数处理）
+# 芯片/FPKM等标准化矩阵（combat函数处理）
 
 ######### 标准化
 vsd <- vst(dds, blind=FALSE)
