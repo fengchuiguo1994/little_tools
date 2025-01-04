@@ -410,6 +410,158 @@ for i, j in enumerate(color_list):
 plt.show()
 
 
+## 颜色
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_color_gradient(color1, color2, steps):
+    """生成颜色渐变"""
+    gradient = np.linspace(color1, color2, steps)
+    return gradient
+
+# 定义起始和结束颜色 (RGB)
+color_start = np.array([1, 0, 0])  # 红色
+color_end = np.array([0, 0, 1])    # 蓝色
+
+# 生成颜色色阶
+steps = 10
+gradient = generate_color_gradient(color_start, color_end, steps)
+
+# 绘制色阶
+plt.figure(figsize=(8, 2))
+plt.imshow([gradient], aspect='auto')
+plt.axis('off')  # 隐藏坐标轴
+plt.show()
+
+
+
+## 连续型变量与颜色对应
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_color_gradient(color_start, color_end, steps):
+    """生成颜色渐变"""
+    return np.linspace(color_start, color_end, steps)
+def map_values_to_colors(values, color_gradient):
+    """将值映射到颜色上"""
+    norm = plt.Normalize(np.min(values), np.max(values))
+    return [color_gradient[int(norm(value) * (len(color_gradient) - 1))] for value in values]
+
+# 设置起始和结束颜色
+color_start = np.array([1, 0, 0])  # 红色
+color_end = np.array([0, 0, 1])    # 蓝色
+steps = 100  # 色阶分段数
+
+# 生成颜色渐变
+color_gradient = generate_color_gradient(color_start, color_end, steps)
+
+# 示例连续数据
+values = np.linspace(0, 10, 100)  # 生成从0到10的100个连续值
+mapped_colors = map_values_to_colors(values, color_gradient)
+
+# 绘制结果
+plt.figure(figsize=(10, 5))
+for i, color in enumerate(mapped_colors):
+    plt.bar(i, 1, color=color)
+plt.xticks(np.arange(0, 100, 10), np.round(np.linspace(0, 10, 10), 2))  # 设置x轴刻度
+plt.yticks([])
+plt.title('Continuous Data Mapped to Color Gradient')
+plt.show()
+
+## 离散型变量与颜色对应
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
+def generate_color_gradient(color_start, color_end, steps):
+    """生成颜色渐变"""
+    return np.linspace(color_start, color_end, steps)
+def map_values_to_colors(values, color_gradient):
+    """将值映射到颜色上"""
+    norm = plt.Normalize(np.min(values), np.max(values))
+    return [color_gradient[int(norm(value) * (len(color_gradient) - 1))] for value in values]
+
+# 设置起始和结束颜色
+color_start = np.array([1, 0, 0])  # 红色
+color_end = np.array([0, 0, 1])    # 蓝色
+steps = 100  # 色阶分段数
+
+# 生成颜色渐变
+color_gradient = generate_color_gradient(color_start, color_end, steps)
+
+# 示例离散数据
+values = np.array([2, 3, 4, 5, 6, 7, 8, 9, 2, 8, 7])
+# values = np.array(["tmp{0}".format(x) for x in [2, 3, 4, 5, 6, 7, 8, 9, 2, 8, 7]])
+mapped_colors = map_values_to_colors(values, color_gradient)
+
+# 绘制结果
+plt.figure(figsize=(8, 2))
+for i, color in enumerate(mapped_colors):
+    print(i)
+    print(color)
+    plt.bar(i, 1, color=color)
+    
+plt.xticks(values)
+plt.yticks([])
+plt.title('Discrete Data Mapped to Color Gradient')
+plt.show()
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_color_gradient(color_start, color_end, steps):
+    """生成颜色渐变"""
+    return np.linspace(color_start, color_end, steps)
+def map_strings_to_colors(strings, color_gradient):
+    """将字符串映射到颜色上"""
+    unique_strings = list(set(strings))  # 获取唯一字符串
+    norm = plt.Normalize(0, len(unique_strings) - 1)
+    return [color_gradient[int(norm(i) * (len(color_gradient) - 1))] for i in range(len(unique_strings))]
+
+# 设置起始和结束颜色
+color_start = np.array([1, 0, 0])  # 红色
+color_end = np.array([0, 0, 1])    # 蓝色
+steps = 100  # 色阶分段数
+
+# 生成颜色渐变
+color_gradient = generate_color_gradient(color_start, color_end, steps)
+
+# 示例字符串数据
+strings = ['apple', 'orange', 'banana', 'grape', 'cherry', 'apple', 'banana', 'kiwi']
+mapped_colors = map_strings_to_colors(strings, color_gradient)
+
+# 绘制结果
+plt.figure(figsize=(10, 5))
+for i, color in enumerate(mapped_colors):
+    plt.bar(i, 1, color=color)
+    
+plt.xticks(np.arange(len(strings)), strings)  # 设置x轴刻度为字符串
+plt.yticks([])
+plt.title('String Data Mapped to Color Gradient')
+plt.show()
+
+
+
+## 颜色转换。格式转化，颜色代码到rgb，rgb转颜色代码等等。
+import matplotlib.colors as mcolors
+
+def hex_to_rgb(hex_color):
+    """将十六进制颜色转换为 RGB"""
+    rgb = mcolors.hex2color(hex_color)
+    return tuple(int(c * 255) for c in rgb)  # 转换为 0-255 范围
+# 示例
+hex_color = "#ff5733"  # 示例颜色
+rgb_color = hex_to_rgb(hex_color)
+print(f"十六进制颜色 {hex_color} 转换为 RGB: {rgb_color}")
+
+valuergb = mcolors.hex2color(hex_color)
+
+
+
+
+
 ## 添加channels
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
