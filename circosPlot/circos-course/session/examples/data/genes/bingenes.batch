@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#for bin in 50e6 40e6 30e6 20e6 10e6 5e6 4e6 3e6 2e6 1e6 ; do
+#cat hg18.genes.refseq.txt | ./bingenes -bin $bin > ../genes.$bin.txt &
+#done
+
+for bin in 6e6 7e6 8e6 9e6 45e6 35e6 25e6 18e6 16e6 14e6 12e6 ; do
+
+cat hg18.genes.refseq.txt | ./bingenes -bin $bin > ../genes.$bin.txt &
+
+done

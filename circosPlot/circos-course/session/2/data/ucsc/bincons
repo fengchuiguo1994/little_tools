@@ -1,0 +1,262 @@
+#!/bin/env perl
+
+=pod
+
+=head1 NAME
+
+bincons - bin conservation table data from UCSC
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+=head1 HISTORY
+
+=over
+
+=item * DD Month Year
+
+First version.
+
+=back 
+
+=head1 BUGS
+
+=head1 AUTHOR
+
+=head1 CONTACT
+
+=cut
+
+use strict;
+use warnings FATAL=>"all";
+
+use Carp;
+use Config::General;
+use Cwd qw(getcwd abs_path);
+use File::Basename;
+use FindBin;
+use Getopt::Long;
+use Pod::Usage;
+use Time::HiRes qw(gettimeofday tv_interval);
+use lib "$FindBin::RealBin";
+use lib "$FindBin::RealBin/../lib";
+use lib "$FindBin::RealBin/lib";
+
+our (%OPT,%CONF,$conf);
+our $VERSION = 0.01;
+
+# common and custom module imports below
+
+#use Data::Dumper;
+#use IO::File;
+#use List::Util;
+#use List::MoreUtils;
+use Math::VecStat qw(sum min max average);
+#use Set::IntSpan;
+#use Statistics::Descriptive;
+#use Storable;
+
+# read and parse configuration file
+_parse_config();
+
+# to see what was passed in on the command line (%OPT) 
+# or the configuration tree %CONF created from .conf files and %OPT 
+# uncomment next line
+#printdumper(\%OPT,\%CONF);
+
+my %data;
+while(<>) {
+  chomp;
+  next if /^\s*\#/;
+  my @tok = split;
+  my ($chr,$start,$end,$species,$score) = @tok[1..5];
+  next if $CONF{species} && $species !~ /^$CONF{species}/i;
+  my $bin_start = int( $start / $CONF{binsize} );
+  my $bin_end   = int( $end / $CONF{binsize} );
+  my $size      = $end - $start + 1;
+  for my $bin ($bin_start .. $bin_end) {
+    push @{$data{$chr}[$bin]{species}{$species}}, {score=>$score,size=>$size};
+  }
+}
+
+for my $chr (keys %data) {
+  for my $bin ( 0 .. @{$data{$chr}} - 1 ) {
+    my @scores;
+    next unless defined $data{$chr}[$bin];
+    #my $sum_size;
+    #my $weighted_score;
+    for my $species (keys %{$data{$chr}[$bin]{species}}) {
+      next if $CONF{species} && $species !~ /^$CONF{species}/i;
+      #my $sum_size_species;
+      #my $weighted_score_species;
+      for my $entry (@{$data{$chr}[$bin]{species}{$species}}) {
+	push @scores, $entry->{score};
+	#$weighted_score_species += $entry->{score} * $entry->{size};
+	#$sum_size_species       += $entry->{size};
+      }
+      #my $weighted_avg_species = $weighted_score_species / $sum_size_species;
+      #if(! $CONF{species} || $species =~ /$CONF{species}/) {
+      #	if(defined $sum_size_species) {
+      #	  $sum_size       += $sum_size_species;
+      #	  $weighted_score += $weighted_score_species;
+      #	}
+      #      }
+    }
+
+    my $chr_mod = $chr;
+    $chr_mod =~ s/chr/$CONF{chrprefix}/ if $CONF{chrprefix};
+    my $stat;
+    if($CONF{stat} eq "min") {
+      $stat = min(@scores);
+    } elsif ($CONF{stat} eq "max") {
+      $stat = max(@scores);
+    } else {
+      $stat = average(@scores);
+    }
+    printinfo($chr_mod,
+	      $bin*$CONF{binsize},
+	      ($bin+1)*$CONF{binsize}-1,
+	      $stat) if defined $stat,
+  }
+}
+
+sub validateconfiguration {
+  $CONF{stat} ||= "average";
+}
+
+################################################################
+#
+# *** DO NOT EDIT BELOW THIS LINE ***
+#
+################################################################
+
+sub _parse_config {
+  my $dump_debug_level = 3;
+  GetOptions(\%OPT,
+	     "stat=s",
+	     "chrprefix=s",
+	     "species=s",
+	     "binsize=s",
+	     "configfile=s",
+	     "help",
+	     "man",
+	     "debug:i");
+  pod2usage() if $OPT{help};
+  pod2usage(-verbose=>2) if $OPT{man};
+  loadconfiguration($OPT{configfile});
+  populateconfiguration(); # copy command line options to config hash
+  validateconfiguration(); 
+  if(defined $CONF{debug} && $CONF{debug} == $dump_debug_level) {
+    $Data::Dumper::Indent    = 2;
+    $Data::Dumper::Quotekeys = 0;
+    $Data::Dumper::Terse     = 0;
+    $Data::Dumper::Sortkeys  = 1;
+    $Data::Dumper::Varname = "OPT";
+    printdumper(\%OPT);
+    $Data::Dumper::Varname = "CONF";
+    printdumper(\%CONF);
+    exit;
+  }
+}
+
+sub populateconfiguration {
+  for my $var (keys %OPT) {
+    $CONF{$var} = $OPT{$var};
+  }
+  repopulateconfiguration(\%CONF);
+}
+
+sub repopulateconfiguration {
+  my $root     = shift;
+	return unless ref($root) eq "HASH";
+  for my $key (keys %$root) {
+    my $value = $root->{$key};
+    if(ref($value) eq "HASH") {
+      repopulateconfiguration($value);
+    } elsif (ref($value) eq "ARRAY") {
+      for my $item (@$value) {
+        repopulateconfiguration($item);
+      }
+    } elsif(defined $value) {
+      while($value =~ /__([^_].+?)__/g) {
+        my $source = "__" . $1 . "__";
+        my $target = eval $1;
+        $value =~ s/\Q$source\E/$target/g;
+      }
+      $root->{$key} = $value;
+    }
+  }
+}
+
+################################################################
+#
+#
+
+sub loadconfiguration {
+  my $file = shift;
+  if(defined $file) {
+    if(-e $file && -r _) {
+      # provided configuration file exists and can be read
+      $file = abs_path($file);
+    } else {
+      confess "The configuration file [$file] passed with -configfile does not exist or cannot be read.";
+    }
+  } else {
+    # otherwise, try to automatically find a configuration file
+    my ($scriptname,$path,$suffix) = fileparse($0);
+    my $cwd     = getcwd();
+    my $bindir  = $FindBin::RealBin;
+    my $userdir = $ENV{HOME};
+    my @candidate_files = (
+			   "$cwd/$scriptname.conf",
+			   "$cwd/etc/$scriptname.conf",
+			   "$cwd/../etc/$scriptname.conf",
+			   "$bindir/$scriptname.conf",
+			   "$bindir/etc/$scriptname.conf",
+			   "$bindir/../etc/$scriptname.conf",
+			   "$userdir/.$scriptname.conf",
+			   );
+    my @additional_files = (
+
+			   );
+    for my $candidate_file (@additional_files,@candidate_files) {
+      #printinfo("configsearch",$candidate_file);
+      if(-e $candidate_file && -r _) {
+	$file = $candidate_file;
+	#printinfo("configfound",$candidate_file);
+	last;
+      }
+    }
+  }
+  if(defined $file) {
+    $OPT{configfile} = $file;
+    $conf = new Config::General(
+				-ConfigFile=>$file,
+				-IncludeRelative=>1,
+				-ExtendedAccess=>1,
+				-AllowMultiOptions=>"yes",
+				-LowerCaseNames=>1,
+				-AutoTrue=>1
+			       );
+    %CONF = $conf->getall;
+  }
+}
+
+sub printdebug {
+  my ($level,@msg) = @_;
+  my $prefix = "debug";
+  if(defined $CONF{debug} && $CONF{debug} >= $level) {
+    printinfo(sprintf("%s[%d]",$prefix,$level),@msg);
+  }
+}
+
+sub printinfo {
+  print join(" ",@_),"\n";
+}
+
+sub printdumper {
+  use Data::Dumper;
+  print Dumper(@_);
+}
+

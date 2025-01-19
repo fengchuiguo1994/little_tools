@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in `seq 1 4` ; do
+
+cp ../$i.solution/circos.png $i.png
+
+done
+

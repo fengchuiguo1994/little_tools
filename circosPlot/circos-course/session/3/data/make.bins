@@ -1,0 +1,11 @@
+#!/bin/bash
+
+link=links.10.txt
+#link=bundles.4.txt
+~/work/circos/svn/tools/binlinks/bin/binlinks -links $link -link_end 1 -output_style 0 -bin 5e6 > histogram.mm.txt
+~/work/circos/svn/tools/binlinks/bin/binlinks -links $link -link_end 0 -output_style 1 -bin 1e6 | sed 's/mm/chr/' > histogram.hs.txt
+~/work/circos/svn/tools/binlinks/bin/binlinks -links $link -link_end 0 -output_style 3 -bin 1e6 -normalize > histogram.hs.stacked.txt
+
+
+
+

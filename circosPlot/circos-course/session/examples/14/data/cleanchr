@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for file in *.txt ; do
+
+echo "cleaning chr names in $file"
+cat $file | sed 's/x/X/g' | sed 's/y/Y/g' > tmp.1
+\mv tmp.1 $file
+
+done
+

@@ -1,0 +1,5 @@
+chr - chr1 1 0 5000000 lum70chr1
+chr - chr2 2 0 10000000 lum70chr5
+chr - chr3 3 0 15000000 lum70chr11
+chr - chr4 4 0 20000000 lum70chr15
+

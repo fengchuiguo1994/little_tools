@@ -1,0 +1,300 @@
+#!/bin/env perl
+
+=pod
+
+=head1 NAME
+
+maketiles - create a tile track for mutview
+
+=head1 SYNOPSIS
+
+  maketiles [-interval START-END] [-numtiles NUMTILES] 
+            [-length TILELENGTH] [-lengthvar TILE_LENGTH_VARIATION]
+
+  e.g. 
+ 
+  # create 500 tiles of average length 15 and up to 25% length variation on an interval 0-1000
+  maketiles -interval 0-1000 -numtiles 500 -length 15 -lengthvar 0.25
+
+  # other useful options are
+
+  maketiles ... -nameroot exon
+
+  maketiles ... -labelformat cccnn
+
+=head1 DESCRIPTION
+
+Creates a track of randomly placed tiles with labels.
+
+=head1 OPTIONS
+
+=head2 -interval INTERVAL_STRING
+
+The C<INTERVAL_STRING> can be anything understood by C<Set::IntSpan>. For example
+
+  0-100
+  50-100
+  0-50,100-150
+
+The tiles's start position will be selected randomly from the interval, with the restriction that the tile will not extend past the right-most limit of the interval.
+
+=head2 -numtiles NUM
+
+Number of tiles to produce.
+
+=head2 -length LENGTH
+
+Average length of the tiles. 
+
+=head2 -lengthvar VARIATION
+
+Relative variation in the length of the tile. If this is non-zero, the length of a tile is given by
+
+  LENGTH + RAND(- LENGTH*VARIATION ... LENGTH*VARIATION)
+
+For example, for C<LENGTH=10> and C<VARIATION=0.2> the length will be randomly sampled from the range C<8..12>.
+
+=head1 HISTORY
+
+=over
+
+=item * 1 Jun 2010
+
+First version.
+
+=back 
+
+=head1 BUGS
+
+=head1 AUTHOR
+
+Martin Krzywinski
+Genome Sciences Center
+Vancouver, Canada
+
+=head1 CONTACT
+
+martink@bcgsc.ca
+
+=cut
+
+use strict;
+use warnings FATAL=>"all";
+
+use Carp;
+use Config::General;
+use Cwd qw(getcwd abs_path);
+use File::Basename;
+use FindBin;
+use Getopt::Long;
+use Pod::Usage;
+use Time::HiRes qw(gettimeofday tv_interval);
+use lib "$FindBin::RealBin";
+use lib "$FindBin::RealBin/../lib";
+use lib "$FindBin::RealBin/lib";
+
+our (%OPT,%CONF,$conf);
+our $VERSION = 0.01;
+
+# common and custom module imports below
+
+#use Data::Dumper;
+#use IO::File;
+#use List::Util;
+#use List::MoreUtils;
+#use Math::VecStat qw(sum min max average);
+eval {
+  require String::Random;
+};
+if($@) {
+  warn "String::Random is not available. Do not use -nameroot for labels";
+}
+
+use Set::IntSpan;
+#use Statistics::Descriptive;
+#use Storable;
+
+# read and parse configuration file
+_parse_config();
+
+# to see what was passed in on the command line (%OPT) 
+# or the configuration tree %CONF created from .conf files and %OPT 
+# uncomment next line
+#printdumper(\%OPT,\%CONF);
+
+my $set = Set::IntSpan->new($CONF{interval});
+for my $i (1..$CONF{numtiles}) {
+    my $variation   = $CONF{length} * $CONF{lengthvar};
+    my ($length,$start,$end);
+    my $tries = 0;
+    while(! defined $end || $end > $set->max) {
+      $length = int($CONF{length} + $variation-rand(2*$variation));
+      $start  = pick_start($set);
+      $end    = $start+$length-1;
+      $tries++;
+      if($tries > 100) {
+	die "Could not place a tile after 100 tries. Please make sure that tile length and sampling interval are compatible.";
+      }
+    }
+    if($CONF{nameformat}) {
+      my $label = String::Random::random_string($CONF{nameformat});
+      print sprintf("%d %d %s%d label=%s\n",$start,$end,$CONF{nameroot},$i,$label);
+    } else {
+      print sprintf("%d %d %s%d\n",$start,$end,$CONF{nameroot},$i);
+    }
+}
+
+sub pick_start {
+  my $set = shift;
+  my @sets = $set->sets;
+  my $set_random = $sets[rand(@sets)];
+  my $start = int ($set_random->min + rand( $set_random->cardinality ) );
+  return $start;
+
+}
+sub validateconfiguration {
+  $CONF{numtiles} ||= 25;
+  $CONF{interval} ||= "0-100";
+  $CONF{length}   ||= 10;
+  $CONF{lengthvar} ||= 0.25;
+  $CONF{nameroot}  ||= "tile";
+  #$CONF{nameformat} ||= "cccnn";
+}
+
+################################################################
+#
+# *** DO NOT EDIT BELOW THIS LINE ***
+#
+################################################################
+
+sub _parse_config {
+  my $dump_debug_level = 3;
+  GetOptions(\%OPT, 
+	     "interval=s",
+	     "numtiles=i",
+	     "length=f",
+	     "lengthvar=f",
+	     "nameroot=s",
+	     "nameformat=s",
+	     "configfile=s",
+	     "help",
+	     "man",
+	     "debug:i");
+  pod2usage() if $OPT{help};
+  pod2usage(-verbose=>2) if $OPT{man};
+  loadconfiguration($OPT{configfile});
+  populateconfiguration(); # copy command line options to config hash
+  validateconfiguration(); 
+  if(defined $CONF{debug} && $CONF{debug} == $dump_debug_level) {
+    $Data::Dumper::Indent    = 2;
+    $Data::Dumper::Quotekeys = 0;
+    $Data::Dumper::Terse     = 0;
+    $Data::Dumper::Sortkeys  = 1;
+    $Data::Dumper::Varname = "OPT";
+    printdumper(\%OPT);
+    $Data::Dumper::Varname = "CONF";
+    printdumper(\%CONF);
+    exit;
+  }
+}
+
+sub populateconfiguration {
+  for my $var (keys %OPT) {
+    $CONF{$var} = $OPT{$var};
+  }
+  repopulateconfiguration(\%CONF);
+}
+
+sub repopulateconfiguration {
+  my $root     = shift;
+	return unless ref($root) eq "HASH";
+  for my $key (keys %$root) {
+    my $value = $root->{$key};
+    if(ref($value) eq "HASH") {
+      repopulateconfiguration($value);
+    } elsif (ref($value) eq "ARRAY") {
+      for my $item (@$value) {
+        repopulateconfiguration($item);
+      }
+    } elsif(defined $value) {
+      while($value =~ /__([^_].+?)__/g) {
+        my $source = "__" . $1 . "__";
+        my $target = eval $1;
+        $value =~ s/\Q$source\E/$target/g;
+      }
+      $root->{$key} = $value;
+    }
+  }
+}
+
+################################################################
+#
+#
+
+sub loadconfiguration {
+  my $file = shift;
+  if(defined $file) {
+    if(-e $file && -r _) {
+      # provided configuration file exists and can be read
+      $file = abs_path($file);
+    } else {
+      confess "The configuration file [$file] passed with -configfile does not exist or cannot be read.";
+    }
+  } else {
+    # otherwise, try to automatically find a configuration file
+    my ($scriptname,$path,$suffix) = fileparse($0);
+    my $cwd     = getcwd();
+    my $bindir  = $FindBin::RealBin;
+    my $userdir = $ENV{HOME};
+    my @candidate_files = (
+			   "$cwd/$scriptname.conf",
+			   "$cwd/etc/$scriptname.conf",
+			   "$cwd/../etc/$scriptname.conf",
+			   "$bindir/$scriptname.conf",
+			   "$bindir/etc/$scriptname.conf",
+			   "$bindir/../etc/$scriptname.conf",
+			   "$userdir/.$scriptname.conf",
+			   );
+    my @additional_files = (
+
+			   );
+    for my $candidate_file (@additional_files,@candidate_files) {
+      #printinfo("configsearch",$candidate_file);
+      if(-e $candidate_file && -r _) {
+	$file = $candidate_file;
+	#printinfo("configfound",$candidate_file);
+	last;
+      }
+    }
+  }
+  if(defined $file) {
+    $OPT{configfile} = $file;
+    $conf = new Config::General(
+				-ConfigFile=>$file,
+				-IncludeRelative=>1,
+				-ExtendedAccess=>1,
+				-AllowMultiOptions=>"yes",
+				-LowerCaseNames=>1,
+				-AutoTrue=>1
+			       );
+    %CONF = $conf->getall;
+  }
+}
+
+sub printdebug {
+  my ($level,@msg) = @_;
+  my $prefix = "debug";
+  if(defined $CONF{debug} && $CONF{debug} >= $level) {
+    printinfo(sprintf("%s[%d]",$prefix,$level),@msg);
+  }
+}
+
+sub printinfo {
+  print join(" ",@_),"\n";
+}
+
+sub printdumper {
+  use Data::Dumper;
+  print Dumper(@_);
+}
+

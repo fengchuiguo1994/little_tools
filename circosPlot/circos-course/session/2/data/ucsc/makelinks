@@ -1,0 +1,334 @@
+#!/bin/env perl
+
+=pod
+
+=head1 NAME
+
+makelinks - create links from UCSC chain files
+
+=head1 SYNOPSIS
+
+  cat ucsc.chain.txt | makelinks [-maxsize maxsize] [-minsize minsize] [-padsize size] [-minscore score] [-numall numlinks] [-numchr numlinks]
+
+=head1 DESCRIPTION
+
+Generates Circos link file from UCSC chain links.
+
+=head1 OPTIONS
+
+=head2 -minsize SIZE
+
+Both ends of the chain must be at least SIZE to be accepted.
+
+=head2 -maxsize SIZE
+
+Both ends of the chain must be smaller than SIZE to be accepted.
+
+=head2 -padsize SIZE
+
+Any ends smaller than SIZE are padded to SIZE
+
+=head2 -minscore SCORE
+
+Score of the chain must be at least SCORE
+
+=head2 -num NUM
+
+Top scoring NUM links are reported.
+
+=head1 HISTORY
+
+=over
+
+=item * 12 June 2010
+
+First version.
+
+=back 
+
+=head1 BUGS
+
+=head1 AUTHOR
+
+Martin Krzywinski
+Genome Sciences Center
+Vancouver, Canada
+
+=head1 CONTACT
+
+martink@bcgsc.ca
+
+=cut
+
+use strict;
+use warnings FATAL=>"all";
+
+use Carp;
+use Config::General;
+use Cwd qw(getcwd abs_path);
+use File::Basename;
+use FindBin;
+use Getopt::Long;
+use Pod::Usage;
+use Time::HiRes qw(gettimeofday tv_interval);
+use lib "$FindBin::RealBin";
+use lib "$FindBin::RealBin/../lib";
+use lib "$FindBin::RealBin/lib";
+
+our (%OPT,%CONF,$conf);
+our $VERSION = 0.01;
+
+# common and custom module imports below
+
+#use Data::Dumper;
+#use IO::File;
+#use List::Util;
+#use List::MoreUtils;
+use Math::VecStat qw(sum min max average);
+#use Set::IntSpan;
+#use Statistics::Descriptive;
+#use Storable;
+
+# read and parse configuration file
+_parse_config();
+
+# to see what was passed in on the command line (%OPT) 
+# or the configuration tree %CONF created from .conf files and %OPT 
+# uncomment next line
+#printdumper(\%OPT,\%CONF);
+
+my %data;
+my $idx = 0;
+
+my @links_binned;
+my %chr2;
+
+while(<>) {
+  chomp;
+  next if /^\s*\#/;
+  my @tok = split;
+  my $score = $tok[1];
+  next if $CONF{minscore} && $score < $CONF{minscore};
+  my ($chr1,$start1,$end1) = @tok[2,4,5];
+  my ($chr2,$start2,$end2) = @tok[6,9,10];
+  if($CONF{minsize}) {
+    next if $end1-$start1+1 < $CONF{minsize};
+    next if $end2-$start2+1 < $CONF{minsize};
+  }
+  next if $CONF{maxsize} && $end1-$start1+1 > $CONF{maxsize};
+  next if $CONF{maxsize} && $end2-$start2+1 > $CONF{maxsize};
+
+  $chr1 =~ s/chr/hs/;
+  $chr2 =~ s/chr/mm/;
+
+  $chr2{$chr2}++;
+
+  if($CONF{padsize}) {
+    my $size = $CONF{padsize};
+    if($end1 - $start1 < $size) {
+      my $d = $size - ($end1 - $start1);
+      $start1 -= $d/2;
+      $end1   += $d/2;
+      if($start1 < 0) {
+	$start1 = 0;
+	$end1 = $size;
+      }
+    }
+    if($end2 - $start2 < $size) {
+      my $d = $size - ($end2 - $start2);
+      $start2 -= $d/2;
+      $end2   += $d/2;
+      if($start2 < 0) {
+	$start2 = 0;
+	$end2 = $size;
+      }
+    }
+  }
+  my $link = {idx=>$idx++,
+	      chr1=>$chr1,
+	      score=>$score,
+	      start1=>$start1,
+	      end1=>$end1,
+	      chr2=>$chr2,
+	      start2=>$start2,
+	      end2=>$end2};
+
+  if($CONF{binsize}) {
+    my $bin = ($start1+$end1)/2 / $CONF{binsize};
+    push @{$links_binned[$bin]}, $link;
+  } else {
+    push @{$links_binned[0]}, $link;
+  }
+}
+
+for my $binned_links (@links_binned) {
+  next unless $binned_links;
+  my @links = sort {$b->{score} <=> $a->{score}} @$binned_links;
+  if($CONF{numall}) {
+    my $i;
+    for my $link (@links) {
+      last if $i++ >= $CONF{numall};
+      printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr1 start1 end1 score)}));
+      printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr2 start2 end2 score)}));
+    }
+  } elsif ($CONF{numchr}) {
+    for my $chr2 (keys %chr2) {
+      my $i;
+      for my $link (@links) {
+	next unless $link->{chr2} eq $chr2;
+	last if $i++ >= $CONF{numchr};
+	printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr1 start1 end1 score)}));
+	printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr2 start2 end2 score)}));
+      }
+    }
+  } else {
+    for my $link (@links) {
+      printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr1 start1 end1 score)}));
+      printinfo(sprintf("link%d %s %d %d id=%d",@{$link}{qw(idx chr2 start2 end2 score)}));
+    }
+  }
+}
+
+sub validateconfiguration {
+  $CONF{stat} ||= "average";
+  $CONF{score} ||= 0;
+}
+
+################################################################
+#
+# *** DO NOT EDIT BELOW THIS LINE ***
+#
+################################################################
+
+sub _parse_config {
+  my $dump_debug_level = 3;
+  GetOptions(\%OPT,
+	     "minsize=f",
+	     "maxsize=f",
+	     "minscore=f",
+	     "binsize=f",
+	     "padsize=f",
+	     "numchr=i",
+	     "numall=i",
+	     "configfile=s",
+	     "help",
+	     "man",
+	     "debug:i");
+  pod2usage() if $OPT{help};
+  pod2usage(-verbose=>2) if $OPT{man};
+  loadconfiguration($OPT{configfile});
+  populateconfiguration(); # copy command line options to config hash
+  validateconfiguration(); 
+  if(defined $CONF{debug} && $CONF{debug} == $dump_debug_level) {
+    $Data::Dumper::Indent    = 2;
+    $Data::Dumper::Quotekeys = 0;
+    $Data::Dumper::Terse     = 0;
+    $Data::Dumper::Sortkeys  = 1;
+    $Data::Dumper::Varname = "OPT";
+    printdumper(\%OPT);
+    $Data::Dumper::Varname = "CONF";
+    printdumper(\%CONF);
+    exit;
+  }
+}
+
+sub populateconfiguration {
+  for my $var (keys %OPT) {
+    $CONF{$var} = $OPT{$var};
+  }
+  repopulateconfiguration(\%CONF);
+}
+
+sub repopulateconfiguration {
+  my $root     = shift;
+	return unless ref($root) eq "HASH";
+  for my $key (keys %$root) {
+    my $value = $root->{$key};
+    if(ref($value) eq "HASH") {
+      repopulateconfiguration($value);
+    } elsif (ref($value) eq "ARRAY") {
+      for my $item (@$value) {
+        repopulateconfiguration($item);
+      }
+    } elsif(defined $value) {
+      while($value =~ /__([^_].+?)__/g) {
+        my $source = "__" . $1 . "__";
+        my $target = eval $1;
+        $value =~ s/\Q$source\E/$target/g;
+      }
+      $root->{$key} = $value;
+    }
+  }
+}
+
+################################################################
+#
+#
+
+sub loadconfiguration {
+  my $file = shift;
+  if(defined $file) {
+    if(-e $file && -r _) {
+      # provided configuration file exists and can be read
+      $file = abs_path($file);
+    } else {
+      confess "The configuration file [$file] passed with -configfile does not exist or cannot be read.";
+    }
+  } else {
+    # otherwise, try to automatically find a configuration file
+    my ($scriptname,$path,$suffix) = fileparse($0);
+    my $cwd     = getcwd();
+    my $bindir  = $FindBin::RealBin;
+    my $userdir = $ENV{HOME};
+    my @candidate_files = (
+			   "$cwd/$scriptname.conf",
+			   "$cwd/etc/$scriptname.conf",
+			   "$cwd/../etc/$scriptname.conf",
+			   "$bindir/$scriptname.conf",
+			   "$bindir/etc/$scriptname.conf",
+			   "$bindir/../etc/$scriptname.conf",
+			   "$userdir/.$scriptname.conf",
+			   );
+    my @additional_files = (
+
+			   );
+    for my $candidate_file (@additional_files,@candidate_files) {
+      #printinfo("configsearch",$candidate_file);
+      if(-e $candidate_file && -r _) {
+	$file = $candidate_file;
+	#printinfo("configfound",$candidate_file);
+	last;
+      }
+    }
+  }
+  if(defined $file) {
+    $OPT{configfile} = $file;
+    $conf = new Config::General(
+				-ConfigFile=>$file,
+				-IncludeRelative=>1,
+				-ExtendedAccess=>1,
+				-AllowMultiOptions=>"yes",
+				-LowerCaseNames=>1,
+				-AutoTrue=>1
+			       );
+    %CONF = $conf->getall;
+  }
+}
+
+sub printdebug {
+  my ($level,@msg) = @_;
+  my $prefix = "debug";
+  if(defined $CONF{debug} && $CONF{debug} >= $level) {
+    printinfo(sprintf("%s[%d]",$prefix,$level),@msg);
+  }
+}
+
+sub printinfo {
+  print join(" ",@_),"\n";
+}
+
+sub printdumper {
+  use Data::Dumper;
+  print Dumper(@_);
+}
+

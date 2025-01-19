@@ -1,0 +1,46 @@
+#!/bin/bash
+
+PERL=/usr/bin/perl 
+
+################################################################
+# Lesson 2
+
+echo "Creating links - top 20 links per 2Mb window"
+cat ../../2/data/ucsc/hg18.mm.chr1.txt | egrep -v -i "(random|x|y|chrm)" | ../../2/data/ucsc/makelinks -maxsize 1000000 -binsize 2000000 -numall 20 > links.txt
+
+################################################################
+# Lesson 5 
+
+echo "Bundling links - max gap 3Mb min 3 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 3  > bundles.txt
+
+echo "Bundling links - creating additional bundle examples"
+echo "Bundling links - max gap 3Mb min 20 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 20 > bundles.0.txt
+echo "Bundling links - max gap 3Mb min 10 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 10 > bundles.1.txt
+echo "Bundling links - max gap 3Mb min 5 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 5  > bundles.2.txt
+echo "Bundling links - max gap 3Mb min 4 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 4  > bundles.3.txt
+echo "Bundling links - max gap 3Mb min 3 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 3  > bundles.4.txt
+echo "Bundling links - max gap 3Mb min 2 links/bundle"
+$PERL $CIRCOSTOOLS/bundlelinks/bin/bundlelinks -links links.txt -max_gap_1 3000000 -min_bundle_membership 2  > bundles.5.txt
+
+
+################################################################
+# Lesson 6
+
+echo "Creating density histograms"
+$PERL $CIRCOSTOOLS/binlinks/bin/binlinks -links links.txt   -link_end 1 -output_style 0 -bin 5000000                   > histogram.mm.txt
+$PERL $CIRCOSTOOLS/binlinks/bin/binlinks -links bundles.txt -link_end 1 -output_style 0 -bin 5000000                   > histogram.mm.bundles.txt
+$PERL $CIRCOSTOOLS/binlinks/bin/binlinks -links links.txt -link_end 0 -output_style 1 -bin 1000000 | sed 's/mm/chr/' > histogram.hs.txt
+$PERL $CIRCOSTOOLS/binlinks/bin/binlinks -links links.txt -link_end 0 -output_style 3 -bin 1000000 -num              > histogram.hs.stacked.txt
+$PERL $CIRCOSTOOLS/binlinks/bin/binlinks -links links.txt -link_end 0 -output_style 3 -bin 1000000 -num -normalize   > histogram.hs.stacked.norm.txt
+
+################################################################
+# Lesson 7 - Conservation scatter
+
+echo "Average conservation scatter plot"
+cat ../../2/data/ucsc/multiz.hg18.chr1.txt | ../../2/data/ucsc/bincons -stat avg -binsize 1000000 -chrprefix hs -species mm8 > scatter.cons.txt

@@ -1,0 +1,9 @@
+
+for lesson in `seq 1 22` ; do
+
+cd $lesson
+echo $lesson
+circos 
+cd ..
+
+done

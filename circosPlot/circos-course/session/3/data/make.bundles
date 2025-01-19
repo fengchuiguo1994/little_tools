@@ -1,0 +1,9 @@
+#!/bin/bash
+
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 20 > bundles.0.txt
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 10 > bundles.1.txt
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 5  > bundles.2.txt
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 4  > bundles.3.txt
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 3  > bundles.4.txt
+~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links links.10.txt -max_gap_1 3e6 -min_bundle_membership 2  > bundles.5.txt
+

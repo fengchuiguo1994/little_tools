@@ -1,0 +1,15 @@
+
+for lesson in `seq 1 4` ; do
+
+cd $lesson
+echo $lesson
+circos 
+cd ..
+
+
+cd $lesson.solution
+echo $lesson.solution
+circos 
+cd ..
+
+done

@@ -1,0 +1,5 @@
+hs1 0 249250621 fill_color=rdylbu-11-div-2
+hs2 0 243199373 fill_color=rdylbu-11-div-3
+mm1 0 197195432 fill_color=rdylbu-11-div-10
+mm2 0 181748087 fill_color=rdylbu-11-div-9
+

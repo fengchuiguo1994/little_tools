@@ -1,0 +1,1 @@
+This image takes a while to create (20-30 minutes) due to the complexity of the text track.

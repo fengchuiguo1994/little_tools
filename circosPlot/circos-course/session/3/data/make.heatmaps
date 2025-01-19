@@ -1,0 +1,32 @@
+#!/bin/env perl
+
+use strict;
+use Set::IntSpan;
+use Data::Dumper;
+
+open(F,"bundles.5.txt");
+
+my $links;
+while(<F>) {
+    chomp;
+    my ($id,$chr1,$start,$end) = split;
+    my $set = Set::IntSpan->new(sprintf("%d-%d",$start,$end));
+    push @{$links->{$id}}, {chr=>$chr1,
+			    set=>$set};
+}
+close(F);
+
+for my $i (1..19) {
+    open(F,sprintf(">heatmap.%d.txt",$i));
+    my $target_chr = sprintf("mm%d",$i);
+    for my $id (keys %$links) {
+	my @links = @{$links->{$id}};
+	next unless $links[1]{chr} eq $target_chr;
+	printf F ("%s %d %d %d\n",
+		  $links[0]{chr},
+		  $links[0]{set}->min,
+		  $links[0]{set}->max,
+		  0);
+    }
+    close(F);
+}

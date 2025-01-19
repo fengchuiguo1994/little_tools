@@ -1,0 +1,51 @@
+#!/bin/env perl
+
+# Parses the expression file
+#
+#id	AH063	AH064	AH065	AH066
+#LmxM.01.0010	28	89	60	181
+#LmxM.01.0020	56	91	123	138
+#LmxM.01.0030	76	189	180	208
+#...
+#
+# and generates a comma-delimited list of named values
+#
+# exp_SAMPLE
+# exp_min
+# exp_max
+# exp_avg
+# exp_range
+# exp_minah (SAMPLE at which min is found)
+# exp_maxah (SAMPLE at which max is found)
+#
+# LmxM.01.0010 exp_ah063=28,exp_ah064=89,exp_ah065=60,exp_ah066=181,
+#              exp_min=28,exp_max=181,exp_avg=89.5,exp_range=153,
+#              exp_minah=ah063,exp_maxah=ah066
+
+use strict;
+use List::Util qw(min max sum);
+
+$\="\n";
+$,=" ";
+
+my @header;
+while(<>) {
+	chomp;
+	my @tok = split;
+	if(! @header) {
+		@header = @tok;
+		next;
+	}
+	my @data = @tok[1..@tok-1];
+	my $min  = min @data;
+	my $max  = max @data;
+	my $avg  = sum(@data)/@data;
+
+	push @header, qw(min max avg range minah maxah);
+	push @tok, $min,$max,$avg,abs($max-$min),
+		$header[ 1+ (grep($data[$_] == $min, (0..@data-1)))[0] ],
+		$header[ 1+ (grep($data[$_] == $max, (0..@data-1)))[0] ];
+
+	print $tok[0],join(",",map { lc sprintf("exp_%s=%s",$header[$_],$tok[$_]) } (1..@tok-1));
+
+}

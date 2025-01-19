@@ -1,0 +1,18 @@
+
+The directory CIRCOS includes:
+
+DUPLICATION includes:
+karyotype and linkfiles for:
+Duplication in SACE, CAGL and ZYRO
+(intra-species comparisons)
+
+
+CONSERVATION includes :
+Karyotype and linkfiles for:
+conservations between pair of species:
+SACE vs CAGL, CAGL vs SACE, SACE vs ZYRO, ZYRO vs SACE,
+CAGL vs ZYRO and ZYRO vs CAGL.
+
+Fredj 30/04/2012
+
+

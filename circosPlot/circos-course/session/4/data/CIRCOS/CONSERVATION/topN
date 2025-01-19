@@ -1,0 +1,11 @@
+#!/bin/bash
+
+num=250
+
+\rm links.top$num.txt
+
+for f in link_*_* ; do
+
+cat $f | egrep "(cagl-m|zyro-g|sace-f)" | awk '{print $3-$2,$0}' | sort -nr | head -$num | cut -d " " -f 2- >> links.top$num.txt
+
+done

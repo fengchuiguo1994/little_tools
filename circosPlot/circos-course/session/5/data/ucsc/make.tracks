@@ -1,0 +1,27 @@
+#!/bin/bash
+
+for species in rn mm; do
+
+echo "parsing $species chain (very dense)"
+
+#cat chain.$species.hs.txt | sed "s/chr/$species/" | sed 's/chr/hs/' | awk '{ print "link"NR,$3,$5,$6,"\nlink"NR,$7,$10,$11 }' > link.$species.txt
+
+echo "bundling $species chains for links"
+
+#~/work/circos/svn/tools/bundlelinks/bin/bundlelinks -links link.$species.txt -max_gap_1 250e3 -max_gap_2 5e6 -min_bundle_membership 50 > ../$species.bundle.txt &
+
+echo "creating $species->human heatmaps"
+
+#cat chain.$species.hs.txt | ./binchain.rnmm -binsize 5e6 -prefix $species &
+
+for bin in 50e6 20e6 10e6 5e6; do
+
+echo "creating human->$species heatmaps (binsize $bin)"
+cat chain.hs.mm.txt | ./binchain -binsize $bin > ../heatmap.hs.$species.$bin.txt &
+
+done
+
+echo "done $species"
+
+done
+

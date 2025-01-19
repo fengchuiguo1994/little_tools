@@ -1,0 +1,8 @@
+link57432bundle hs1 103561576 104102976 z=0,color=chr3
+link57432bundle mm3 46126225 46649511 z=0,color=chr3
+link67360bundle hs1 143388043 159132975 z=0,color=chr3
+link67360bundle mm3 58455927 98008470 z=0,color=chr3
+link67622bundle hs1 144595054 150460243 z=0,color=chr3
+link67622bundle mm3 61384540 66472871 z=0,color=chr3
+link40033bundle hs1 47167283 61327040 z=0,color=chr4
+link40033bundle mm4 73485380 148517570 z=0,color=chr4

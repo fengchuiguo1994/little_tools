@@ -1,0 +1,37 @@
+#!/bin/env perl
+
+use strict;
+use Set::IntSpan;
+use Getopt::Long;
+
+our %CONF;
+
+GetOptions(\%CONF,
+	   "binsize=f");
+
+my $covers;
+my $binsize = $CONF{binsize};
+my $i = 0;
+while(<>) {
+    chomp;
+    my @tok = split;
+    my ($chr,$start,$end) = @tok[2,4,5];
+    $chr =~ s/chr/hs/;
+    my $set = Set::IntSpan->new("$start-$end");
+    my $bin = int($start / $binsize);
+    $covers->{$chr}{$bin} ||= Set::IntSpan->new();
+    $covers->{$chr}{$bin}->U($set);
+    print STDERR "$i\n" if not $i % 25000;
+    $i++;
+}
+
+for my $chr (keys %$covers) {
+    for my $bin (sort {$a <=> $b} keys %{$covers->{$chr}}) {
+	my $set = $covers->{$chr}{$bin};
+	printf ("%s %d %d %f\n",
+		$chr,
+		$bin*$binsize,
+		($bin+1)*$binsize-1,
+		$set->cardinality);
+    }
+}
