@@ -475,6 +475,10 @@ colorts <- function(color_str) {
 color_str <- "125,242,32"
 is_color(color_str)
 colorts(color_str)
+
+color_str <- c("125,242,32","black")
+sapply(color_str, is_color)
+sapply(color_str, colorts)
 ```
 
 ## 累计曲线
