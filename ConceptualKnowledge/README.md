@@ -92,8 +92,9 @@ RNA定量的方式包括：gene count（原始值）、CPM（counts per million�
 [基因组中有什么](https://gatk.broadinstitute.org/hc/en-us/articles/360041155232-Reference-Genome-Components)<br/>
 [基因组组装](https://www.jianshu.com/p/f1ba7c96160f)<br/>
 
-# 测序
-### 二代测序
+# [测序](https://zhuanlan.zhihu.com/p/35278810)
+### [测序接头](https://support.illumina.com.cn/bulletins/2020/06/chinese-illumina-adapter-portfolio.html)
+### [二代测序](https://zhuanlan.zhihu.com/p/60477332)
 illumina测序的核心在于利用可逆终止的、荧光标记的dNTP进行边合成边测序（Sequencing-By-Synthesis,SBS）。Flowcell（流动池）是有着2个或8个lane（泳道）的玻璃板，每个lane可以测一个样本或者多样本的混合物，且随机布满了能够与文库两端接头分别互补配对或一致的寡核苷酸（oligos，P7和P5接头）。一个lane包含两列，每一列有60个tile，每个tile会种下不同的cluster，每个tile在一次循环中会拍照4次（每个碱基一次）。<br/>
 1. 利用转座子（transposome）对双链DNA进行剪切以及接头（adapter）的连接<br/>
 ![](figrecord/illuminastep1.1.png)
