@@ -1,3 +1,95 @@
+```
+通常我们拿到了肿瘤相关的单细胞转录组的表达量矩阵后的第一层次降维聚类分群通常是/基本上都是首先区分成为:上皮细胞、免疫细胞、内皮细胞和成纤维细胞：
+immune (CD45+,PTPRC), (三个补充的：CD3G, CD3E, CD79A)
+epithelial/cancer (EpCAM+,EPCAM),
+stromal (CD10+, MME, fibro or CD31+, PECAM1, endo)
+第二次分群的 上皮细胞可以细分恶性与否，免疫细胞呢细分可以成为: B细胞，T细胞，巨噬细胞，树突细胞等等。但实际上每个免疫细胞亚群仍然可以继续精细的划分。
+
+这3大单细胞亚群构成了肿瘤免疫微环境的复杂。绝大部分文章都是抓住免疫细胞亚群进行细分，包括淋巴系（T,B,NK细胞）和髓系（单核，树突，巨噬，粒细胞）的两大类作为第二次细分亚群。但是也有不少文章是抓住stromal 里面的 fibro 和endo进行细分
+
+genes_to_check = c("PTPRC","EPCAM","CD3G","CD3E", "CD79A", "BLNK","MS4A1", "CD68", "CSF1R", "MARCO", "CD207", "PMEL", "ALB", "C1QB", "CLDN5", "FCGR3B", "COL1A1")
+
+
+使用inferCNV算法可以区分细胞恶性与否
+
+进一步分T细胞：
+Killer T cells (cytotoxic T lymphocytes: CD8+) , Effector  or memory
+Helper T cells (Th cells: CD4+), TH1,2,17
+Regulatory T cells (Treg cells: CD4+, CD25+, FoxP3+, CD127+)
+interferon gamma (IFN-γ) and tumor necrosis factor alpha (TNF-α), two factors produced by activated T cells
+Helper Th1,IFNγ, IL-2, IL-12, IL-18
+
+
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247494758&idx=2&sn=1960624cb398cbf3428ef75e3b94cf53&chksm=9b4bacddac3c25cbf7ab369af56bb84c7edd92ad6ee26c640582f3b13608b43294747ed10a02&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247485798&idx=1&sn=f86a0637b0105c72f6b21c1a2481bb0e&chksm=9b4849ddac3fc0cbdefd595d4ed4ba574d1edfe1b571fd9858a76ebdb0a9ada3ce6f86e1e561&scene=178&cur_album_id=1698018533277761536#rd
+
+
+Single-nucleus transcriptome analysis reveals dysregulation of angiogenic endothelial cells and neuroprotective glia in Alzheimer's disease.
+astrocytes = c("AQP4", "ADGRV1", "GPC5", "RYR3") 
+  endothelial = c("CLDN5", "ABCB1", "EBF1") 
+  excitatory = c("CAMK2A", "CBLN2", "LDB2") 
+  inhibitory = c("GAD1", "LHFPL3", "PCDH15") 
+  microglia = c("C3", "LRMDA", "DOCK8") 
+  oligodendrocytes = c("MBP", "PLP1", "ST18") 
+  OPC='Tnr,Igsf21,Neu4,Gpr17'
+  Ependymal='Cfap126,Fam183b,Tmem212,pifo,Tekt1,Dnah12'
+  pericyte=c(  'DCN', 'LUM',  'GSN' ,'FGF7','MME', 'ACTA2','RGS5')
+
+Single-cell sequencing of human midbrain reveals glial activation and a Parkinson-specific neuronal state
+Oligodendrocytes MOBP
+Oligodendrocyte precursor cells (OPCs) highly express VCAN
+Expression of AQP4 was characteristic for astrocytes
+FOXJ1 for ependymal cells
+CD74 in microglia , 
+CLDN5 in endothelial cells, 
+GFRB in pericytes 
+# 下面是4种神经细胞
+excitatory (SLC17A6),  
+inhibitory (GAD2), 
+GABAergic (GAD2/GRIK1), 
+dopaminergic neurons(TH)
+
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497593&idx=1&sn=869cd79f632259bc6e25a086b8795853&chksm=9b4bb7c2ac3c3ed49f72906c71f8822b695d50339098c9e8b0b97ccb487820606c20291cedff&scene=178&cur_album_id=1361472509228580865#rd
+Dissecting the Single-Cell Transcriptome Network Underlying Gastric Premalignant Lesions and Early Gastric Cancer
+
+https://mp.weixin.qq.com/s?__biz=MzI1Njk4ODE0MQ==&mid=2247487157&idx=1&sn=e2b59fd14c9a25d4331465cf6fdb1d3c&scene=21#wechat_redirect
+
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247495874&idx=1&sn=1189c08b96ce1ea2c70964db93f480d6&scene=21#wechat_redirect
+
+https://mp.weixin.qq.com/s?__biz=MzU4NjgwOTU4Nw==&mid=2247483989&idx=1&sn=00d184e29d3108a5d7d19759ac1129bb&scene=21#wechat_redirect
+
+https://mp.weixin.qq.com/s/4ufiHWDg1x0CPN82tE5_jQ
+```
+```
+SV
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497292&idx=2&sn=6d5719f19d0282a06d68e90d26027a06&chksm=9b4bb6f7ac3c3fe15b6699d0bfb4d3a138079149ec5df2923a4a1e2b828eef485df608811f9a&scene=178&cur_album_id=1361472509228580865#rd
+Mutations in BRCA1 and BRCA2 differentially affect the tumor microenvironment and response to checkpoint blockade immunotherapy
+
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247495748&idx=1&sn=f886c20b0b966474b8aa044ecdc069ee&chksm=9b4bb0ffac3c39e97796431ff8eef9ad9243b670561f04b1deea01604adf1159ac5726588fb3&scene=178&cur_album_id=1361472509228580865#rd
+Inconsistency and features of single nucleotide variants detected in whole exome sequencing versus transcriptome sequencing
+```
+```
+细胞周期
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497593&idx=3&sn=13472f7297c1b01057ee7aa798884738&chksm=9b4bb7c2ac3c3ed4f3a003dbcd83e717f021863e3da48ec39778228a02e10cf7b7ebbda15bfe&scene=178&cur_album_id=1361472509228580865#rd
+```
+```
+批次效应
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247496901&idx=1&sn=7efc2988104043051f55b2a3c6e64730&chksm=9b4bb47eac3c3d6884c332e19d0e190d156f0c3bf57319c36ddc70243efd81bb2c12fdbc197b&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247491316&idx=1&sn=190ee537552eb1032ca69eca83e4ec31&chksm=9b485e4fac3fd759f2d858f360eb1cfb44e8ef05bf69e390f19993fbd375c8a37d7657954f40&scene=178&cur_album_id=1987333576643641349#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247492776&idx=1&sn=3c9e4052510abcf4eb61a215cdb85738&chksm=9b4ba413ac3c2d05c58ab56ab59a1498aed5ea8b6c6cd97e2f1ea534b62bf56fadde2e60beda&scene=178&cur_album_id=1987333576643641349#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247495470&idx=1&sn=81ae274af929f80c16afdd4f1f489701&chksm=9b4baf95ac3c2683d7b6282445dd88e51a25e59b8e83af8ab977685fc0d4ad78bd247d8ee2c3&scene=178&cur_album_id=1987333576643641349#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497037&idx=2&sn=37e5cd49577b2a95609b12e28f2096f1&chksm=9b4bb5f6ac3c3ce0747ca0397e4c340b3902cb4bd0e478197a255d31b9f3d7e963ea0bf2c8ca&scene=178&cur_album_id=1987333576643641349#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247504320&idx=2&sn=0204cbe9fbb3c43767d55e6640ad0001&chksm=9b4b917bac3c186d19b4379fad223a53b9f1b4f68340740ac9de58d20b1158d2e1d5c27da0c7&scene=178&cur_album_id=1987333576643641349#rd
+https://constantamateur.github.io/
+https://constantamateur.github.io/2020-06-09-scBatch1/
+https://mp.weixin.qq.com/s?__biz=MzU3Mjg1NDczNQ==&mid=2247484035&idx=1&sn=6267153b0e82c8dacb2f58950a80042f&scene=21#wechat_redirect
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247485799&idx=1&sn=93003427fabb76f7ccb1d4f121d532d5&chksm=9b4849dcac3fc0cac6586c6a4bba327123d3660b0f1c44172c4f87043294cc72a851eb890c2b&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497665&idx=1&sn=74ac0e87b9689d5df7c0208e1c1dc0ac&chksm=9b4bb77aac3c3e6c66cb2f3e4e3e17f7eb85ab6731718feb4621bb1332df5e82bae53a77db66&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497653&idx=2&sn=320d26cad3d8141bb081d6ff798ae778&chksm=9b4bb70eac3c3e180b7b80add6630c02ef1c6d7bc8a4580e0e86f1bf2447c8cb9f34e6320887&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497617&idx=1&sn=0e63223347afbb0795aa94d339d72214&chksm=9b4bb72aac3c3e3c4943847d44c89611d3a2391a54648b04f16b609f09e1b2736762609a9efe&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247497617&idx=2&sn=fe47078075a3b9994079761f96870aa3&chksm=9b4bb72aac3c3e3c42f8b3fa496db36ec5065dca1f7a12fee4dddbeecd636cfa6a5d6628020b&scene=178&cur_album_id=1698018533277761536#rd
+https://mp.weixin.qq.com/s?__biz=MzAxMDkxODM1Ng==&mid=2247491021&idx=1&sn=23c795697cd70e190c54e3b3641178de&chksm=9b485d76ac3fd46017b1df2c2b16fbe2ed156889e18007a99d469c3b11079be5354e4ac3f504&scene=178&cur_album_id=1698018533277761536#rd
+```
 ## mark gene
 胚胎细胞：[wiki](https://zh.wikipedia.org/wiki/%E4%B8%AD%E8%83%9A%E5%B1%82)<br/>
 基质细胞: [wiki](https://zh.wikipedia.org/wiki/%E5%9F%BA%E8%B4%A8%E7%BB%86%E8%83%9E)<br/>
