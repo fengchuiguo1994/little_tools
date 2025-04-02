@@ -61,6 +61,10 @@ cat test | paste - - # 有多少个 - ，就是把多少行的内容挪到一行
 awk '{for(i=1;i<=NF;i++){a[FNR,i]=$i}}END{for(i=1;i<=NF;i++){for(j=1;j<=FNR;j++){printf a[j,i]"\t"}print ""}}' filename # 矩阵文件转置。
 所以是先将以列为对象的表头转成单行，然后通过awk依次将所有文件需要的内容提取出来并处理成单列，然后将单列按paste - - - - 这样将单列做成按样本的多行，合并起来，最终将整个文件转置得到最终paste结果
 
+#### 案例五    一次性读取多行
+xargs -n 2 -a test.sh | while read a b; do echo "$a      $b"; done
+
+
 ## 帮助文档
 SOFT="loaddata.sh"
 VERSION="1.0.0"
