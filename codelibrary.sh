@@ -64,6 +64,21 @@ awk '{for(i=1;i<=NF;i++){a[FNR,i]=$i}}END{for(i=1;i<=NF;i++){for(j=1;j<=FNR;j++)
 #### 案例五    一次性读取多行
 xargs -n 2 -a test.sh | while read a b; do echo "$a      $b"; done
 
+#### 设置默认参数值
+```
+# SHIFT_READS_IN_BAM=T
+if [ -z "$SHIFT_READS_IN_BAM" ]; then
+    SHIFT_READS_IN_BAM=FALSE
+fi
+echo $SHIFT_READS_IN_BAM
+```
+
+## 线程
+#### nproc
+```
+nproc           获取当前能使用的线程数量（在任务投递系统中，就是申请的线程数量）
+nproc --all     当前计算机的总线程数量
+```
 
 ## 帮助文档
 SOFT="loaddata.sh"
