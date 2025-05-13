@@ -1,0 +1,22 @@
+library(ChIPseeker)
+library(org.Hs.eg.db)
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+peak <- readPeakFile('cancer.pairs_peaks.narrowPeak')
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
+peakAnno <- annotatePeak(peak, tssRegion = c(-2000, 2000), TxDb = txdb)
+pdf("cancer.annotation.pdf",width=10)
+plotAnnoBar(peakAnno)
+vennpie(peakAnno)
+plotAnnoPie(peakAnno)
+plotDistToTSS(peakAnno)
+dev.off()
+
+
+peak <- readPeakFile('normal.pairs_peaks.narrowPeak')
+peakAnno <- annotatePeak(peak, tssRegion = c(-2000, 2000), TxDb = txdb)
+pdf("normal.annotation.pdf",width=10)
+plotAnnoBar(peakAnno)
+vennpie(peakAnno)
+plotAnnoPie(peakAnno)
+plotDistToTSS(peakAnno)
+dev.off()
