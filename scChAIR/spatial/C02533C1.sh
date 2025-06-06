@@ -1,0 +1,9 @@
+curdir=/data/home/ruanlab/huangxingyu/Haoxi20230215/spatial/DemoData
+dataDir=${curdir}/C02533C1_v7.0_kidney
+outDir=${curdir}/C02533C1result
+export SINGULARITY_BIND=$dataDir,$outDir
+
+bash /data/home/ruanlab/huangxingyu/Tools/SAW-main/Scripts/stereoPipeline_v7.1.sh -splitCount 1 -maskFile ${dataDir}/mask/C02533C1.barcodeToPos.h5 -fq1 ${dataDir}/reads/V300116245_L02_read_1.fq.gz -fq2 ${dataDir}/reads/V300116245_L02_read_2.fq.gz -refIndex ${dataDir}/reference/STAR_SJ100 -speciesName mouse -tissueType kidney -annotationFile ${dataDir}/reference/genes.gtf -outDir ${outDir}/result -imageRecordFile ${dataDir}/image/C02533C1_SC_20231031_203806_3.0.0.ipr -imageCompressedFile ${dataDir}/image/C02533C1_SC_20231031_203806_3.0.0.tar.gz -doCellBin Y -rRNARemove N -threads 30 -sif /data/home/ruanlab/huangxingyu/Tools/SAW_v7.1.sif 
+
+
+bash /data/home/ruanlab/huangxingyu/Tools/SAW-main/Scripts/stereoPipeline_v7.1.sh -splitCount 1 -maskFile ${dataDir}/mask/C02533C1.barcodeToPos.h5 -fq1 ${dataDir}/reads/V300116245_L02_read_1.fq.gz,${dataDir}/reads/V350195543_L01_read_1.fq.gz,${dataDir}/reads/V350195543_L02_read_1.fq.gz,${dataDir}/reads/V350195543_L03_read_1.fq.gz,${dataDir}/reads/V350195543_L04_read_1.fq.gz -fq2 ${dataDir}/reads/V300116245_L02_read_2.fq.gz,${dataDir}/reads/V350195543_L01_read_2.fq.gz,${dataDir}/reads/V350195543_L02_read_2.fq.gz,${dataDir}/reads/V350195543_L03_read_2.fq.gz,${dataDir}/reads/V350195543_L04_read_2.fq.gz -refIndex ${dataDir}/reference/STAR_SJ100 -speciesName mouse -tissueType kidney -annotationFile ${dataDir}/reference/genes.gtf -outDir ${outDir}/allresult -imageRecordFile ${dataDir}/image/C02533C1_SC_20231031_203806_3.0.0.ipr -imageCompressedFile ${dataDir}/image/C02533C1_SC_20231031_203806_3.0.0.tar.gz -doCellBin Y -rRNARemove N -threads 30 -sif /data/home/ruanlab/huangxingyu/Tools/SAW_v7.1.sif
