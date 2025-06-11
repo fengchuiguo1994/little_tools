@@ -1,0 +1,5 @@
+library(Seurat)
+library(harmony)
+OV_all <- readRDS("2024_10_23.OV_hr_all_runpca.Rds") 
+OV_hr_all <- RunHarmony(OV_all, group.by.vars = c("paper","orig.ident"),lambda=c(1,2))
+saveRDS(OV_hr_all, "2024_10_23.OV_hr_all_runpca.harmony.Rds") 
