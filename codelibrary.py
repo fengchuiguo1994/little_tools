@@ -90,6 +90,73 @@ class SamRead:
     def header(self):
         return self.fin.header
 
+
+
+import sys
+import pysam
+def readSam(insamfile):
+    if insamfile.endswith(".bam"):
+        insam = pysam.AlignmentFile(insamfile,'rb')
+    elif insamfile.endswith(".sam.gz"):
+        insam = pysam.AlignmentFile(insamfile,'rb')
+    elif insamfile.endswith(".sam"):
+        insam = pysam.AlignmentFile(insamfile,'r')
+    else:
+        raise ValueError("the input sam/bam file is not end with sam or bam!")
+    return insam
+def writeSam(outsamfile,header):
+    if outsamfile == "-":
+        return pysam.AlignmentFile(sys.stdout,'wb',header=fin.header)
+    if outsamfile.endswith(".bam"):
+        outsam = pysam.AlignmentFile(outsamfile,'wb',header=header)
+    elif outsamfile.endswith(".sam"):
+        outsam = pysam.AlignmentFile(outsamfile,'w',header=header)
+    else:
+        raise ValueError("the output sam/bam file is not end with sam or bam!")
+    return outsam
+class SamRead:
+    def __init__(self,infile):
+        if infile == "-":
+            self.fin = pysam.AlignmentFile(sys.stdin)
+        else:
+            self.fin = readSam(infile)
+        self.header = self.fin.header
+    def __iter__(self):
+        flag = None
+        outlist = []
+        for read in self.fin:
+            if flag != None and flag != read.query_name:
+                yield outlist
+                outlist = []
+            outlist.append(read)
+            flag = read.query_name
+        self.fin.close()
+        yield outlist
+    def header(self):
+        return self.fin.header
+if len(sys.argv) == 1:
+    fin = SamRead("-")
+    fout = writeSam("-", header=fin.header)
+else:
+    if sys.argv[1] == "-":
+        fin = SamRead("-")
+    else:
+        fin = SamRead(sys.argv[1])
+    if len(sys.argv) == 2:
+        fout = writeSam("-", header=fin.header)
+    else:
+        fout = writeSam(sys.argv[2],header=fin.header)
+for reads in fin:
+    if len(reads) != 2:
+        continue
+    for read in reads:
+        read.set_tag("CB", "{0}-1".format(read.get_tag("CB")))
+        fout.write(read)
+fout.close()
+
+
+
+
 import sys
 class FaRead:
     def __init__(self,infile):
