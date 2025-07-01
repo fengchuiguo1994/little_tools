@@ -76,6 +76,7 @@ class SamRead:
     """
     def __init__(self,infile):
         self.fin = readSam(infile)
+        self.header = self.fin.header
     def __iter__(self):
         flag = None
         outlist = []
