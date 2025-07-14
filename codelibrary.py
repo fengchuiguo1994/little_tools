@@ -39,6 +39,36 @@ def writeFile(outfile):
         fout = open(outfile,'w')
     return fout
 
+import gzip
+def readFile(infile):
+    if infile == "-":
+        fin = sys.stdin
+    elif infile.endswith((".gz","gzip")):
+        fin = gzip.open(infile,'rt')
+    else:
+        fin = open(infile,'r')
+    return fin
+def writeFile(outfile):
+    if outfile == "-":
+        fout = sys.stdout
+    elif outfile.endswith((".gz","gzip")):
+        fout = gzip.open(outfile,'wt')
+    else:
+        fout = open(outfile,'w')
+    return fout
+if len(sys.argv) == 1:
+    fin = readFile("-")
+    fout = writeFile("-")
+else:
+    if sys.argv[1] == "-":
+        fin = readFile("-")
+    else:
+        fin = readFile(sys.argv[1])
+    if len(sys.argv) == 2:
+        fout = writeFile("-")
+    else:
+        fout = writeFile(sys.argv[2])
+
 ### Operating sam/bam files  ###
 import pysam
 def readSam(insamfile):
