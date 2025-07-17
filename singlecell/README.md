@@ -1,4 +1,23 @@
 # scRNA数据分析软件
+## 拟时序分析
+#### monocle
+#### scvelo
+#### Slingshot
+[https://mp.weixin.qq.com/s/FZPAYa6p578jydy7E8_wng](https://mp.weixin.qq.com/s/FZPAYa6p578jydy7E8_wng)
+
+## 转录因子
+#### networkanalyst
+[https://www.networkanalyst.ca/](https://www.networkanalyst.ca/)
+
+## 细胞通讯
+#### CellPhoneDB
+#### CellChat
+#### NicheNet
+#### ICELLNET 
+[案例一](https://mp.weixin.qq.com/s/m1EzVPgt7257Bz67eURXGQ), [案例二](https://zhuanlan.zhihu.com/p/525365897), 
+
+
+## 比对定量
 #### STARsolo
 singleCellTK <br/>
 SCTK-QC <br/>
