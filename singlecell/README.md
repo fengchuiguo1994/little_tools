@@ -1,3 +1,78 @@
+# copy(http://xuzhougeng.com/archives/runpca-warnning-in-seurat-v5)
+## Seurat可能算不出那么多PC
+```
+library(Seurat)
+expr_matrix <- Read10X("/data5/ofo_data/yc/filtered_feature_bc_matrix_yc4/")
+# 如果你的数据是一个矩阵或数据帧
+rownames(expr_matrix) <- gsub("_", "-", rownames(expr_matrix))
+seu <- CreateSeuratObject(counts = expr_matrix, project = "example")
+seu <- subset(seu, subset =  nFeature_RNA > 500 & nFeature_RNA <12000 & nCount_RNA >1000 & nCount_RNA <70000)
+seu <- NormalizeData(seu)
+seu <- FindVariableFeatures(seu, selection.method = "dispersion", nfeatures = 1000)
+all.genes <- rownames(seu)
+seu <- ScaleData(seu, features = all.genes)
+seu <- RunPCA(seu, features = VariableFeatures(object = seu), npcs=50)
+
+# 提示了一个警告
+Warning in irlba(A = t(x = object), nv = npcs, ...) :
+  You're computing too large a percentage of total singular values, use a standard svd instead.
+Warning: Number of dimensions changing from 50 to 10
+Warning messages:
+1: Requested number is larger than the number of available items (11). Setting to 11. 
+2: Requested number is larger than the number of available items (11). Setting to 11. 
+3: Requested number is larger than the number of available items (11). Setting to 11. 
+4: Requested number is larger than the number of available items (11). Setting to 11. 
+5: Requested number is larger than the number of available items (11). Setting to 11. 
+
+# 在构建SNN这一步，出错了，提示，给的维度太多了。确实根据之前的提示信息，Seurat只算了10个PC的样子。
+# Error in FindNeighbors.Seurat(pbmc, dims = 1:50) : 
+#   More dimensions specified in dims than have been computed
+
+# 修改参数，把后续的维度改成了10
+seu <- FindNeighbors(seu, dims = 1:10)
+seu <- RunUMAP(seu, dims = 1:10)
+seu <- FindClusters(seu, resolution = 0.5)
+DimPlot(object = seu, reduction = "umap",label = TRUE,label.size = 7,repel = TRUE,pt.size = 0.3) +
+  theme(panel.grid = element_blank())
+```
+![](img/umapresult1.png)
+
+```
+# 用警告里面提到可以用svd的方法
+pca_svd <- function(data, npcs) {
+  svd_result <- svd(t(data))  # 转置数据矩阵并进行SVD
+  # 提取前`npcs`个成分
+  U <- svd_result$u[, 1:npcs]
+  S <- diag(svd_result$d[1:npcs])
+  V <- svd_result$v[, 1:npcs]
+  PCs <- U %*% S  # 计算PC得分
+  return(list("PC" = PCs, "rotation" = V))
+}
+# 提取Seurat对象中的归一化数据
+normalized_data <- GetAssayData(seu, layer = "scale.data")
+normalized_data <- normalized_data[VariableFeatures(seu), ]
+# 指定要计算的主成分数
+npcs <- 50  # 例如，计算前20个PC
+# 运行SVD计算PCA
+svd_pca_result <- pca_svd(normalized_data, npcs)
+# 将结果
+embedings <-   svd_pca_result$PC
+colnames(embedings) <- paste0('PC_', 1:50)
+rownames(embedings) <- colnames(seu)
+loadings <- svd_pca_result$rotation
+colnames(loadings) <- paste0('PC_', 1:50)
+rownames(loadings) <- VariableFeatures(seu)
+pbmc[["pca"]] <- CreateDimReducObject(
+  embeddings = embedings,
+  loadings = loadings,
+  key = "PC_",
+  assay = DefaultAssay(pbmc)
+)
+
+# 最后运行之前的SNN构建，UMAP降维和聚类，结果就正常多了。
+```
+![](img/umapresult2.png)
+
 # scRNA数据分析软件
 ## 拟时序分析
 #### monocle
