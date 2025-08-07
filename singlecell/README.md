@@ -1,5 +1,5 @@
-# copy(http://xuzhougeng.com/archives/runpca-warnning-in-seurat-v5)
-## Seurat可能算不出那么多PC
+## copy(http://xuzhougeng.com/archives/runpca-warnning-in-seurat-v5)
+#### Seurat可能算不出那么多PC (在cellcycle很常见)
 ```
 library(Seurat)
 expr_matrix <- Read10X("/data5/ofo_data/yc/filtered_feature_bc_matrix_yc4/")
