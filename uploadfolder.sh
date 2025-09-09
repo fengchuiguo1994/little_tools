@@ -80,7 +80,7 @@ echo $folder
 ls $input/*.bed12 | while read sample
 do
     echo "$sample upload..."
-    samplename=basename $sample
+    samplename=$(basename $sample)
     BED=`/opt/basic/_py/bin/python /opt/basic/console/table_util.py create ${genome} -l "${folder}" "${samplename}" | less -R | sed 's/  */\t/g' | cut -f 2 | head -3 | tail -1`
     # /opt/basic/_py/bin/python /opt/basic/console/table_util.py load -f ${BED} 1:chrom 2:start 3:end 4:name 9:color -i ${sample}
     /opt/basic/_py/bin/python /opt/basic/console/table_util.py load ${BED} 1:chrom 2:start 3:end 4:name 9:color -i ${sample}
@@ -90,7 +90,7 @@ done
 ls $input/*.bedgraph | while read sample
 do
     echo "$sample upload..."
-    samplename=basename $sample
+    samplename=$(basename $sample)
     COV=`/opt/basic/_py/bin/python /opt/basic/console/table_util.py create ${genome} -l "${folder}" "${samplename}" | less -R | sed 's/  */\t/g' | cut -f 2 | head -3 | tail -1`
     /opt/basic/_py/bin/python /opt/basic/console/track_util.py gen_cov max ${COV} ${sample}
 done
@@ -98,7 +98,7 @@ done
 ls $input/*.bedpe | while read sample
 do
     echo "$sample upload..."
-    samplename=basename $sample
+    samplename=$(basename $sample)
     CLU=`/opt/basic/_py/bin/python /opt/basic/console/table_util.py create ${genome} -l "${folder}" "${samplename}" | less -R | sed 's/  */\t/g' | cut -f 2 | head -3 | tail -1`
     # /opt/basic/_py/bin/python /opt/basic/console/table_util.py load -f ${CLU} 1:chrom 2:start 3:end 4:chrom2 5:start2 6:end2 7:score -i ${sample}
     /opt/basic/_py/bin/python /opt/basic/console/table_util.py load ${CLU} 1:chrom 2:start 3:end 4:chrom2 5:start2 6:end2 7:score -i ${sample}
@@ -109,7 +109,7 @@ done
 ls $input/*.bed | while read sample
 do  
     echo "$sample upload..."
-    samplename=basename $sample
+    samplename=$(basename $sample)
     BED=`/opt/basic/_py/bin/python /opt/basic/console/table_util.py create ${genome} -l "${folder}" "${samplename}" | less -R | sed 's/  */\t/g' | cut -f 2 | head -3 | tail -1`
     /opt/basic/_py/bin/python /opt/basic/console/table_util.py load ${BED} 1:chrom 2:start 3:end 4:name 5:score -i ${sample}
     /opt/basic/_py/bin/python /opt/basic/console/track_util.py new ${BED} scls
@@ -118,7 +118,7 @@ done
 ls $input/*.gene | while read sample
 do  
     echo "$sample upload..."
-    samplename=basename $sample
+    samplename=$(basename $sample)
     GENE=`/opt/basic/_py/bin/python /opt/basic/console/table_util.py create ${genome} "${samplename}" | less -R | sed 's/  */\t/g' | cut -f 2 | head -3 | tail -1`
     /opt/basic/_py/bin/python /opt/basic/console/table_util.py load_genes ${GENE} -i ${sample}
     /opt/basic/_py/bin/python /opt/basic/console/track_util.py gen_genes ${genome}
