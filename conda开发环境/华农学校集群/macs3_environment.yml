@@ -1,0 +1,46 @@
+name: macs3
+channels:
+  - maximinio
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+  - https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
+  - https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  - bioconda
+  - r
+  - defaults
+  - conda-forge
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - blas=1.0=mkl
+  - ca-certificates=2022.10.11=h06a4308_0
+  - certifi=2022.12.7=py38h06a4308_0
+  - cykhash=2.0.0=py38hfa26641_1
+  - cython=0.29.32=py38h6a678d5_0
+  - intel-openmp=2021.4.0=h06a4308_3561
+  - ld_impl_linux-64=2.38=h1181459_1
+  - libffi=3.2.1=1
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - macs3=3.0.0a6=py38_0
+  - mkl=2021.4.0=h06a4308_640
+  - mkl-service=2.4.0=py38h7f8727e_0
+  - mkl_fft=1.3.1=py38hd3c417c_0
+  - mkl_random=1.2.2=py38h51133e4_0
+  - ncurses=6.3=h5eee18b_3
+  - numpy=1.23.5=py38h14f4228_0
+  - numpy-base=1.23.5=py38h31eccc5_0
+  - openssl=1.1.1s=h7f8727e_0
+  - pip=22.3.1=py38h06a4308_0
+  - python=3.8.2=hcf32534_0
+  - python_abi=3.8=2_cp38
+  - readline=8.2=h5eee18b_0
+  - setuptools=65.5.0=py38h06a4308_0
+  - six=1.16.0=pyhd3eb1b0_1
+  - sqlite=3.38.2=hc218d9a_0
+  - tk=8.6.11=h1ccaba5_0
+  - wheel=0.37.1=pyhd3eb1b0_0
+  - xz=5.2.8=h5eee18b_0
+  - zlib=1.2.11=0
+prefix: /public/home/xyhuang/anaconda3/envs/macs3

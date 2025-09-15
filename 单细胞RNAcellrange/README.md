@@ -8,7 +8,7 @@ bedtools sort -i peak/8kmousecortex-5M.peak -g /data/home/ruanlab/huangxingyu/To
 
 
 #### 细胞周期
-ChAIR数据捕获的PET数量太少，在做NUC_dynamic时效果很糟糕，需要考虑将临近的点的信息合并。mergePCAloci.R根据cellcyclescore和PCA的结果根据该位置在上下两个相位的相对差值排序分组
+ChAIR数据捕获的PET数量太少，在做NUC_dynamic时效果很糟糕，需要考虑将临近的点的信息合并。mergePCAloci.R根据cellcyclescore和PCA的结果根据该位置在上下两个相位的相对差值排序分组。原版参考pseudotime.R。
 ![](img/logic.png)
 ![](img/rawPCA.png)
 ![](img/groupPCA.png)

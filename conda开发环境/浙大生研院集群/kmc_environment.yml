@@ -1,0 +1,8 @@
+name: kmc
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - kmc=3.2.1=h9ee0642_0
+prefix: /data/home/ruanlab/huangxingyu/miniconda3/envs/kmc
