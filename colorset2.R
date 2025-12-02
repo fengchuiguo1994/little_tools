@@ -1,0 +1,65 @@
+# par(mfrow = c(2, 3))
+par(fig = c(0, 0.5, 0, 1)) # x范围[0,0.5], y范围[0,1]
+
+plot(1:22,1:22,type="n")
+
+text(2,21.5,"#f3af42",col = "#f3af42")
+rect(4,21,6,22,col = "#f3af42")
+text(8,21.5,"#2928ff",col = "#2928ff")
+rect(10,21,12,22,col = "#2928ff")
+
+text(2,19.5,"#a1429e",col = "#a1429e")
+rect(4,19,6,20,col = "#a1429e")
+text(2,17.5,"#32a969",col = "#32a969")
+rect(4,17,6,18,col = "#32a969")
+text(8,19.5,"#2928ff",col = "#2928ff")
+rect(10,19,12,20,col = "#2928ff")
+text(8,17.5,"#a27b50",col = "#a27b50")
+rect(10,17,12,18,col = "#a27b50")
+
+
+text(2,15.5,"#2b281f",col = "#2b281f")
+rect(4,15,6,16,col = "#2b281f")
+text(2,13.5,"#e60012",col = "#e60012")
+rect(4,13,6,14,col = "#e60012")
+text(2,11.5,"#009944",col = "#009944")
+rect(4,11,6,12,col = "#009944")
+text(2,9.5,"#00a0e9",col = "#00a0e9")
+rect(4,9,6,10,col = "#00a0e9")
+text(2,7.5,"#f8b62b",col = "#f8b62b")
+rect(4,7,6,8,col = "#f8b62b")
+text(2,5.5,"#1d2088",col = "#1d2088")
+rect(4,5,6,6,col = "#1d2088")
+text(2,3.5,"#601986",col = "#601986")
+rect(4,3,6,4,col = "#601986")
+text(2,1.5,"#29abe2",col = "#29abe2")
+rect(4,1,6,2,col = "#29abe2")
+
+text(8,15.5,"#c87acd",col = "#c87acd")
+rect(10,15,12,16,col = "#c87acd")
+text(8,13.5,"#933a28",col = "#933a28")
+rect(10,13,12,14,col = "#933a28")
+text(8,11.5,"#b3da92",col = "#b3da92")
+rect(10,11,12,12,col = "#b3da92")
+text(8,9.5,"#9c4094",col = "#9c4094")
+rect(10,9,12,10,col = "#9c4094")
+text(8,7.5,"#0a6464",col = "#0a6464")
+rect(10,7,12,8,col = "#0a6464")
+text(8,5.5,"#da1c6f",col = "#da1c6f")
+rect(10,5,12,6,col = "#da1c6f")
+text(8,3.5,"#b9b8b8",col = "#b9b8b8")
+rect(10,3,12,4,col = "#b9b8b8")
+text(8,1.5,"#000000",col = "#000000")
+rect(10,1,12,2,col = "#000000")
+
+abline(h=16.5,lwd=4,col="blue")
+
+
+library(ggsci)
+library(scales)
+pal= pal_npg("nrc")(10)
+par(fig = c(0.5, 1, 0, 0.5), new = TRUE)  # x[0.5,1], y[0, 0.5]
+p1 = show_col(pal)
+pal= pal_ucscgb("default")(26)
+par(fig = c(0.5, 1, 0.5, 1), new = TRUE)  # x[0.5,1], y[0.5,1]
+p2 = show_col(pal)

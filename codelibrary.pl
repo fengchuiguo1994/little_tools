@@ -31,3 +31,11 @@ if __name__ == "__main__":
     print("finish")
     for result in results:
         print(result)
+
+
+
+## 单行命令
+#### 对于gencode(类似)的注释文件快速提取gene区间和基因的信息
+```
+perl -lane 'if($F[2]eq"gene"){if(/gene_id "(.+?)\.\d+";.+?gene_type "(.+?)";.+?gene_name "(.+?)";/){print "$F[0]\t".($F[3]-1)."\t$F[4]\t$1\t.\t$F[6]\t$3\t$2"}}' gencode.vM23.annotation.gtf > mm10.info
+```

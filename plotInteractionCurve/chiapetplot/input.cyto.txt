@@ -1,0 +1,12 @@
+chr1	0	41185095	H3	gneg
+chr2	0	34608401	H3	gneg
+chr3	0	37032663	H3	gneg
+chr4	0	32359471	H3	gneg
+chr5	0	29068426	H3	gneg
+chr6	0	29247213	H3	gneg
+chr7	0	28549563	H3	gneg
+chr8	0	26191919	H3	gneg
+chr9	0	22438888	H3	gneg
+chr10	0	23591726	H3	gneg
+chr11	0	30302103	H3	gneg
+chr12	0	25028924	H3	gneg
