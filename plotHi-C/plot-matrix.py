@@ -12,6 +12,9 @@ import cooltools
 import bioframe, pyBigWig
 from IPython import display
 from matplotlib.transforms import Affine2D
+import matplotlib as mpl 
+mpl.rcParams['pdf.fonttype'] = 42 
+mpl.rcParams['ps.fonttype'] = 42
 
 raw_cmap = LinearSegmentedColormap.from_list('interaction', ['#FFFFFF','#FFDFDF','#FF7575','#FF2626','#F70000'])
 
